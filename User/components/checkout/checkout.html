@@ -1,159 +1,169 @@
 <!-- check out section -->
-<div class="checkout-section mt-5 mb-5">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-4">
-				<div class="checkout-accordion-wrap">
-					<div class="accordion" id="accordionExample">
-						<div class="card single-accordion">
-							<div class="card-header" id="headingOne">
-								<h5 class="mb-0">
-									<button class="btn btn-link" type="button" data-toggle="collapse"
-										data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-										Thông tin nhận hàng
-									</button>
-								</h5>
-							</div>
-							<div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-								data-parent="#accordionExample">
-								<div class="card-body">
-									<div class="billing-address-form">
-										<form>
-											<p>
-												<input type="text" ng-model="FullName" required>
-												<span class="text-danger">Bạn chưa nhập tên</span>
-											</p>
-											<p>
-												<input type="email" ng-model="Email" required>
-												<span class="text-danger">Bạn chưa nhập tên</span>
-											</p>
-											<p><input type="tel" placeholder="Số điện thoại" ng-model="Phone" required>
-												<span class="text-danger">Bạn chưa nhập tên</span>
-											</p>
-											<p>
-												<input type="text" placeholder="Địa chỉ" ng-model="Address" required>
-												<span class="text-danger">Bạn chưa nhập tên</span>
-											</p>
-											<p><textarea name="bill" id="bill" cols="30" rows="10" placeholder="Ghi chú"
-													ng-model="Note"></textarea></p>
-										</form>
+
+	<div class="checkout-section mt-5 mb-5">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4">
+					<div class="checkout-accordion-wrap">
+						<div class="accordion" id="accordionExample">
+							<div class="card single-accordion">
+								<div class="card-header" id="headingOne">
+									<h5 class="mb-0">
+										<button class="btn btn-link" type="button" data-toggle="collapse"
+											data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+											Thông tin nhận hàng
+										</button>
+									</h5>
+								</div>
+								<div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+									data-parent="#accordionExample">
+									<div class="card-body">
+										<div class="billing-address-form">
+											<form name="FormBanking">
+												<p>
+													<input name="FullName" type="text" ng-model="FullName" required>
+													<span ng-show="FormBanking.FullName.$invalid"
+														class="text-danger">Bạn chưa nhập tên</span>
+												</p>
+												<p>
+													<input name="Email" type="email" ng-model="Email" required>
+													<span ng-show="FormBanking.Email.$invalid" class="text-danger">Bạn
+														chưa nhập Email</span>
+												</p>
+												<p><input name="Phone" type="tel" placeholder="Số điện thoại"
+														ng-model="Phone" required>
+													<span ng-show="FormBanking.Phone.$invalid" class="text-danger">Bạn
+														chưa nhập số điện thoại</span>
+												</p>
+												<p>
+													<input name="Address" type="text" placeholder="Địa chỉ"
+														ng-model="Address" required>
+													<span ng-show="FormBanking.Address.$invalid" class="text-danger">Bạn
+														chưa nhập địa chỉ</span>
+												</p>
+												<p><textarea name="bill" id="bill" cols="30" rows="10"
+														placeholder="Ghi chú" ng-model="Note"></textarea></p>
+											</form>
+										</div>
 									</div>
 								</div>
 							</div>
+
+
 						</div>
 
-
 					</div>
-
 				</div>
-			</div>
-			<div class="col-lg-4">
-				<div class="checkout-accordion-wrap">
-					<div class="accordion" id="accordionExample">
-						<div class="card single-accordion">
-							<div class="card-header" id="headingOne">
-								<h5 class="mb-0">
-									<button class="btn btn-link" type="button" data-toggle="collapse"
-										data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-										Phương thức thanh toán
-									</button>
-								</h5>
-							</div>
+				<div class="col-lg-4">
+					<div class="checkout-accordion-wrap">
+						<div class="accordion" id="accordionExample">
+							<div class="card single-accordion">
+								<div class="card-header" id="headingOne">
+									<h5 class="mb-0">
+										<button class="btn btn-link" type="button" data-toggle="collapse"
+											data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+											Phương thức thanh toán
+										</button>
+									</h5>
+								</div>
 
-							<div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-								data-parent="#accordionExample">
-								<div class="card-body">
-									<div class="billing-address-form">
-										<table class="table">
-											<thead>
+								<div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+									data-parent="#accordionExample">
+									<div class="card-body">
+										<div class="billing-address-form">
+											<table class="table">
+												<thead>
 
-											</thead>
-											<tbody>
-												<tr>
-													<td>
-														<div class="form-check">
-															<label class="form-check-label">
-																<input type="radio" ng-click="CheckOut()"
-																	class="form-check-input" name="optradio">Thanh toán
-																khi giao hàng (COD)
-															</label>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<div class="form-check">
-															<label class="form-check-label">
-																<input ng-click="PayBank()" type="radio"
-																	class="form-check-input" name="optradio">Thanh toán
-																trực tuyến qua VNPAY
-															</label>
-														</div>
-													</td>
-												</tr>
-											</tbody>
-										</table>
+												</thead>
+												<tbody>
+													<tr>
+														<td>
+															<div class="form-check">
+																<label class="form-check-label">
+																	<input type="radio" ng-click="CheckOut()"
+																		class="form-check-input" name="optradio">Thanh
+																	toán
+																	khi giao hàng (COD)
+																</label>
+															</div>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<div class="form-check">
+																<label class="form-check-label">
+																	<input ng-click="PayBank()" type="radio"
+																		class="form-check-input" name="optradio">Thanh
+																	toán
+																	trực tuyến qua VNPAY
+																</label>
+															</div>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
 									</div>
 								</div>
 							</div>
+
+
 						</div>
 
-
 					</div>
-
 				</div>
-			</div>
 
-			<div class="col-lg-4">
-				<div class="order-details-wrap">
-					<table class="order-details">
-						<thead>
-							<tr>
-								<div class="div"
-									style="background-color: #f3f3f3; height:63px; width: 319px; border-radius: 5px;">
-									<div class="" style="padding-top: 18px; padding-left: 18px;">
-										<i class="fa-solid fa-circle-check"
-											style="color: #f28123; padding-right: 15px;"></i><strong
-											style="font-size: 15px; font-weight: 600;">Thông tin đơn hàng</strong>
+				<div class="col-lg-4">
+					<div class="order-details-wrap">
+						<table class="order-details">
+							<thead>
+								<tr>
+									<div class="div"
+										style="background-color: #f3f3f3; height:63px; width: 319px; border-radius: 5px;">
+										<div class="" style="padding-top: 18px; padding-left: 18px;">
+											<i class="fa-solid fa-circle-check"
+												style="color: #f28123; padding-right: 15px;"></i><strong
+												style="font-size: 15px; font-weight: 600;">Thông tin đơn hàng</strong>
+										</div>
 									</div>
-								</div>
-							</tr>
-						</thead>
-						<tbody class="order-details-body">
-							<tr style="font-weight: bold;">
-								<td> Sản phẩm</td>
-								<td>Số lượng</td>
-								<td>Tổng cộng</td>
-							</tr>
-							<tr ng-repeat="item in Cart">
-								<td> {{item.name}} </td>
-								<td> {{item.quantity}} </td>
-								<td> {{item.total | number:3}}₫ </td>
-							</tr>
-						</tbody>
-						<tbody class="checkout-details">
-							<tr style="border-top: 2px solid; font-weight: bold;">
-								<td colspan="3">Hoá đơn</td>
-							</tr>
-							<tr>
-								<td colspan="2">Tạm tính</td>
-								<td> {{Total | number : 3}}₫ </td>
-							</tr>
-							<tr>
-								<td colspan="2">Phí vận chuyển</td>
-								<td>30.000₫</td>
-							</tr>
-							<tr>
-								<td colspan="2">Tổng cộng</td>
-								<td>{{Total + 30 | number : 3}}₫</td>
-							</tr>
-						</tbody>
-					</table>
-					<a href="" ng-show="btn_ordering" ng-click="Ordering()" class="boxed-btn">Đặt hàng</a>
-					<a href="" ng-show="!btn_ordering" ng-click="Banking()" class="boxed-btn">Thanh toán ngay</a>
+								</tr>
+							</thead>
+							<tbody class="order-details-body">
+								<tr style="font-weight: bold;">
+									<td> Sản phẩm</td>
+									<td>Số lượng</td>
+									<td>Tổng cộng</td>
+								</tr>
+								<tr ng-repeat="item in Cart">
+									<td> {{item.name}} </td>
+									<td> {{item.quantity}} </td>
+									<td> {{item.total | number:3}}₫ </td>
+								</tr>
+							</tbody>
+							<tbody class="checkout-details">
+								<tr style="border-top: 2px solid; font-weight: bold;">
+									<td colspan="3">Hoá đơn</td>
+								</tr>
+								<tr>
+									<td colspan="2">Tạm tính</td>
+									<td> {{Total | number : 3}}₫ </td>
+								</tr>
+								<tr>
+									<td colspan="2">Phí vận chuyển</td>
+									<td>30.000₫</td>
+								</tr>
+								<tr>
+									<td colspan="2">Tổng cộng</td>
+									<td>{{Total + 30 | number : 3}}₫</td>
+								</tr>
+							</tbody>
+						</table>
+						<a href="" ng-show="btn_ordering" ng-click="Ordering()" class="boxed-btn">Đặt hàng</a>
+						<a href="" ng-show="!btn_ordering" ng-click="Banking()" class="boxed-btn">Thanh toán ngay</a>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
+
 <!-- end check out section -->
