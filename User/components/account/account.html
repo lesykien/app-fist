@@ -1,0 +1,350 @@
+<style>
+    .btn_Custom {
+        font-weight: bolder;
+        border: none;
+        background-color: #F28123;
+        padding: 5px 10px;
+        border-radius: 20px;
+        color: #051922;
+        transition: all 0.5 cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+
+    .btn_Custom:hover {
+        color: #F28123;
+        background-color: #051922;
+    }
+
+    .cart__Order-container {
+        border-radius: 5px;
+        margin-bottom: 20px;
+        /* background-color: #f9f9f9; */
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
+
+    .cart__Order-header {
+        padding: 5px 10px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .text__Order-header {
+        font-weight: bold;
+        font-size: 17px;
+    }
+
+    .cart__Order-body {
+        padding: 5px 10px;
+        display: flex;
+        align-items: center;
+        border-top: 1px solid #6f7070;
+        justify-content: space-between;
+        background-color: white;
+    }
+
+    .cart__Order-total {
+        padding: 5px 10px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 20px;
+    }
+
+    .total__pro {
+        /* font-weight: bold; */
+        font-size: 17px;
+    }
+
+    .img_order {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .cart__Order-foodter {
+        padding: 5px 10px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+    }
+
+    .mua__lai {
+        border: none;
+        color: #051922;
+        background-color: #F28123;
+        border-radius: 20px;
+        padding: 2px 50px;
+        font-weight: bold;
+        transition: all 0.5 cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+
+    .mua__lai:hover {
+        background-color: #051922;
+        color: #F28123;
+    }
+
+    .btn_logOut {
+        color: #051922;
+        background-color: white;
+        border: 1px solid;
+    }
+
+    .btn_logOut:hover {
+        background-color: #051922;
+        color: white;
+    }
+
+    .scroll__Cart--body {
+        height: 150px;
+        overflow: hidden;
+        overflow-y: auto;
+    }
+
+    .scroll__Cart--body::-webkit-scrollbar {
+        width: 0px;
+    }
+
+    .btn__huy {
+        color: red;
+        border: 1px solid;
+        background-color: white;
+    }
+
+    .btn__huy:hover {
+        color: white;
+        background-color: red;
+    }
+
+    .Order__detal {
+        position: fixed;
+        width: 38%;
+        height: 100%;
+        background-color: #ffffff;
+        top: 0;
+        left: 0;
+        z-index: 99999;
+        transition: all 0.25s linear;
+        transform: translateX(-100%);
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    }
+
+    .width {
+        transform: translateX(0%);
+    }
+
+    .Close {
+        font-size: 25px;
+        color: black;
+        position: absolute;
+        right: 18px;
+    }
+
+    .icon__order {
+        color: white;
+        font-size: 20px;
+        width: 50px;
+        height: 50px;
+        background-color: #2d8819;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        border-radius: 50%;
+
+    }
+
+    .StatusOrde {
+        display: flex;
+        justify-content: center;
+        margin-top: 4rem;
+        padding: 0px 20px;
+        align-items: center;
+    }
+
+    .thongTin__donHang {
+        border-top: 1px solid;
+        padding: 10px 20px;
+        margin-top: 20px;
+    }
+
+    .thongTin__donHang p {
+        font-size: 16px;
+    }
+
+    .thongTin__donHang p span {
+        font-weight: bolder;
+    }
+
+    .duongThang {
+        height: 2px;
+        width: 5rem;
+        background-color: #2d8819;
+    }
+
+    .dang_duyet {
+        color: #6f7070;
+        border: 2px solid;
+        background-color: white;
+    }
+
+    .dang_duyetThang {
+        background-color: #6f7070;
+    }
+
+    .group__button--Trangthai {
+        background-color: #051922;
+        margin-bottom: 10px;
+        border-radius: 2px;
+    }
+
+    .group__button--Trangthai button {
+        padding: 5px 50px;
+        border: none;
+        font-size: 16px;
+        background-color: #051922;
+        color: white;
+    }
+
+    .activeButton {
+        border-bottom: 3px solid #F28123 !important;
+    }
+
+    .btn_trangThai:focus {
+        outline: none;
+    }
+
+    .detal__button--order {
+        color: white;
+        background-color: #051922;
+    }
+
+    .scroll__Cart--body a {
+        color: #051922;
+        transition: all 0.1s linear;
+    }
+
+    .scroll__Cart--body a:hover {
+        background-color: #dfdfdf;
+    }
+</style>
+
+
+<div class="contact-from-section mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <div class="form-title">
+                    <h2>Thông tin tài khoản</h2>
+                </div>
+                <div id="form_status"></div>
+                <div class="contact-form">
+                    <form type="POST">
+                        <p>
+                            <input style="width: 100%;" type="text" ng-model="FullName" id="name"> <br>
+                            <input style="width: 100%;" class="mt-3" type="tel" placeholder="Số điện thoại" ng-model="Phone" name="phone"
+                                id="phone"><br>
+                            <input style="width: 100%;" class="mt-3" type="email" ng-model="Email" id="email"><br>
+                            <input style="width: 100%;" class="mt-3" type="text" placeholder="Địa chỉ" ng-model="Address" name="subject"
+                                id="subject">
+                        </p>
+                        <div class="d-flex" style="gap: 5px;">
+                            <input class="btn_Custom" type="button" value="Lưu thay đổi">
+                            <input class="btn_Custom btn_logOut" type="button" ng-click="LogOut()" value="Đăng xuất">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="group__button--Trangthai">
+                    <button ng-click="OrderWithStatus(1)" class="btn_trangThai activeButton">Chờ xác nhận</button>
+                    <button ng-click="OrderWithStatus(2)" class="btn_trangThai">Đang giao</button>
+                    <button ng-click="OrderWithStatus(3)" class="btn_trangThai">Lịch sử</button>
+                </div>
+                <div class="cart__Order-container" ng-repeat="item in Order">
+                    <div class="cart__Order-header">
+                        <span class="text__Order-header statusDelivery" ng-if="item.statusDelivery == 1">Đơn
+                            hàng đang chờ xác nhận</span>
+                        <span class="text__Order-header statusDelivery" ng-if="item.statusDelivery == 2">Đơn
+                            hàng đang được giao</span>
+                        <span class="text__Order-header statusDelivery" ng-if="item.statusDelivery == 3">Đã nhận
+                            đơn hàng</span>
+                        <span class="text__Order-header" style="font-weight: lighter !important;">
+                            <i class="fa-solid fa-file-invoice"></i> DH-KH-{{item.id}}
+                        </span>
+                    </div>
+                    <div class="scroll__Cart--body">
+                        <a href="#!shop-detail/{{pr.id}}" class="cart__Order-body" ng-repeat="pr in item.detal">
+                            <div class="" style="display: flex; gap: 10rem;">
+                                <img src="/Admin/directives/ImagesAvatar/{{pr.link[0].link}}" alt="" class="img_order">
+                                <div class="information__pro">
+                                    <span class="total__pro" style="font-weight: bold;"> {{pr.name}} </span><br>
+                                    <span class="total__pro"> {{pr.price | number : 3}}đ</span> <span
+                                        class="quantity__pro">x {{pr.quantity}} </span>
+                                </div>
+                            </div>
+
+                            <span class="total__pro"> {{pr.quantity * pr.price | number : 3}}đ </span>
+                        </a>
+                    </div>
+                    <div class="" style="display: flex; justify-content: space-between;padding: 5px 0px;">
+                        <div class="cart__Order-total">
+                            Tổng tiền:<span class="total__pro" style="font-weight: bold;"> {{item.totalAmount | number
+                                :3}}đ</span>
+                        </div>
+                        <div class="cart__Order-foodter">
+                            <button class="mua__lai" ng-click="MuaLai(item.detal)"
+                                ng-show="item.statusDelivery == 3 || item.statusDelivery == 4">Mua
+                                lại</button>
+                            <button class="mua__lai btn__huy" ng-click="RemoveOrder(item.id)"
+                                ng-show="item.statusDelivery == 1">Huỷ đơn
+                                hàng</button>
+                            <button class="mua__lai btn_logOut" ng-click="OrderDetal(item.id)">Chi tiết</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="Order__detal" ng-class="{ 'width': width }">
+    <a class="Close" type="button" ng-click="Close()" href=""><i class="fa-solid fa-xmark"></i></a>
+    <div class="StatusOrde" ng-if="DetalOrderById.statusDelivery == 1">
+        <span class="icon__order"><i class="fa-solid fa-file-import"></i></span>
+        <div class="duongThang dang_duyetThang"></div>
+        <span class="icon__order dang_duyet"><i class="fa-solid fa-user-pen"></i></span>
+        <div class="duongThang dang_duyetThang"></div>
+        <span class="icon__order dang_duyet"><i class="fa-solid fa-truck-fast"></i></span>
+        <div class="duongThang dang_duyetThang"></div>
+        <span class="icon__order dang_duyet"><i class="fa-solid fa-check"></i></span>
+    </div>
+    <div class="StatusOrde" ng-if="DetalOrderById.statusDelivery == 2">
+        <span class="icon__order"><i class="fa-solid fa-file-import"></i></span>
+        <div class="duongThang"></div>
+        <span class="icon__order"><i class="fa-solid fa-user-pen"></i></span>
+        <div class="duongThang"></div>
+        <span class="icon__order"><i class="fa-solid fa-truck-fast"></i></span>
+        <div class="duongThang dang_duyetThang"></div>
+        <span class="icon__order dang_duyet"><i class="fa-solid fa-check"></i></span>
+    </div>
+    <div class="StatusOrde" ng-if="DetalOrderById.statusDelivery == 3">
+        <span class="icon__order"><i class="fa-solid fa-file-import"></i></span>
+        <div class="duongThang"></div>
+        <span class="icon__order"><i class="fa-solid fa-user-pen"></i></span>
+        <div class="duongThang"></div>
+        <span class="icon__order"><i class="fa-solid fa-truck-fast"></i></span>
+        <div class="duongThang"></div>
+        <span class="icon__order"><i class="fa-solid fa-check"></i></span>
+    </div>
+    <div class="thongTin__donHang">
+        <p>Mã đơn hàng: <span>DH-KH-{{DetalOrderById.id}}</span></p>
+        <p>Ngày tháng: <span>{{DetalOrderById.dateTime}}</span></p>
+        <p>Phương thức thanh toán: <span>Thanh toán sau khi nhận hàng</span></p>
+        <p>Tổng tiền: <span> {{DetalOrderById.totalAmount | number : 3}}đ</span></p>
+    </div>
+    <div class="thongTin__donHang">
+        <p>Họ tên: <span> {{DetalOrderById.name}} </span></p>
+        <p>Số điện thoại: <span> {{DetalOrderById.phone}} </span></p>
+        <p>địa chỉ: <span> {{DetalOrderById.address}} </span></p>
+        <p>Ghi chú: <span> {{DetalOrderById.note}} </span></p>
+    </div>
+</div>

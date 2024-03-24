@@ -1,0 +1,96 @@
+<!-- single article section -->
+<style>
+    .img__blog {
+        width: 100%;
+        height: 32rem;
+        object-fit: cover;
+        border-radius: 2px;
+        margin-bottom: 20px;
+    }
+    .Blog_lienQuan{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-bottom: 1px solid rgb(142, 142, 142);
+        margin-bottom: 5px;
+        color: black;
+        transition: none;
+    }
+    .img__Blog--lienQuan{
+        width: 5rem;
+        height: 5rem;
+        object-fit: cover;
+        border-radius: 2px;
+    }
+    .noiDung__Blog--lienQuan{
+        display: -webkit-box;
+        /* Cho phép sử dụng thuộc tính -webkit-line-clamp */
+        -webkit-line-clamp: 2;
+        line-height: 1.3;
+        /* Số dòng tối đa */
+        -webkit-box-orient: vertical;
+        /* Hiển thị văn bản theo chiều dọc */
+        overflow: hidden;
+        /* Ẩn phần văn bản bị tràn */
+        text-align: justify;
+        /* Căn đều hai bên lề cho đoạn văn bản */
+        font-size: 12px;
+    }
+    .tieude__Blog--lienQuan{
+        font-size: 15px;
+    }
+    #item p img{
+        width: 100% !important;
+    }
+</style>
+
+<div class="mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="single-article-section">
+                    <div class="single-article-text">
+                        <div id="item"> 
+                            <!-- thẻ để xuất chi tiết bài viết -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <!-- <div class="sidebar-section">
+                    <div class="recent-posts">
+                        <h4>Cách muôi cá ngựa</h4>
+                        <ul>
+                            <li><a href="">Chọn vật liệu làm bể, thường sử dụng xi măng. Trước khi bỏ cá
+                                    vào bể, hãy vệ sinh và phơi khô bể.</a></li>
+                            <li><a href="">Nhiệt độ thích hợp cho cá ngựa là từ 27°C đến 30°C.</a></li>
+                            <li><a href="">Nước nên được thay đổi mỗi 5 ngày.</a></li>
+                            <li><a href="">Cá ngựa thích ăn tôm, tép, động vật phù du, và bọ nguậy</a>
+                            </li>
+                            <li><a href="">Nước nuôi cần có độ mặn từ 20% đến 35%, tương tự với môi
+                                    trường tự nhiên của cá ngựa.</a></li>
+                        </ul>
+                    </div>
+                </div> -->
+                <section class="sidebar-section mt-5">
+                    <div class="recent-posts">
+                        <h4>Các bài viết liên quan</h4>
+                        <a href="#!Blog/2" class="Blog_lienQuan" ng-repeat="item in BlogLienQuan">
+                            <img src="/Admin/directives/ImagesAvatar/{{item.link[0].link}}"
+                                class="img__Blog--lienQuan" alt="">
+                            <div class="">
+                                <strong class="tieude__Blog--lienQuan">Phương pháp nuôi các koi</strong><br>
+                                <span class="noiDung__Blog--lienQuan">
+                                    Nước nuôi cần có độ mặn từ 20% đến 35%, tương tự với môi
+                                    trường tự nhiên của cá ngựa.</span>
+                                    <span style="font-size: 11px;" class="author"><i class="fas fa-user"></i> Admin</span>
+                                    <span style="font-size: 11px;" class="date"> 03/01/2024</span>
+                            </div>
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end single article section -->

@@ -1,0 +1,84 @@
+<!-- cart -->
+<div class="cart-section mt-5 mb-5" style="height: 80vh;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <div class="cart-table-wrap">
+                    <table class="cart-table">
+                        <thead class="cart-table-head">
+                            <tr class="table-head-row">
+                                <th class="product-image-cart">Hình ảnh</th>
+                                <th class="product-name">Sản phẩm</th>
+                                <th class="product-price">Giá</th>
+                                <th class="product-quantity">Số lượng</th>
+                                <th class="product-total">Tổng tiền</th>
+                                <th class="product-remove"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-body-row" ng-repeat="item in Cart">
+                                <td class="product-image-cart"><img src="/Admin/directives/ImagesAvatar/{{item.link}}"
+                                        alt="" style="width: 5rem; height: 5rem; object-fit: cover;"></td>
+                                <td class="product-name"> {{item.name}} </td>
+                                <td class="product-price"> {{item.price | number :3}}₫</td>
+                                <td class="product-quantity">
+                                    <div class="cart-buttons d-flex"
+                                        style="margin: 0; justify-content: center; align-items: center;">
+                                        <a type="button" class="boxed-btn black" ng-click="UpdateQuantity(item, 1 , $index)"
+                                            style="padding: 3px 10px; margin: 0; border-radius: 2px;">-</a>
+
+                                        <input type="text" min="1" max="30" value="{{item.quantity}}"
+                                            style="width:40px; padding: 3px 10px; text-align: center; border: none;">
+
+                                        <a type="button" ng-click="UpdateQuantity(item, 2 , $index)" class="boxed-btn black"
+                                            style="padding: 3px 10px; margin: 0; border-radius: 2px;">+</a>
+                                    </div>
+
+                                </td>
+
+                                <td class="product-total"> {{item.total | number :3}}₫ </td>
+
+                                <td class="product-remove"><a type="button" ng-click="Remove($index)"><i
+                                            class="far fa-window-close"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="total-section">
+                    <table class="total-table">
+                        <thead class="total-table-head">
+                            <tr class="table-total-row">
+                                <th>Tổng thanh toán</th>
+                                <th>Giá</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="total-data">
+                                <td><strong>Tổng tiền hàng: </strong></td>
+                                <td> {{Total | number : 3}}₫</td>
+                            </tr>
+                            <tr class="total-data">
+                                <td><strong>Tiền ship: </strong></td>
+                                <td> 30.000₫</td>
+                            </tr>
+                            <tr class="total-data">
+                                <td><strong>Thành tiền: </strong></td>
+                                <td> {{Total + 30 | number : 3}}₫</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="cart-buttons">
+                        <!-- <a href="#!cart" class="boxed-btn">Update Cart</a> -->
+                        <a href="index.html#!/checkout" ng-show="ShowButtonCart" class="boxed-btn black">Đặt hàng</a>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end cart -->

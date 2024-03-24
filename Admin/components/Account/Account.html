@@ -1,0 +1,63 @@
+<!-- Navbar -->
+<div ng-include="'directives/nav/nav.html'"></div>
+<!-- / Navbar -->
+
+<div class="content-wrapper">
+    <!-- Content -->
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="fw-bold py-3"><span class="text-muted fw-light">Thông tin tài khoản</span></h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mb-4">
+                    <!-- Account -->
+                    <div class="card-body">
+                        <div class="d-flex align-items-start align-items-sm-center gap-4">
+                            <label for="uploadedAvatar" style="cursor: pointer;">
+                                <img src="/directives/assets/img/avatars/1.png" alt="user-avatar" class="d-block rounded"
+                                height="100" width="100">
+                            </label>
+
+                            <input type="file" id="uploadedAvatar" style="display: none;">
+                            <div class="button-wrapper">
+                                <h4>Lê Văn A</h4>
+                                <p class="text-muted mb-0">Admin</p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="my-0">
+                    <div class="card-body">
+                        <form id="formAccountSettings" method="POST" onsubmit="return false">
+                            <div class="row">
+                                <div class="mb-3 col-md-6">
+                                    <label for="firstName" class="form-label">Họ Tên</label>
+                                    <input class="form-control" type="text" id="firstName" name="firstName" value="John"
+                                        autofocus="">
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label for="lastName" class="form-label">Tên đăng nhập</label>
+                                    <input class="form-control" type="text" name="lastName" id="lastName" value="Doe">
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input class="form-control" type="text" id="email" name="email"
+                                        value="john.doe@example.com" placeholder="john.doe@example.com">
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label for="organization" class="form-label">Số điện thoại</label>
+                                    <input type="text" class="form-control" id="organization" name="organization"
+                                        value="ThemeSelection">
+                                </div>
+                                
+                            </div>
+                            <div class="mt-2">
+                                <button type="submit" class="btn btn-primary me-2">Lưu thông tin</button>
+                                <button type="reset" class="btn btn-outline-secondary">Đăng xuất</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /Account -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

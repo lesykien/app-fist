@@ -1,0 +1,156 @@
+<!-- features list section -->
+<div class="list-section pt-80 pb-80">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+				<div class="list-box d-flex align-items-center">
+					<div class="list-icon">
+						<i class="fas fa-shipping-fast"></i>
+					</div>
+					<div class="content">
+						<h3>Miễn phí vận chuyển</h3>
+						<p>Cho khách hàng ở TP. Buôn Ma Thuột</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+				<div class="list-box d-flex align-items-center">
+					<div class="list-icon">
+						<i class="fas fa-phone-volume"></i>
+					</div>
+					<div class="content">
+						<h3>Hỗ trợ 24/7</h3>
+						<p>Tư vấn hỗ trợ trong ngày</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="list-box d-flex justify-content-start align-items-center">
+					<div class="list-icon">
+						<i class="fas fa-sync"></i>
+					</div>
+					<div class="content">
+						<h3>Hỗ trợ đổi trả hàng</h3>
+						<p>Hoàn trả hàng trong vòng 3 ngày</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+<!-- end features list section -->
+
+<!-- product section -->
+<div class="product-section mt-150 mb-100">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 offset-lg-2 text-center">
+				<div class="section-title">
+					<h3><span class="orange-text">Sản</span> phẩm</h3>
+					<p>Chúng tôi cung cấp các mặt hàng về các loại cá cảnh đang được ưu thích trên thị trường</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-3 col-md-6 text-center" ng-repeat="item in ListProduct">
+				<div class="single-product-item">
+					<div class="product-image">
+						<a href="#!shop-detail/{{item.id}}"><img src="/User/directives/Images/{{item.link[0].link}}"
+								alt="" style="width: 100%; height: 18rem; object-fit: cover;"></a>
+					</div>
+					<h3>{{item.name}}</h3>
+					<p class="product-price orange-text"> {{item.price | number : 3}}₫ </p>
+					<a href="" ng-click="AddToCart(item)" class="cart-btn"><i class="fas fa-shopping-cart"></i> Thêm vào
+						giỏ
+						hàng</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end product section -->
+<div class="d-flex justify-content-center">
+	<a href="" class="cart-btn ">Xem thêm...</a>
+</div>
+<!-- cart banner section -->
+<div class="section-title mt-100">
+	<h3 class="text-center"><span class="orange-text">Sản</span> phẩm mới</h3>
+	<p class="text-center">Chúng tôi cung cấp các mặt hàng về các loại cá cảnh đang được ưu thích trên thị trường
+	</p>
+</div>
+<section class="cart-banner pt-100 pb-100">
+	<div class="container">
+		<div class="row clearfix">
+			<!--Image Column-->
+			<div class="image-column col-lg-6">
+				<a href="#!shop-detail/{{NewPro.id}}" class="image" style="position: relative;">
+					<img loading="lazy" src="/User/directives/ImageDetal/{{NewPro.link[0].link}}" alt=""
+						style="width: 100%; height: 23rem; object-fit: cover;">
+				</a>
+				<div class="hinhTamGiac">
+					<img src="https://pierrecardinpens.in/images/new-s.png" alt="">
+				</div>
+			</div>
+			<!--Content Column-->
+			<div class="content-column col-lg-6">
+				<h3><span class="orange-text"> {{NewPro.name}} </span> </h3>
+				<h4><span class="text-danger " style="font-weight: 600; font-size: 25px;">{{NewPro.price | number :
+						3}}₫</span>
+				</h4>
+				<div class="text">
+					Chào mừng bạn đến với cửa hàng bán cá cảnh! Chúng tôi tự hào là địa điểm hàng đầu để bạn khám phá và
+					mua sắm các loại cá cảnh tuyệt vời. Với nhiều năm kinh nghiệm trong ngành, chúng tôi cam kết mang
+					đến cho bạn những sản phẩm chất lượng cao và dịch vụ tuyệt vời.
+				</div>
+				<a type="button" ng-click="AddToCart(NewPro)" class="cart-btn mt-3"><i class="fas fa-shopping-cart"></i>
+					Thêm vào giỏ
+					hàng</a>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- end cart banner section -->
+
+
+<!-- advertisement section -->
+<div class="abt-section mb-150 mt-100">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 col-md-12">
+				<div class="abt-bg">
+					<a href="https://www.youtube.com/watch?v=crVTiIyyl4E" class="video-play-btn popup-youtube"><i
+							class="fas fa-play"></i></a>
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-12">
+				<div class="abt-text">
+					<p class="top-sub">Có từ 2004</p>
+					<h2>Cửa hàng <span class="orange-text">Red Hood</span></h2>
+					<p>Chào mừng bạn đến với cửa hàng bán cá cảnh! Chúng tôi tự hào là địa điểm hàng đầu để bạn khám
+						phá
+						và mua sắm các loại cá cảnh tuyệt vời. Với nhiều năm kinh nghiệm trong ngành, chúng tôi cam
+						kết
+						mang đến cho bạn những sản phẩm chất lượng cao và dịch vụ tuyệt vời.</p>
+					<p>Hãy đến và trải nghiệm không gian thú vị của cửa hàng bán cá cảnh chúng tôi. Chúng tôi cam
+						kết sẽ
+						mang đến cho bạn niềm vui và sự hài lòng tuyệt đối trong việc nuôi dưỡng và trang trí hồ cá
+						của
+						bạn.</p>
+					<a href="#" class="boxed-btn mt-4">Đọc thêm</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end advertisement section -->
+<style>
+	.hinhTamGiac {
+		width: 130px;
+		height: 50px;
+		position: absolute;
+		top: -7px;
+		left: 9px;
+	}
+</style>

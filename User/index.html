@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+
+    <!-- title -->
+    <title>Trang chủ</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="/User/directives/assets/img/iconlogo.png">
+    <!-- google font -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="/User/directives/assets/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="/User/directives/assets/bootstrap/css/bootstrap.min.css">
+    <!-- owl carousel -->
+    <link rel="stylesheet" href="/User/directives/assets/css/owl.carousel.css">
+    <!-- magnific popup -->
+    <link rel="stylesheet" href="/User/directives/assets/css/magnific-popup.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="/User/directives/assets/css/animate.css">
+    <!-- mean menu css -->
+    <link rel="stylesheet" href="/User/directives/assets/css/meanmenu.min.css">
+    <!-- main style -->
+    <link rel="stylesheet" href="/User/directives/assets/css/main.css">
+    <!-- responsive -->
+    <link rel="stylesheet" href="/User/directives/assets/css/responsive.css">
+
+    <link rel="stylesheet" href="/directives/assets/css/responsive.css">
+
+    <script src="./services/angularjs/angular.js"></script>
+
+    <script src="./services/angularjs/angular-route.js"></script>
+</head>
+
+<body ng-app="APP" ng-controller="MainController">
+
+    <!--PreLoader-->
+    <div class="loader">
+        <div class="loader-inner">
+            <div class="circle"></div>
+        </div>
+    </div>
+    <!--PreLoader Ends-->
+
+    <!-- header -->
+    <div class="top-header-area" id="sticker" style="background-color: #051922; padding-bottom: 0px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 text-center">
+                    <div class="main-menu-wrap">
+                        <!-- logo -->
+                        <div class="site-logo">
+                            <a ng-href="#!Home">
+                                <div class="" style="padding-bottom: 20px;">
+                                    <img src="/User/directives/assets/img/logoredhood.png" alt="">
+                                </div>
+                            </a>
+                        </div>
+                        <!-- logo -->
+
+                        <!-- menu start -->
+                        <nav class="main-menu">
+                            <ul>
+                                <li class="current-list-item"><a ng-href="#!Home">Trang chủ</a></li>
+                                <li><a ng-href="#!Shop/0/1">Sản phẩm </a></li>
+                                <li><a ng-href="">Danh mục sản phẩm <i class="fa-solid fa-chevron-down"></i></a>
+                                    <ul class="sub-menu">
+                                        <li ng-repeat="item in categorys"><a ng-href="#!Shop/{{item.id}}/1"> {{item.nameCategory}} </a></li>
+                                    </ul>
+                                </li>   
+                                <li><a ng-href="#!BlogCart">Kiến thức nuôi cá</a>
+                                    <!-- <ul class="sub-menu">
+										<li><a href="news.html">News</a></li>
+										<li><a href="single-news.html">Single News</a></li>
+									</ul> -->
+                                </li>
+                                <li><a ng-href="#!contact">Liên hệ</a></li>
+                                <li>
+                                    <div class="header-icons">
+                                        <a class="shopping-cart" ng-href="#!cart"><i class="fas fa-shopping-cart"></i>[{{CountCart}}]</a>
+                                        <a class="" ng-href="#!Account"><i class="fas fa-solid fa-user"
+                                                style="color: #ffffff;"></i></a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </nav>
+                        <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+                        <div class="mobile-menu"></div>
+                        <!-- menu end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end header -->
+
+    <!-- home page slider -->
+    <div ng-show="siliderShow" class="homepage-slider">
+        <!-- single home slider -->
+        <div class="single-homepage-slider homepage-bg-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-lg-7 offset-lg-1 offset-xl-0">
+                        <div class="hero-text">
+                            <div class="hero-text-tablecell">
+                                <p class="subtitle">Thế giới cá cảnh</p>
+                                <h1>Red Hood cửa hàng cá cảnh số 1 Buôn Ma Thuột</h1>
+                                <div class="hero-btns">
+                                    <a href="index.html" class="boxed-btn">Xem cửa hàng</a>
+                                    <a href="index.html#!/contact" class="bordered-btn">Liên hệ</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- single home slider -->
+        <div class="single-homepage-slider homepage-bg-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 offset-lg-1 text-center">
+                        <div class="hero-text">
+                            <div class="hero-text-tablecell">
+                                <p class="subtitle">Cá Koi</p>
+                                <h1>100% cá cảnh chất lượng</h1>
+                                <div class="hero-btns">
+                                    <a href="index.html" class="boxed-btn">Xem cửa hàng</a>
+                                    <a href="index.html#!/contact" class="bordered-btn">Liên hệ</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- single home slider -->
+        <div class="single-homepage-slider homepage-bg-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 offset-lg-1 text-right">
+                        <div class="hero-text">
+                            <div class="hero-text-tablecell">
+                                <p class="subtitle">Tiêu chí</p>
+                                <h1>Uy tín chất lượng đặt lên hàng đầu</h1>
+                                <div class="hero-btns">
+                                    <a href="index.html" class="boxed-btn">Xem cửa hàng</a>
+                                    <a href="index.html#!/contact" class="bordered-btn">Liên hệ</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end home page slider -->
+    <div class="" style="margin-top: 11rem;" ng-view></div>
+
+    <!-- footer -->
+    <div class="footer-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="footer-box about-widget">
+                        <h2 class="widget-title">Về chúng tôi</h2>
+                        <p>Chào mừng bạn đến với cửa hàng RED HOOD! Chúng tôi tự hào là địa điểm hàng đầu để bạn khám
+                            phá và mua sắm các loại cá cảnh tuyệt vời. Với nhiều năm kinh nghiệm trong ngành, chúng tôi
+                            cam kết mang đến cho bạn những sản phẩm chất lượng cao và dịch vụ tuyệt vời.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="footer-box get-in-touch">
+                        <h2 class="widget-title">Thông tin liên hệ</h2>
+                        <ul>
+                            <li><i class="fa-solid fa-location-dot" style="color: #f28123;"></i> 29 Nguyễn Khoa Đăng,
+                                TP. Buôn Ma Thuột, Tỉnh Đắk Lắk</li>
+                            <li><i class="fa-solid fa-envelope" style="color: #f28123;"></i> redhoodaquarium@gmail.com
+                            </li>
+                            <li><i class="fa-solid fa-phone" style="color: #f28123;"></i> 0339924208</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- end footer -->
+
+    <!-- copyright -->
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <p><a href="#">Team Red Hood - Cao đẳng FPT Polytechnic Tây Nguyên</a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- end copyright -->
+    <!-- jquery -->
+
+    <script src="/User/directives/assets/js/jquery-1.11.3.min.js"></script>
+    <!-- bootstrap -->
+    <script src="/User/directives/assets/bootstrap/js/bootstrap.min.js"></script>
+    <!-- count down -->
+    <script src="/User/directives/assets/js/jquery.countdown.js"></script>
+    <!-- isotope -->
+    <script src="/User/directives/assets/js/jquery.isotope-3.0.6.min.js"></script>
+    <!-- waypoints -->
+    <script src="/User/directives/assets/js/waypoints.js"></script>
+    <!-- owl carousel -->
+    <script src="/User/directives/assets/js/owl.carousel.min.js"></script>
+    <!-- magnific popup -->
+    <script src="/User/directives/assets/js/jquery.magnific-popup.min.js"></script>
+    <!-- mean menu -->
+    <script src="/User/directives/assets/js/jquery.meanmenu.min.js"></script>
+    <!-- sticker js -->
+    <script src="/User/directives/assets/js/sticker.js"></script>
+    <!-- main js -->
+    <script src="/User/directives/assets/js/main.js"></script>
+
+    <script src="./main.js"></script>
+    <script src="./components/Home/HomeController.js"></script>
+    <script src="./components/shop/ShopController.js"></script>
+    <script src="./components/cart/CartController.js"></script>
+    <script src="./components/shop-detail/shop-detail.js"></script>
+    <script src="./components/checkout/CheckController.js"></script>
+    <script src="./components/account/accountController.js"></script>
+    <script src="./components/BlogCard/BlogCartController.js"></script>
+    <script src="./components/Blog/BlogController.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <!-- link ép kiểu này tháng -->
+</body>
+
+</html>

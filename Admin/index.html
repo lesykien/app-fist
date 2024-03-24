@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="../assets/"
+  data-template="vertical-menu-template-free">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+  <title>Red Hood</title>
+
+  <meta name="description" content="" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/Admin/assets/img/favicon/favicon.ico" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Icons. Uncomment required icon fonts -->
+  <link rel="stylesheet" href="/Admin/directives/assets/vendor/fonts/boxicons.css" />
+  <link rel="stylesheet" href="/Admin/directives/assets/vendor/css/core.css" class="template-customizer-core-css" />
+  <link rel="stylesheet" href="/Admin/directives/assets/vendor/css/theme-default.css"
+    class="template-customizer-theme-css" />
+  <link rel="stylesheet" href="/Admin/directives/assets/css/demo.css" />
+  <link rel="stylesheet" href="/Admin/directives/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+  <link rel="stylesheet" href="/Admin/directives/assets/vendor/libs/apex-charts/apex-charts.css" />
+  <script src="/Admin/directives/assets/vendor/js/helpers.js"></script>
+  <script src="/Admin/directives/assets/js/config.js"></script>
+
+  <script src="/Admin/services/angularjs/angular.js"></script>
+  <script src="/Admin/services/angularjs/angular-route.js"></script>
+
+</head>
+
+<body ng-app="APP" ng-controller="MainController">
+  <div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+      <!-- Menu -->
+      <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+        <div class="app-brand demo">
+          <a href="#!ListProduct" class="app-brand-link">
+            <span class="app-brand-text fs-2 menu-text fw-bolder ms-2">Red Hood</span>
+          </a>
+        </div>
+        <ul class="menu-inner py-1">
+          <li class="menu-item menu-cha active" style="">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <i class="menu-icon tf-icons bx bx-table"></i>
+              <div data-i18n="Layouts">Sản phẩm</div>
+            </a>
+            <ul class="menu-sub">
+              <li class="menu-item sub-menu-active active">
+                <a href="#!ListProduct" class="menu-link d-flex justify-content-between">
+                  <div data-i18n="Without menu">Danh sách sản phẩm</div>
+                </a>
+              </li>
+              <li class="menu-item sub-menu-active">
+                <a href="#!TypeProduct" class="menu-link menu-link d-flex justify-content-between">
+                  <div data-i18n="Without navbar">Loại sản phẩm</div>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="menu-item menu-cha" style="">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <i class="menu-icon tf-icons bx bx-layout"></i>
+              <div data-i18n="Layouts">Đơn hàng</div>
+              <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-label-danger"></span>
+            </a>
+            <ul class="menu-sub">
+              <li class="menu-item sub-menu-active">
+                <a href="#!Pending/1" class="menu-link d-flex justify-content-between">
+                  <div data-i18n="Without menu">Chờ xác nhận</div>
+                  <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-label-danger"> {{PendingCount}}
+                  </span>
+                </a>
+              </li>
+              <li class="menu-item sub-menu-active">
+                <a href="#!Delivering/2" class="menu-link menu-link d-flex justify-content-between">
+                  <div data-i18n="Without navbar">Đang giao</div>
+                  <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-label-danger ms-3"> {{DeliveryCount}}
+                  </span>
+                </a>
+              </li>
+              <li class="menu-item sub-menu-active">
+                <a href="#!History/3" class="menu-link menu-link d-flex justify-content-between">
+                  <div data-i18n="Container">Lịch sử</div>
+                  <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-label-danger ms-3">
+                    {{HistoryCount}}</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="menu-item menu-cha">
+            <a href="#!ListBlog" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-layout"></i>
+              <div data-i18n="Layouts">Bài viết</div>
+            </a>
+          </li>
+        </ul>
+      </aside>
+      <!-- / Menu -->
+      <div class="layout-page">
+        <div ng-show="Loading" class="spinner-border spinner-border-lg text-primary m-auto" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="" ng-view></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/Admin/directives/assets/vendor/libs/jquery/jquery.js"></script>
+  <script src="/Admin/directives/assets/vendor/libs/popper/popper.js"></script>
+  <script src="/Admin/directives/assets/vendor/js/bootstrap.js"></script>
+  <script src="/Admin/directives/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <!-- link ép kiểu này tháng -->
+
+  <script src="/Admin/directives/assets/vendor/js/menu.js"></script>
+  <!-- endbuild -->
+
+  <!-- Vendors JS -->
+  <script src="/Admin/directives/assets/vendor/libs/apex-charts/apexcharts.js"></script>
+
+  <!-- Main JS -->
+  <script src="/Admin/directives/assets/js/main.js"></script>
+
+  <!-- Page JS -->
+  <script src="/Admin/directives/assets/js/dashboards-analytics.js"></script>
+
+
+
+  <script src="./main.js"></script>
+
+  <script src="/Admin/components/ListProduct/ListProductController.js"></script>
+  <script src="/Admin/components/Pending/PendingController.js"></script>
+  <script src="/Admin/components/Delivering/DeliveringController.js"></script>
+  <script src="/Admin/components/History/HistoryController.js"></script>
+  <script src="/Admin/components/TypeProduct/TypeProductController.js"></script>
+  <script src="/Admin/components/Account/AccountController.js"></script>
+  <script src="/Admin/components/ListBlog/ListBlogController.js"></script>
+
+  <!-- Place this tag in your head or just before your close body tag. -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
+
+</html>

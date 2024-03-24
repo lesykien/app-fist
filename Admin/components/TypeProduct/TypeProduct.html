@@ -1,0 +1,85 @@
+<div ng-include="'directives/nav/nav.html'"></div>
+
+<div class="content-wrapper">
+    <!-- Content -->
+    <div class="container-xxl flex-grow-1 container-p-y">
+
+        <div class="d-flex mb-3 gap-3 align-items-center">
+            <!-- Tìm kiếm -->
+            <div class="input-group flex-nowrap">
+                <span class="input-group-text" id="addon-wrapping">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </span>
+                <input type="text" class="form-control" placeholder="Search" ng-model="search"
+                    aria-describedby="addon-wrapping">
+            </div>
+        </div>
+
+        <!-- Basic Bootstrap Table -->
+        <div class="card">
+            <div class="table-responsive text-nowrap">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Tên</th>
+                            <th>Sản phẩm</th>
+                            <th><a href="" class="fs-5" data-bs-toggle="modal" data-bs-target="#basicModal"
+                                    ng-click="Add()"><i class="fa-solid fa-circle-plus"></i></a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                        <tr ng-repeat="item in ListCategory | filter : search">
+                            <td>
+                                {{item.id}}
+                            </td>
+                            <td> {{item.nameCategory}} </td>
+                            <td> {{item.count}} </td>
+                            <td>
+                                <a href="" class="fs-5 me-3" data-bs-toggle="modal" data-bs-target="#basicModal"
+                                    ng-click="Edit(item)"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="" class="text-danger fs-5" ng-click="Delete(item.id)"><i
+                                        class="fa-solid fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--/ Basic Bootstrap Table -->
+    </div>
+</div>
+
+<div class="modal fade" id="basicModal" tabindex="-1" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel1"> {{label}} </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    ng-click="Close()"></button>
+            </div>
+            <form name="ProductAdd" novalidate enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col mb-3">
+                            <label for="nameBasic" class="form-label">Tên loại sản phẩm</label>
+                            <input type="text" class="form-control" ng-model="Name" name="Name" required>
+                            <span class="text-danger" ng-show="ProductAdd.Name.$invalid">Bạn chưa nhập tên</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" ng-click="Close()" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        Huỷ
+                    </button>
+                    <button type="button" ng-click="AddCategory()" class="btn btn-primary"
+                        ng-disabled="ProductAdd.$invalid" ng-show="ShowButton">Thêm</button>
+                    <button type="button" ng-click="SaveEdit(id)" class="btn btn-primary"
+                        ng-disabled="ProductAdd.$invalid" ng-show="!ShowButton">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>

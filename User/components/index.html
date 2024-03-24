@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+
+	<!-- title -->
+	<title>Shop</title>
+
+	<!-- favicon -->
+	<link rel="shortcut icon" type="image/png" href="/User/directives/assets/img/iconlogo.png">
+	<!-- google font -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+	<!-- fontawesome -->
+	<link rel="stylesheet" href="/User/directives/assets/css/all.min.css">
+	<link rel="stylesheet" href="/User/components/cart.html">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="/User/directives/assets/bootstrap/css/bootstrap.min.css">
+	<!-- owl carousel -->
+	<link rel="stylesheet" href="/User/directives/assets/css/owl.carousel.css">
+	<link rel="stylesheet" href="/User/directives/assets/css/magnific-popup.css">
+	<!-- animate css -->
+	<link rel="stylesheet" href="/User/directives/assets/css/animate.css">
+	<!-- mean menu css -->
+	<link rel="stylesheet" href="/User/directives/assets/css/meanmenu.min.css">
+	<!-- main style -->
+	<link rel="stylesheet" href="/User/directives/assets/css/main.css">
+	<!-- responsive -->
+	<link rel="stylesheet" href="/User/directives/assets/css/responsive.css">
+	<!-- Angular JS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+	<!-- <script src="/User/services/angularjs/angular.js"></script>
+
+    <script src="/User/services/angularjs/angular-route.js"></script> -->
+
+</head>
+<body ng-app="APP">
+	
+	<!--PreLoader-->
+    <div class="loader">
+        <div class="loader-inner">
+            <div class="circle"></div>
+        </div>
+    </div>
+    <!--PreLoader Ends-->
+	
+	<!-- header -->
+	<div class="top-header-area" id="sticker">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-sm-12 text-center">
+					<div class="main-menu-wrap">
+						<!-- logo -->
+						<div class="site-logo">
+							<a href="TrangChu.html">
+								<div class="" style="padding-bottom: 20px;">
+									<img src="/User/directives/assets/img/logoredhood.png" alt="">
+								</div>
+							</a>
+						</div>
+						<!-- logo -->
+
+						<!-- menu start -->
+						<nav class="main-menu">
+							<ul>
+								<li><a href="TrangChu.html">Trang chủ</a></li>
+								<li class="current-list-item"><a href="index.html">Sản phẩm </a></li>
+								<li><a href="#">Danh mục sản phẩm <i class="fa-solid fa-chevron-down"></i></a>
+									<ul class="sub-menu">
+										<li><a href="#">Cá Koi</a></li>
+										<li><a href="#">Cá Betta</a></li>
+										<li><a href="#">Cá Thần Tiên</a></li>
+										<li><a href="#">Cá Neon</a></li>
+										<li><a href="#">Cá Cầu Vồng</a></li>
+										<li><a href="#">Cá Bảy Màu</a></li>
+										<li><a href="#">Cá Bình Tích</a></li>
+									</ul>
+								</li>
+								<li><a href="#">Kiến thức nuôi cá</a>
+									<!-- <ul class="sub-menu">
+										<li><a href="news.html">News</a></li>
+										<li><a href="single-news.html">Single News</a></li>
+									</ul> -->
+								</li> 
+								<li><a href="#!contact">Liên hệ</a></li>
+								<li>
+									<div class="header-icons">
+										<a class="shopping-cart" href="#!cart"><i class="fas fa-shopping-cart"></i></a>
+										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+										<a class="mobile-show search-bar-icon" href="#"><i class="fa-solid fa-user" style="color: #ffffff;"></i></a>
+									</div>
+								</li> 
+							</ul>
+						</nav>
+						<a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+						<div class="mobile-menu"></div>
+						<!-- menu end -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end header -->
+
+	<!-- search area -->
+	<div class="search-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<span class="close-btn"><i class="fas fa-window-close"></i></span>
+					<div class="search-bar">
+						<div class="search-bar-tablecell">
+							<h3>Search For:</h3>
+							<input type="text" placeholder="Keywords">
+							<button type="submit">Search <i class="fas fa-search"></i></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end search arewa -->
+	
+	<!-- breadcrumb-section -->
+	<div class="breadcrumb-section breadcrumb-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="breadcrumb-text">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end breadcrumb section -->
+
+	<div ng-view></div>
+
+	
+
+	<!-- footer -->
+	<div class="footer-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-6">
+					<div class="footer-box about-widget">
+						<h2 class="widget-title">Về chúng tôi </h2>
+						<p>Chào mừng bạn đến với cửa hàng RED HOOD! Chúng tôi tự hào là địa điểm hàng đầu để bạn khám phá và mua sắm các loại cá cảnh tuyệt vời. Với nhiều năm kinh nghiệm trong ngành, chúng tôi cam kết mang đến cho bạn những sản phẩm chất lượng cao và dịch vụ tuyệt vời.</p>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6">
+					<div class="footer-box get-in-touch">
+						<h2 class="widget-title">Thông tin liên hệ</h2>
+						<ul>
+							<li><i class="fa-solid fa-location-dot" style="color: #f28123;"></i> 29 Nguyễn Khoa Đăng, TP. Buôn Ma Thuột, Tỉnh Đắk Lắk</li>
+							<li><i class="fa-solid fa-envelope" style="color: #f28123;"></i> redhoodaquarium@gmail.com</li>
+							<li><i class="fa-solid fa-phone" style="color: #f28123;"></i> 0339924208</li>
+						</ul>
+					</div>
+				</div>
+			
+			</div>
+		</div>
+	</div>
+	<!-- end footer -->
+	
+	<!-- copyright -->
+	<div class="copyright">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-12">
+					<p><a href="#">Team Red Hood - Cao đẳng FPT Polytechnic Tây Nguyên</a>
+					</p>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	<!-- end copyright -->
+	
+	<!-- jquery -->
+	<script src="/User/directives/assets/js/jquery-1.11.3.min.js"></script>
+	<!-- bootstrap -->
+	<script src="/User/directives/assets/bootstrap/js/bootstrap.min.js"></script>
+	<!-- count down -->
+	<script src="/User/directives/assets/js/jquery.countdown.js"></script>
+	<!-- isotope -->
+	<script src="/User/directives/assets/js/jquery.isotope-3.0.6.min.js"></script>
+	<!-- waypoints -->
+	<script src="/User/directives/assets/js/waypoints.js"></script>
+	<!-- owl carousel -->
+	<script src="/User/directives/assets/js/owl.carousel.min.js"></script>
+	<!-- magnific popup -->
+	<script src="/User/directives/assets/js/jquery.magnific-popup.min.js"></script>
+	<!-- mean menu -->
+	<script src="/User/directives/assets/js/jquery.meanmenu.min.js"></script>
+	<!-- sticker js -->
+	<script src="/User/directives/assets/js/sticker.js"></script>
+	<!-- main js -->
+	<script src="/User/directives/assets/js/main.js"></script>
+
+	<script src="/User/services/spa.js"></script>
+
+	<script src="/User/components/shop/ShopController.js"></script>
+	<script src="/User/components/cart/CartController.js"></script>
+	
+</body>
+</html>

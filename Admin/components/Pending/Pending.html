@@ -1,0 +1,156 @@
+<!-- Navbar -->
+<div ng-include="'directives/nav/nav.html'"></div>
+<!-- / Navbar -->
+
+
+<div class="content-wrapper">
+    <!-- Content -->
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <div class="d-flex mb-3 gap-3 align-items-center">
+            <!-- Tìm kiếm -->
+            <div class="input-group flex-nowrap">
+                <span class="input-group-text" id="addon-wrapping">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </span>
+                <input type="text" class="form-control" placeholder="Search" ng-model="search"
+                    aria-describedby="addon-wrapping">
+            </div>
+        </div>
+        <!-- Basic Bootstrap Table -->
+        <div class="card">
+            <div class="table-responsive text-nowrap">
+                <table class="table">
+                    <thead class="table-dark">
+                        <tr>
+                            <th class="text-light">Mã Đơn hàng</th>
+                            <th class="text-light">Số điện thoại</th>
+                            <th class="text-light">Ngày/tháng</th>
+                            <th class="text-light">Tổng tiền</th>
+                            <th class="text-light"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                        <tr ng-repeat="item in ListPending">
+                            <td>
+                                DH-CD-{{item.id}}
+                            </td>
+                            <td> {{item.phone}} </td>
+                            <td> {{item.dateTime}} </td>
+                            <td> {{item.totalAmount + 30 | number : 3}}đ </td>
+                            <td class="d-flex gap-3">
+                                <a type="button" ng-click="DetalOrder(item.id)" class="fs-5" data-bs-toggle="modal"
+                                    data-bs-target="#basicModal"><i class="fa-solid fa-list"></i></a>
+                                <a type="button" ng-click="Check(item.id)" class="fs-5 text-success"><i
+                                        class="fa-solid fa-check"></i></a>
+                                <a type="button" ng-click="Remove(item.id)" class="fs-5 text-danger"><i
+                                        class="fa-solid fa-xmark"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--/ Basic Bootstrap Table -->
+    </div>
+</div>
+
+<div class="mt-3">
+    <div class="modal fade" id="basicModal" tabindex="-1" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="max-width: 60rem !important;">
+            <div class="modal-content px-3">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel1"> {{Lable}} </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        ng-click="Close()"></button>
+                </div>
+                <div class="card">
+                    <div class="table-responsive text-nowrap">
+                        <table class="table">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th class="text-light">Hình</th>
+                                    <th class="text-light">Tên</th>
+                                    <th class="text-light">Số lượng</th>
+                                    <th class="text-light">Đơn giá</th>
+                                    <th class="text-light">Tổng tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-border-bottom-0">
+                                <tr ng-repeat="item in ListProductDetalOrder">
+                                    <td>
+                                        <img src="/Admin/directives/ImagesAvatar/{{item.link}}" alt="Avatar"
+                                            class="rounded-circle"
+                                            style="width: 40px; height: 38px; object-fit: cover;">
+                                    </td>
+                                    <td> {{item.name}} </td>
+                                    <td> {{item.quantity}}</td>
+                                    <td> {{item.price | number : 3}}</td>
+                                    <td> {{ item.price * item.quantity | number : 3}}đ</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-xl">
+                        <div class="mb-4 overflow-hidden">
+                            <div class="card-body border rounded-1">
+                                <div class="mb-3">
+                                    <div class="" for="basic-default-fullname">Họ tên : <span
+                                            class="fs-6 text-dark">{{InformationAccount.FullName}}</span></div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="" for="basic-default-company">Số điện thoại: <span
+                                            class="fs-6 text-dark">{{InformationAccount.Phone}}</span></div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="" for="basic-default-email">Email: <span
+                                            class="fs-6 text-dark">{{InformationAccount.Email}}</span></div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="" for="basic-default-phone">Địa chỉ: <span
+                                            class="fs-6 text-dark">{{InformationAccount.Address}}</span> </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="" for="basic-default-message">Ghi chú: <span
+                                            class="fs-6 text-dark">{{InformationAccount.Note}}</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl">
+                        <div class="mb-4">
+                            <div class="card-body border rounded-1">
+                                <div class="mb-3">
+                                    <div class="" for="basic-icon-default-fullname">Mã đơn hàng:
+                                        <span class="fs-6 text-dark">DH-CD-{{InformationOder.id}}</span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="" for="basic-icon-default-company">Ngày tạo:
+                                        <span class="fs-6 text-dark">{{DateTime}}</span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="" for="basic-icon-default-company">Phương thức thành toán:
+                                        <span class="fs-6 text-dark fw-bold">Thanh toán khi nhận hàng</span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="" for="basic-icon-default-email">Tổng tiền:
+                                        <span class="fs-5 text-dark fw-bold">{{InformationOder.totalAmount + 30 | number :
+                                            3}}đ</span>
+                                    </div>
+                                </div>
+                                <button ng-click="Check(InformationOder.id)" class="btn btn-primary">Xác nhận</button>
+                                <button ng-click="Remove(InformationOder.id)" class="btn btn-outline-danger">Huỷ đơn hàng</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

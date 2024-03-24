@@ -1,0 +1,159 @@
+<div ng-include="'directives/nav/nav.html'"></div>
+
+<div class="content-wrapper">
+    <!-- Content -->
+    <div class="container-xxl flex-grow-1 container-p-y">
+
+
+        <div class="d-flex mb-3 gap-3 align-items-center">
+            <div class="demo-inline-spacing mb-3">
+                <div class="">
+                    <button type="button" class="btn btn-primary dropdown-toggle hide-arrow" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        {{lbl_BoLoc}}
+                    </button>
+                    <ul class="dropdown-menu" style="">
+                        <li><a class="dropdown-item" type="button" ng-click="LocSanPham(1)" href="">Còn hàng</a></li>
+                        <li><a class="dropdown-item" type="button" ng-click="LocSanPham(2)" href="">Tất cả</a></li>
+                        <li><a class="dropdown-item" type="button" ng-click="LocSanPham(3)" href="">Hết hàng</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Tìm kiếm -->
+            <div class="input-group flex-nowrap">
+                <span class="input-group-text" id="addon-wrapping">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </span>
+                <input type="text" class="form-control" placeholder="Search" ng-model="search"
+                    aria-describedby="addon-wrapping">
+            </div>
+        </div>
+
+
+        <!-- Basic Bootstrap Table -->
+        <div class="card">
+            <div class="table-responsive text-nowrap">
+                <table class="table">
+                    <thead class="table-dark">
+                        <tr>
+                            <th class="text-light">Hình</th>
+                            <th class="text-light">Tên</th>
+                            <th class="text-light">Thương hiệu</th>
+                            <th class="text-light">Đơn giá</th>
+                            <th class="text-light">Trạng thái</th>
+                            <th class="text-light"><a href="" class="fs-5" data-bs-toggle="modal" data-bs-target="#basicModal"
+                                    ng-click="Add()"><i class="fa-solid fa-circle-plus"></i></a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                        <tr ng-repeat="item in ListProduct | filter:search ">
+                            <td>
+                                <img loading="lazy" src="/Admin/directives/ImagesAvatar/{{item.link[0].link}}" alt="Avatar"
+                                    class="rounded-circle" style="width: 40px; height: 38px; object-fit: cover;">
+                            </td>
+                            <td> {{item.name}} </td>
+                            <td> {{item.brands}} </td>
+                            <td> {{item.price | number : 3}}đ</td>
+                            <td>
+                                <a href="" ng-click="Edit_Status(item.id)"
+                                    ng-if="item.stauts == 'sống' || item.stauts == 'Sống'"
+                                    class="text-capitalize text-primary">Còn bán</a>
+                                <a href="" ng-click="Edit_Status(item.id)"
+                                    ng-if="item.stauts == 'Không' || item.stauts == 'không'"
+                                    class="text-capitalize text-danger"> {{item.stauts}} </a>
+                            </td>
+                            <td>
+                                <a href="" class="fs-5 me-3" data-bs-toggle="modal" data-bs-target="#basicModal"
+                                    ng-click="Edit(item)"><i class="fa-solid fa-pen-to-square"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--/ Basic Bootstrap Table -->
+    </div>
+</div>
+
+<div class="mt-3">
+    <div class="modal fade" id="basicModal" tabindex="-1" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="max-width: 60rem !important;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel1"> {{Lable}} </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        ng-click="Close()"></button>
+                </div>
+                <form name="ProductAdd" novalidate enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="nameBasic" class="form-label">Tên sản phẩm</label>
+                                <input type="text" class="form-control" ng-model="Name" name="Name" required>
+                                <span class="text-danger" ng-show="ProductAdd.Name.$invalid">Bạn chưa nhập tên</span>
+                            </div>
+                            <div class="col mb-3">
+                                <label for="nameBasic" class="form-label">Loại sản phẩm</label>
+                                <select id="selectTypeOpt" class="form-select color-dropdown" ng-model="Category"
+                                    ng-options="item.id as item.nameCategory for item in ListCategory">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="nameBasic" class="form-label">Đơn giá</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" min="1" name="Price" ng-model="Price"
+                                        required>
+                                    <span class="input-group-text" id="basic-addon2">.000</span>
+                                </div>
+                                <span class="text-danger" ng-show="ProductAdd.Price.$invalid">Bạn chưa nhập giá</span>
+                            </div>
+                            <div class="col mb-3">
+                                <label for="imageInput" class="form-label">Hình ảnh</label>
+                                <input class="form-control" type="file" accept=".jpg, .jpeg, .png" name="Images"
+                                    ng-model="Images" id="imageInput" required multiple ng-change="UploadImages()">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="nameBasic" class="form-label">Số lượng</label>
+                                <input type="number" min="1" max="1000" class="form-control" ng-model="Stock"
+                                    name="Stock" required>
+                                <span class="text-danger" ng-show="ProductAdd.Stock.$invalid">Bạn chưa nhập số
+                                    lượng</span>
+                            </div>
+                            <div class="col mb-3">
+                                <label for="nameBasic" class="form-label">Thương hiệu</label>
+                                <input type="text" class="form-control" ng-model="Brands" name="Brands" required>
+                                <span class="text-danger" ng-show="ProductAdd.Brands.$invalid">Bạn chưa nhập thương
+                                    hiệu</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="nameBasic" class="form-label">Mô tả</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" name="Describe"
+                                    ng-model="Describe" rows="3" style="height: 9.3rem !important;"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" ng-click="Close()"
+                            data-bs-dismiss="modal">
+                            Huỷ
+                        </button>
+                        <button type="button" ng-disabled="ProductAdd.$invalid" ng-show="ShowButton"
+                            class="btn btn-primary" ng-click="AddProduct()">Thêm</button>
+                        <button type="button" ng-disabled="ProductAdd.$invalid" ng-show="!ShowButton"
+                            class="btn btn-primary" ng-click="EditSave(Id)">Lưu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
