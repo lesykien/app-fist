@@ -53,6 +53,10 @@
     .img-blog img{
         width: 100%;
     }
+    .sticky-scroll{
+        position: sticky;
+        top: 9rem;
+    }
 </style>
 
 <div class="mt-150 mb-150">
@@ -76,10 +80,10 @@
                 </div>
             </div>
             <div class="col-lg-4">
-                <section class="sidebar-section mt-5">
+                <section class="sidebar-section mt-5 sticky-scroll">
                     <div class="recent-posts">
                         <h4>Các bài viết liên quan</h4>
-                        <a href="#!Blog/2" class="Blog_lienQuan" ng-repeat="item in ListBlog">
+                        <a href="#!Blog/{{item.id}}" class="Blog_lienQuan" ng-repeat="item in ListBlog">
                             <img src="/User/directives/Images/{{item.image}}"
                                 class="img__Blog--lienQuan" alt="">
                             <div class="">
