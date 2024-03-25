@@ -5,17 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
     <!-- Link boostrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!-- Link boostrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/Admin/directives/assets/vendor/fonts/boxicons.css" />
+    <link rel="stylesheet" href="/Admin/directives/assets/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="/Admin/directives/assets/vendor/css/theme-default.css"
+        class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="/Admin/directives/assets/css/demo.css" />
+    <link rel="stylesheet" href="/Admin/directives/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+    <link rel="stylesheet" href="/Admin/directives/assets/vendor/libs/apex-charts/apex-charts.css" />
+    <script src="/Admin/directives/assets/vendor/js/helpers.js"></script>
+    <script src="/Admin/directives/assets/js/config.js"></script>
+
     <!-- Link tinymce -->
     <script src="https://cdn.tiny.cloud/1/0n6ijdg7hl4ie1ub4pkwl682mmhr0gr53tosh1u9609wu5ed/tinymce/7/tinymce.min.js"
         referrerpolicy="origin"></script>
-    <!-- Cấu hình  -->
+
 
     <!-- Angular JS -->
     <script src="/Admin/services/angularjs/angular.js"></script>
@@ -29,39 +35,44 @@
 
 <body ng-app="APP">
     <div ng-controller="FormTinyMceController">
-        <header class="p-3">
+        <header class="px-3 pt-3">
             <h3><a href="/Admin/index.html#!/ListBlog" class="text-secondary">Danh sách bài biết <i
                         class="fa-solid fa-chevron-right fs-5"></i></a> Thêm bài biết</h3>
         </header>
-        <section class="px-3 pt-3">
+        <section class="px-3">
             <div class="row">
                 <div class="col-md-6">
-                    <div class="mb-3">
-                        <button type="button" onclick="get_editor_content()" class="btn btn-primary">Priview</button>
-                        <button type="button" onclick="luuThongTin()" class="btn btn-primary"
-                            ng-click="AddBlogs()">Lưu</button>
-                    </div>
-                    <form action="">
-                        <label for="nameBasic" class="form-label"><strong>Tiêu đề Blogs</strong></label>
-                        <input type="text" class="form-control" ng-model="TitleBlogs" name="TitleBlogs" required>
+                    <form name="Blog">
+                        <label for="nameBasic" class="form-label"><span>Tiêu đề Blogs</span></label>
+                        <input type="text" class="form-control" name="TitleBlogs" ng-model="TitleBlogs"
+                            name="TitleBlogs" required>
+                        <span class="text-danger">Bạn chưa nhập tiêu đề</span>
                         <div class="">
-                            <label for="imageUpload" class="form-label mt-2"><strong>Ảnh Blogs</strong></label>
+                            <label for="imageUpload" class="form-label mt-2"><span>Ảnh Blogs</span></label>
                             <input type="file" id="imageInputBlogs" class="form-control" accept=".jpg, .jpeg, .png"
                                 name="ImagesBlogs" onchange="previewImage(event)">
                         </div>
+                        <div class="mt-3">
+                            <button type="button" onclick="get_editor_content()" class="btn btn-outline-primary">Xem kết
+                                quả</button>
+                            <button type="button" onclick="luuThongTin()" class="btn btn-primary ms-3"
+                                ng-click="AddBlogs()">Lưu</button>
                     </form>
                 </div>
-                <div class="col-md-6">
-                    <img id="preview" src="#" alt="Ảnh demo" style="display: none;" height="205px">
+                <form method="post" class="pt-3">
+                    <textarea id="mytextarea" style="height: 30rem;"></textarea>
+                </form>
+            </div>
+            <div class="col-md-6 border border-secondary rounded-1 p-3 bg-white overflow-auto" style="height: 44.6rem;">
+                <img id="preview" src="#" alt="Ảnh demo" style="display: none;" width="100%">
+                <p class="mt-3">
+                    <strong class="text-dark fs-3">{{TitleBlogs}}</strong>
+                </p>
+                <div id="priview" class="">
                 </div>
             </div>
-        </section>
-        <section class="d-flex gap-3 p-3">
-            <form method="post" style="width: 50%;">
-                <textarea id="mytextarea"></textarea>
-            </form>
-            <div style="width: 50%;" id="priview" class="border border-secondary rounded-1 p-3"></div>
-        </section>
+    </div>
+    </section>
     </div>
     <script src="./FormTinyMceController.js"></script>
 
