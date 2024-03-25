@@ -92,6 +92,9 @@ app.controller('MainController', function ($scope, $http, DataService, $rootScop
       $rootScope.productsAll = response.data.filter(a => a.stauts == "sống");
 
       $rootScope.Count = $rootScope.productsAll.length
+
+      // show new product in database
+      $rootScope.NewPro = response.data[0];
     })
     .catch(function (error) {
       console.error('Lỗi khi gọi API:', error);

@@ -72,7 +72,8 @@
 </div>
 <!-- end product section -->
 <div class="d-flex justify-content-center">
-	<a href="" class="cart-btn ">Xem thêm...</a>
+	<a href="" ng-click="see_more(page_now)" ng-show="!see_shop" class="cart-btn ">Xem thêm...</a>
+	<a ng-href="#!Shop/0/1" ng-show="see_shop" class="cart-btn ">Cửa hàng</a>
 </div>
 <!-- cart banner section -->
 <div class="section-title mt-100">
