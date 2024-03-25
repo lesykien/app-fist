@@ -42,6 +42,17 @@
     #item p img{
         width: 100% !important; 
     }
+    .user-port-blog{
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+    }
+    .title-blog{
+        padding: 20px 0px;
+    }
+    .img-blog img{
+        width: 100%;
+    }
 </style>
 
 <div class="mt-150 mb-150">
@@ -49,6 +60,14 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="single-article-section">
+                    <div class="img-blog">
+                        <img src="/User/directives/ImageDetal/{{Inforamtion.image}}" alt="">
+                        <div class="user-port-blog">
+                            <span style="color: #a1a1a1; font-size: 13px;" class="author"><i class="fas fa-user"></i> Admin</span>
+                            <span style="color: #a1a1a1; font-size: 13px;" class="date"><i class="fas fa-calendar"></i> {{Inforamtion.datePush}} </span>
+                        </div>
+                        <h3 class="title-blog"> {{Inforamtion.healine}} </h3>
+                    </div>
                     <div class="single-article-text">
                         <div id="item"> 
                             <!-- thẻ để xuất chi tiết bài viết -->
