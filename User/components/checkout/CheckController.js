@@ -39,7 +39,11 @@ app.controller('CheckController', function ($scope, $http, $rootScope, $location
     // Hàm xử lý thanh toán trực tuyến
     $scope.Banking = function () {
         if ($scope.FormBanking.$valid) {
-            console.log(2);
+            var form = new FormData();
+            form.append('FullName', $scope.FullName);
+            form.append('Email', $scope.Email);
+            form.append('Phone', $scope.Phone);
+            form.append('Address', $scope.Address);
         }
         else {
             alert('Bạn chưa nhập thông tin nhận hàng')
