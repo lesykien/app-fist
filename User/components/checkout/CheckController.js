@@ -90,14 +90,24 @@ app.controller('CheckController', function ($scope, $http, $rootScope, $location
                 headers: { 'Content-Type': 'application/json' }
             })
                 .then(function (response) {
+                    // notfication when order is successful
                     alert('Đặt hàng thành công!!!')
-                    localStorage.removeItem('ListProduct')
+                    // remove item in localStorage when order is successful
+                    // get informaiton in localStorage 
+                    let ListOrder = JSON.parse(localStorage.getItem("ListProduct"))
+                    for (let i = 0; i < ListOrder.length; i++) {
+                        ListOrder.splice(0, 1)
+                        localStorage.setItem("ListProduct", JSON.stringify(ListOrder))
+                    }
+                    // link path arrive page account
                     $location.path('/Account')
+                    // Count $rootScope.CountCart = 0 
                     $rootScope.CountCart = 0;
                 })
                 .catch(function (error) {
                     alert('Không thể thêm được sản phẩm')
                 });
+
 
         }
         else {
