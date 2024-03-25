@@ -19,7 +19,7 @@ function get_editor_content() {
     // load thay đổi ra form
     priview.innerHTML = tinyMCE.activeEditor.getContent()
 }
-function luuThongTin(){
+function luuThongTin() {
     var information = tinyMCE.activeEditor.getContent()
     localStorage.setItem('item', information);
 }
@@ -40,21 +40,32 @@ function previewImage(event) {
 
 //Thêm Blogs
 var app = angular.module('APP', ['ngRoute']);
-app.controller('FormTinyMceController', function ($scope) {
-    $scope.AddBlogs = function(){
+app.controller('FormTinyMceController', function ($scope, $http) {
+    $scope.AddBlogs = function () {
         let file = document.getElementById('imageInputBlogs').files;
-        $scope.DayBlogs = new Date();
         $scope.ImagesBlogs = file;
         var content = document.getElementById('priview').innerHTML;
         $scope.ContentBlogs = content;
-        console.log($scope.DayBlogs);
-        console.log($scope.ImagesBlogs);
-        console.log($scope.TitleBlogs);
-        console.log($scope.ContentBlogs);
+        const title = $scope.TitleBlogs;
+
+        console.log(title);
+        console.log(title);
+
         var form = new FormData();
-        form.append('model.ImagesBlogs', $scope.ImagesBlogs)
-        form.append('model.ImagesBlogs', $scope.DayBlogs)
-        form.append('model.ImagesBlogs', $scope.TitleBlogs)
-        form.append('model.ContenBlogs', $scope.ContentBlogs)
+        form.append('blogDtos.Healine', title)
+        form.append('blogDtos.Contenet', $scope.ContentBlogs)
+        form.append('formFile', file)
+
+        $http.post('https://localhost:7156/api/Blog/post-blog', form, {
+            transformRequest: angular.identity,
+            headers: { 'Content-Type': undefined }
+        })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                alert('Không thể thêm được sản phẩm')
+            });
+
     }
 })
