@@ -37,10 +37,10 @@
         font-size: 12px;
     }
     .tieude__Blog--lienQuan{
-        font-size: 15px;
+        font-size: 14px;
     }
     #item p img{
-        width: 100% !important;
+        width: 100% !important; 
     }
 </style>
 
@@ -57,34 +57,17 @@
                 </div>
             </div>
             <div class="col-lg-4">
-                <!-- <div class="sidebar-section">
-                    <div class="recent-posts">
-                        <h4>Cách muôi cá ngựa</h4>
-                        <ul>
-                            <li><a href="">Chọn vật liệu làm bể, thường sử dụng xi măng. Trước khi bỏ cá
-                                    vào bể, hãy vệ sinh và phơi khô bể.</a></li>
-                            <li><a href="">Nhiệt độ thích hợp cho cá ngựa là từ 27°C đến 30°C.</a></li>
-                            <li><a href="">Nước nên được thay đổi mỗi 5 ngày.</a></li>
-                            <li><a href="">Cá ngựa thích ăn tôm, tép, động vật phù du, và bọ nguậy</a>
-                            </li>
-                            <li><a href="">Nước nuôi cần có độ mặn từ 20% đến 35%, tương tự với môi
-                                    trường tự nhiên của cá ngựa.</a></li>
-                        </ul>
-                    </div>
-                </div> -->
                 <section class="sidebar-section mt-5">
                     <div class="recent-posts">
                         <h4>Các bài viết liên quan</h4>
-                        <a href="#!Blog/2" class="Blog_lienQuan" ng-repeat="item in BlogLienQuan">
-                            <img src="/Admin/directives/ImagesAvatar/{{item.link[0].link}}"
+                        <a href="#!Blog/2" class="Blog_lienQuan" ng-repeat="item in ListBlog">
+                            <img src="/User/directives/Images/{{item.image}}"
                                 class="img__Blog--lienQuan" alt="">
                             <div class="">
-                                <strong class="tieude__Blog--lienQuan">Phương pháp nuôi các koi</strong><br>
-                                <span class="noiDung__Blog--lienQuan">
-                                    Nước nuôi cần có độ mặn từ 20% đến 35%, tương tự với môi
-                                    trường tự nhiên của cá ngựa.</span>
+                                <strong class="tieude__Blog--lienQuan"> {{item.healine}} </strong><br>
+                                <span class="noiDung__Blog--lienQuan" ng-bind-html="item.contenet" ></span>
                                     <span style="font-size: 11px;" class="author"><i class="fas fa-user"></i> Admin</span>
-                                    <span style="font-size: 11px;" class="date"> 03/01/2024</span>
+                                    <span style="font-size: 11px;" class="date"> {{item.datePush}} </span>
                             </div>
                         </a>
                     </div>

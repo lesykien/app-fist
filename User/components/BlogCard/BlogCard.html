@@ -25,21 +25,18 @@
         <div class="row">
             <div class="col-lg-4 col-md-6" ng-repeat="item in ListBlog">
                 <div class="single-latest-news">
-                    <a href="#!Blog/1">
-                        <img src="/User/directives/Images/{{item.link[0].link}}" alt="" class="img__blogCard">
+                    <a href="#!Blog/{{item.id}}">
+                        <img src="/User/directives/Images/{{item.image}}" alt="" class="img__blogCard">
                     </a>
                     <div class="news-text-box">
-                        <h3><a href="">Cách chăm sóc cá ngựa</a></h3>
+                        <h3><a href="#!Blog/{{item.id}}"> {{item.healine}} </a></h3>
                         <p class="blog-meta">
                             <span class="author"><i class="fas fa-user"></i> Admin</span>
-                            <span class="date"><i class="fas fa-calendar"></i>02/03/2024</span>
+                            <span class="date"><i class="fas fa-calendar"></i> {{item.datePush}} </span>
                         </p>
-                        <p class="excerpt text__content--blogCart">Cá ngựa (tên khoa học Hippocampus), hay hải mã, là
-                            tên gọi chung của một chi
-                            động vật sống ở đại dương ở các vùng biển nhiệt đới. Cá ngựa có chiều dài trung bình là 16
-                            cm, có loài dài đến 35 cm. Cá ngựa được xem là một loài thuốc quý ở khu vực Đông Á, đặc biệt
-                            là ở Trung Quốc và Việt Nam.</p>
-                        <a href="" class="read-more-btn">Tìm hiểu thêm<i class="fas fa-angle-right"></i></a>
+                        <!-- <p class="excerpt text__content--blogCart"> {{item.contenet}} </p> -->
+                        <div class="excerpt text__content--blogCart" ng-bind-html="item.contenet"></div>
+                        <a href="#!Blog/{{item.id}}" class="read-more-btn">Tìm hiểu thêm<i class="fas fa-angle-right"></i></a>
                     </div>
                 </div>
             </div>

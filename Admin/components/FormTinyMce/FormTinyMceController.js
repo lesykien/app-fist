@@ -40,7 +40,8 @@ function previewImage(event) {
 
 //Thêm Blogs
 var app = angular.module('APP', ['ngRoute']);
-app.controller('FormTinyMceController', function ($scope, $http) {
+
+app.controller('FormTinyMceController', function ($scope, $http, $routeParams) {
     $scope.AddBlogs = function () {
         let file = document.getElementById('imageInputBlogs').files;
         $scope.ImagesBlogs = file;

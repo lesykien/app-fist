@@ -1,15 +1,19 @@
-app.controller('BlogCartController' , function($scope , $rootScope, $http){
+app.controller('BlogCartController' , function($scope , $rootScope, $http, $sce){
     $rootScope.siliderShow = false;
-    $http.get(`https://localhost:7272/*api/Product/idCategory/0/page/1`)
+    let ListBlogCart = []
+    $http.get(`https://localhost:7156/api/Blog/get-value`)
     .then(function (response) {
-        $scope.ListBlog  = response.data;
-    })
-    .catch(function (error) {
-      console.error('Lỗi khi gọi API:', error);
-    });
-    $http.get(`https://localhost:7156/api/Blog`)
-    .then(function (response) {
-      console.log(response.data);
+        for (let i = 0; i < response.data.length; i++) {
+          const object = {
+            contenet : $sce.trustAsHtml(response.data[i].contenet),
+            datePush : moment(response.data[i].datePush).format('DD/MM/YYYY HH:mm'),
+            image : response.data[i].image, 
+            healine : response.data[i].healine,
+            id : response.data[i].id
+          }
+          ListBlogCart.push(object);
+        }
+        $scope.ListBlog  = ListBlogCart
     })
     .catch(function (error) {
       console.error('Lỗi khi gọi API:', error);
