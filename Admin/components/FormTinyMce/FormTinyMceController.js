@@ -48,13 +48,12 @@ app.controller('FormTinyMceController', function ($scope, $http) {
         $scope.ContentBlogs = content;
         const title = $scope.TitleBlogs;
 
-        console.log(title);
-        console.log(title);
+        console.log($scope.ImagesBlogs[0]);
 
         var form = new FormData();
         form.append('blogDtos.Healine', title)
         form.append('blogDtos.Contenet', $scope.ContentBlogs)
-        form.append('formFile', file)
+        form.append('blogDtos.formFile', $scope.ImagesBlogs[0])
 
         $http.post('https://localhost:7156/api/Blog/post-blog', form, {
             transformRequest: angular.identity,
