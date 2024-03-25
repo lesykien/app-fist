@@ -23,3 +23,38 @@ function luuThongTin(){
     var information = tinyMCE.activeEditor.getContent()
     localStorage.setItem('item', information);
 }
+
+//Hàm hiển thị ảnh Blogs đề mô
+function previewImage(event) {
+    var input = event.target;
+    var reader = new FileReader();
+
+    reader.onload = function () {
+        var image = document.getElementById('preview');
+        image.src = reader.result;
+        image.style.display = 'block';
+    };
+
+    reader.readAsDataURL(input.files[0]);
+}
+
+//Thêm Blogs
+var app = angular.module('APP', ['ngRoute']);
+app.controller('FormTinyMceController', function ($scope) {
+    $scope.AddBlogs = function(){
+        let file = document.getElementById('imageInputBlogs').files;
+        $scope.DayBlogs = new Date();
+        $scope.ImagesBlogs = file;
+        var content = document.getElementById('priview').innerHTML;
+        $scope.ContentBlogs = content;
+        console.log($scope.DayBlogs);
+        console.log($scope.ImagesBlogs);
+        console.log($scope.TitleBlogs);
+        console.log($scope.ContentBlogs);
+        var form = new FormData();
+        form.append('model.ImagesBlogs', $scope.ImagesBlogs)
+        form.append('model.ImagesBlogs', $scope.DayBlogs)
+        form.append('model.ImagesBlogs', $scope.TitleBlogs)
+        form.append('model.ContenBlogs', $scope.ContentBlogs)
+    }
+})
