@@ -51,7 +51,9 @@ app.controller('FormTinyMceController', function ($scope, $http, $location) {
         $scope.ImagesBlogs = file;
         $scope.ContentBlogs = content;
         const title = $scope.TitleBlogs;
-
+        
+        console.log($scope.TitleBlogs);
+        console.log($scope.ContentBlogs);
         console.log($scope.ImagesBlogs[0]);
 
         var form = new FormData();
