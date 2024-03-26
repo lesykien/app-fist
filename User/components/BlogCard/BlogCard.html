@@ -26,7 +26,7 @@
             <div class="col-lg-4 col-md-6" ng-repeat="item in ListBlog">
                 <div class="single-latest-news">
                     <a href="#!Blog/{{item.id}}">
-                        <img src="/User/directives/Images/{{item.image}}" alt="" class="img__blogCard">
+                        <img src="https://localhost:7156/api/get-images/{{item.image}}" alt="" class="img__blogCard">
                     </a>
                     <div class="news-text-box">
                         <h3><a href="#!Blog/{{item.id}}"> {{item.healine}} </a></h3>

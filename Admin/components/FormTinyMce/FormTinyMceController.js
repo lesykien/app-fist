@@ -40,7 +40,7 @@ const id = sessionStorage.getItem('id');
 //Thêm Blogs
 var app = angular.module('APP', ['ngRoute']);
 
-app.controller('FormTinyMceController', function ($scope, $http) {
+app.controller('FormTinyMceController', function ($scope, $http, $location) {
 
     var content = document.getElementById('priview').innerHTML;
 
@@ -99,7 +99,8 @@ app.controller('FormTinyMceController', function ($scope, $http) {
                 headers: { 'Content-Type': undefined }
             })
                 .then(function (response) {
-                    console.log(response);
+                    alert('Cập nhật bài viết thành công')
+                    window.location.href = '/Admin/index.html#!/ListBlog'
                 })
                 .catch(function (error) {
                     alert('Không thể thêm được sản phẩm')
@@ -115,14 +116,14 @@ app.controller('FormTinyMceController', function ($scope, $http) {
                 headers: { 'Content-Type': undefined }
             })
                 .then(function (response) {
-                    location.href = '/Admin/index.html#!/ListBlog'
+                    alert(response.data)
+                    window.location.href = '/Admin/index.html#!/ListBlog'
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
         }
-        alert('Cập nhật bài viết thành công')
-        location.href = '/Admin/index.html#!/ListBlog'
+        
     }
 
     $scope.Close = () => {

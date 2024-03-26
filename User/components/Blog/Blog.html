@@ -65,7 +65,7 @@
             <div class="col-lg-8">
                 <div class="single-article-section">
                     <div class="img-blog">
-                        <img src="/User/directives/ImageDetal/{{Inforamtion.image}}" alt="">
+                        <img src="https://localhost:7156/api/get-images-detal/{{Inforamtion.image}}" alt="">
                         <div class="user-port-blog">
                             <span style="color: #a1a1a1; font-size: 13px;" class="author"><i class="fas fa-user"></i> Admin</span>
                             <span style="color: #a1a1a1; font-size: 13px;" class="date"><i class="fas fa-calendar"></i> {{Inforamtion.datePush}} </span>
@@ -84,7 +84,7 @@
                     <div class="recent-posts">
                         <h4>Các bài viết liên quan</h4>
                         <a href="#!Blog/{{item.id}}" class="Blog_lienQuan" ng-repeat="item in ListBlog">
-                            <img src="/User/directives/Images/{{item.image}}"
+                            <img src="https://localhost:7156/api/get-images/{{item.image}}"
                                 class="img__Blog--lienQuan" alt="">
                             <div class="">
                                 <strong class="tieude__Blog--lienQuan"> {{item.healine}} </strong><br>
