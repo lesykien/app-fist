@@ -139,7 +139,7 @@
                                     <section class="container__goiY">
                                         <div class="item_goiY" ng-repeat="item in productsAll | filter : search" >
                                             <a class="iformation__list" ng-href="#!shop-detail/{{item.id}}">
-                                                <img loading="lazy" src="/Admin/directives/ImagesAvatar/{{item.link[0].link}}"
+                                                <img loading="lazy" src="https://localhost:7272/api/get-images-avatar/{{item.link[0].link}}"
                                                     alt="">
                                                 <div class="information_pro">
                                                     <span class="information_pro--ten"> {{item.name}} </span><br>
@@ -207,7 +207,7 @@
                         <div class="single-product-item">
                             <div class="product-image">
                                 <a href="#!shop-detail/{{item.id}}"><img loading="lazy"
-                                        src="/User/directives/Images/{{item.link[0].link}}" alt=""
+                                        src="https://localhost:7272/api/get-images-cart/{{item.link[0].link}}" alt=""
                                         style="width: 100%; height: 18rem; object-fit: cover;"></a>
                             </div>
                             <h3>{{item.name}}</h3>

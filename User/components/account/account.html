@@ -274,7 +274,7 @@
                     <div class="scroll__Cart--body">
                         <a href="#!shop-detail/{{pr.id}}" class="cart__Order-body" ng-repeat="pr in item.detal">
                             <div class="" style="display: flex; gap: 10rem;">
-                                <img src="/Admin/directives/ImagesAvatar/{{pr.link[0].link}}" alt="" class="img_order">
+                                <img src="https://localhost:7272/api/get-images-avatar/{{pr.link[0].link}}" alt="" class="img_order">
                                 <div class="information__pro">
                                     <span class="total__pro" style="font-weight: bold;"> {{pr.name}} </span><br>
                                     <span class="total__pro"> {{pr.price | number : 3}}đ</span> <span
