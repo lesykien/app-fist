@@ -18,6 +18,18 @@
         text-align: justify;
         /* Căn đều hai bên lề cho đoạn văn bản */
     }
+    .blog-tile{
+        display: -webkit-box;
+        /* Cho phép sử dụng thuộc tính -webkit-line-clamp */
+        -webkit-line-clamp: 1;
+        /* Số dòng tối đa */
+        -webkit-box-orient: vertical;
+        /* Hiển thị văn bản theo chiều dọc */
+        overflow: hidden;
+        /* Ẩn phần văn bản bị tràn */
+        text-align: justify;
+        /* Căn đều hai bên lề cho đoạn văn bản */
+    }
 </style>
 
 <div class="latest-news mt-150 mb-150">
@@ -29,7 +41,7 @@
                         <img src="https://localhost:7156/api/get-images/{{item.image}}" alt="" class="img__blogCard">
                     </a>
                     <div class="news-text-box">
-                        <h3><a href="#!Blog/{{item.id}}"> {{item.healine}} </a></h3>
+                        <h3 class="blog-tile"><a href="#!Blog/{{item.id}}"> {{item.healine}} </a></h3>
                         <p class="blog-meta">
                             <span class="author"><i class="fas fa-user"></i> Admin</span>
                             <span class="date"><i class="fas fa-calendar"></i> {{item.datePush}} </span>
