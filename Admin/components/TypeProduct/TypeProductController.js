@@ -71,10 +71,14 @@ app.controller('TypeProductController', function ($scope, $http) {
     $scope.Delete = function (id) {
         var test = confirm('Bạn có muốn xoá loại sản phẩm này không????')
         if (test) {
-            console.log(id);
-            var form = new FormData();
-            form.append('id', id)
+            $http.delete(`https://localhost:7272/*api/Category/delete/${id}`)
+            .then((response) => {
+                alert(response.data)
+                LoadFrom()
+            })
+            .catch((err) => {
+                console.log(err);
+            })
         }
     }
-
 })

@@ -39,7 +39,7 @@
                             <td>
                                 <a href="" class="fs-5 me-3" data-bs-toggle="modal" data-bs-target="#basicModal"
                                     ng-click="Edit(item)"><i class="fa-solid fa-pen-to-square"></i></a>
-                                <a href="" class="text-danger fs-5" ng-click="Delete(item.id)"><i
+                                <a href="" ng-show="item.count == 0 " class="text-danger fs-5" ng-click="Delete(item.id)"><i
                                         class="fa-solid fa-trash"></i></a>
                             </td>
                         </tr>

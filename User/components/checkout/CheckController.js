@@ -17,7 +17,13 @@ app.controller('CheckController', function ($scope, $http, $rootScope, $location
             })
             $scope.Total = Total;
             if (Acc == undefined) {
-                location.href = "/Login/Login.html"
+                const check_login = confirm('Bạn có muốn đăng nhập không để đặt hàng không???');
+                if (check_login) {
+                    window.location.href = "/Login/Login.html"
+                }
+                else{
+                    $location.path('/cart')
+                }
             }
             else {
                 $location.path('/checkout')
