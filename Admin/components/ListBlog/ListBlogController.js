@@ -19,6 +19,7 @@ app.controller('ListBlogController', function ($scope, $http) {
             console.log($scope.ListBlogs)
         })
     }
+    
     LoadListBlogs()
     // envent click enter button edit
     $scope.Edit = (id) => {
@@ -34,13 +35,10 @@ app.controller('ListBlogController', function ($scope, $http) {
             $http.delete(`https://localhost:7156/api/Blog/delete-blog/${id}`)
             .then(function (response) {
                 alert('Xóa Blogs thành công!')
-                LoadListBlogs()
             })
             .catch(function (error) {
                 alert('Không thể xóa Blogs này!')
             })
-        }
-        else{
         }
     }
 })

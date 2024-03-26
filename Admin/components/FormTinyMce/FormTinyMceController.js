@@ -49,9 +49,10 @@ app.controller('FormTinyMceController', function ($scope, $http, $location) {
     $scope.AddBlogs = function () {
         let file = document.getElementById('imageInputBlogs').files;
         $scope.ImagesBlogs = file;
+        var content = document.getElementById('priview').innerHTML
         $scope.ContentBlogs = content;
         const title = $scope.TitleBlogs;
-        
+    
         console.log($scope.TitleBlogs);
         console.log($scope.ContentBlogs);
         console.log($scope.ImagesBlogs[0]);
@@ -66,7 +67,8 @@ app.controller('FormTinyMceController', function ($scope, $http, $location) {
             headers: { 'Content-Type': undefined }
         })
             .then(function (response) {
-                console.log(response);
+                alert('Thêm Blogs thành công!')
+                window.location.href = '/Admin/index.html#!/ListBlog'
             })
             .catch(function (error) {
                 alert('Không thể thêm được sản phẩm')
