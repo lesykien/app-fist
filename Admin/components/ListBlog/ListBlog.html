@@ -17,14 +17,14 @@
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                        <tr>
+                        <tr ng-repeat="x in ListBlogs">
                             <td>
-                                <img src="/Admin/directives/ImagesAvatar/003b6080-53fb-4849-886c-36d8c90932f2_pexels-enrique-grisales-2109800.jpg"
+                                <img src="/User/directives/Images/{{x.image}}"
                                     alt="Avatar" class="rounded-circle"
                                     style="width: 40px; height: 38px; object-fit: cover;">
                             </td>
-                            <td> Phương pháp nuôi các koi </td>
-                            <td>20/01/2024</td>
+                            <td> {{x.healine}} </td>
+                            <td>{{x.datePush}}</td>
                             <td>
                                 <a href="/Admin/components/FormTinyMce/FormTinyMce.html" class="fs-5 me-3">
                                     <i class="fa-solid fa-pen-to-square"></i>
@@ -40,3 +40,4 @@
         <!--/ Basic Bootstrap Table -->
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
