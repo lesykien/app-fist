@@ -36,7 +36,7 @@
 <body ng-app="APP">
     <div ng-controller="FormTinyMceController">
         <header class="px-3 pt-3">
-            <h3><a href="/Admin/index.html#!/ListBlog" class="text-secondary">Danh sách bài biết <i
+            <h3><a href="/Admin/index.html#!/ListBlog" ng-click="Close()" class="text-secondary">Danh sách bài biết <i
                         class="fa-solid fa-chevron-right fs-5"></i></a> Thêm bài biết</h3>
         </header>
         <section class="px-3">
@@ -55,8 +55,10 @@
                         <div class="mt-3">
                             <button type="button" onclick="get_editor_content()" class="btn btn-outline-primary">Xem kết
                                 quả</button>
-                            <button type="button" onclick="luuThongTin()" class="btn btn-primary ms-3"
-                                ng-click="AddBlogs()">Lưu</button>
+                            <button ng-show="show_button" type="button" onclick="luuThongTin()" class="btn btn-primary ms-3"
+                                ng-click="AddBlogs()">Thêm blog</button>
+                            <button ng-show="!show_button" type="button" class="btn btn-primary ms-3"
+                                ng-click="Save()">Lưu thay đổi</button>
                     </form>
                 </div>
                 <form method="post" class="pt-3">
@@ -64,7 +66,7 @@
                 </form>
             </div>
             <div class="col-md-6 border border-secondary rounded-1 p-3 bg-white overflow-auto" style="height: 44.6rem;">
-                <img id="preview" src="#" alt="Ảnh demo" style="display: none;" width="100%">
+                <img id="preview" src="" alt="Ảnh demo" style="display: none;" width="100%">
                 <p class="mt-3">
                     <strong class="text-dark fs-3">{{TitleBlogs}}</strong>
                 </p>

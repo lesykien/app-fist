@@ -1,4 +1,5 @@
 app.controller('ListBlogController', function ($scope, $http) {
+    sessionStorage.removeItem('id')
     $scope.lbl_TieuDe = 'Danh sách bài viết'
     let litsBlogs = []
     // Lấy thông tin blogs
@@ -16,4 +17,11 @@ app.controller('ListBlogController', function ($scope, $http) {
             $scope.ListBlogs = litsBlogs
             console.log($scope.ListBlogs)
         })
+
+    // envent click enter button edit
+    $scope.Edit = (id) => {
+        sessionStorage.setItem('id' , id);
+        // save id blog enter sessionStorage
+        location.href = '/Admin/components/FormTinyMce/FormTinyMce.html'
+    }
 })

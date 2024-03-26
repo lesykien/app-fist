@@ -10,10 +10,8 @@ tinymce.init({
     ],
     ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
 });
-var priview = document.getElementById('priview');
+const priview = document.getElementById('priview');
 const mytextarea = document.getElementById('mytextarea')
-
-mytextarea.innerHTML = localStorage.getItem('item')
 
 function get_editor_content() {
     // load thay đổi ra form
@@ -21,7 +19,6 @@ function get_editor_content() {
 }
 function luuThongTin() {
     var information = tinyMCE.activeEditor.getContent()
-    localStorage.setItem('item', information);
 }
 
 //Hàm hiển thị ảnh Blogs đề mô
@@ -38,14 +35,20 @@ function previewImage(event) {
     reader.readAsDataURL(input.files[0]);
 }
 
+// get id blog in sessionStorage
+const id = sessionStorage.getItem('id');
 //Thêm Blogs
 var app = angular.module('APP', ['ngRoute']);
 
-app.controller('FormTinyMceController', function ($scope, $http, $routeParams) {
+app.controller('FormTinyMceController', function ($scope, $http) {
+
+    var content = document.getElementById('priview').innerHTML;
+
+
+    $scope.show_button = true;
     $scope.AddBlogs = function () {
         let file = document.getElementById('imageInputBlogs').files;
         $scope.ImagesBlogs = file;
-        var content = document.getElementById('priview').innerHTML;
         $scope.ContentBlogs = content;
         const title = $scope.TitleBlogs;
 
@@ -66,6 +69,64 @@ app.controller('FormTinyMceController', function ($scope, $http, $routeParams) {
             .catch(function (error) {
                 alert('Không thể thêm được sản phẩm')
             });
+    }
+
+    if (!id) $scope.show_button = true;
+    else {
+        // get blog with id in sessionStorage 
+        $http.get(`https://localhost:7156/api/Blog/get-id/=${id}`)
+            .then((response) => {
+                mytextarea.innerHTML = response.data.contenet
+                $scope.TitleBlogs = response.data.healine
+                priview.innerHTML = response.data.contenet
+                $scope.show_button = false;
+            })
+            .catch((error) => {
+                console.log(error);
+            })
 
     }
+
+    $scope.Save = () => {
+        const content_blog = tinyMCE.activeEditor.getContent()
+        let file = document.getElementById('imageInputBlogs').files;
+        if (file.length == 0) {
+            let form = new FormData();
+            form.append('blog.Healine', $scope.TitleBlogs);
+            form.append('blog.Contenet', content_blog);
+            $http.put(`https://localhost:7156/api/Blog/put-blog/${id}`, form, {
+                transformRequest: angular.identity,
+                headers: { 'Content-Type': undefined }
+            })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    alert('Không thể thêm được sản phẩm')
+                });
+        }
+        else{
+            let form = new FormData();
+            form.append('blog.Healine', $scope.TitleBlogs);
+            form.append('blog.Contenet', content_blog);
+            form.append('image', file[0] );
+            $http.put(`https://localhost:7156/api/Blog/put-blog/${id}`, form, {
+                transformRequest: angular.identity,
+                headers: { 'Content-Type': undefined }
+            })
+                .then(function (response) {
+                    location.href = '/Admin/index.html#!/ListBlog'
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+        alert('Cập nhật bài viết thành công')
+        location.href = '/Admin/index.html#!/ListBlog'
+    }
+
+    $scope.Close = () => {
+        sessionStorage.removeItem('id')
+    }
+
 })
