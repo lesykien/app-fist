@@ -18,7 +18,6 @@
                         </li>
                         <li><a class="dropdown-item" ng-click="LocDonHang(2)" type="button" href="">Tất cả</a></li>
                         <li><a class="dropdown-item" ng-click="LocDonHang(3)" type="button">Đơn bị huỷ</a></li>
-                        <li><a class="dropdown-item" ng-click="LocDonHang(4)" type="button" href="">Giao thất bại</a>
                         </li>
                     </ul>
                 </div>
@@ -48,7 +47,7 @@
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                        <tr ng-repeat="item in ListPending">
+                        <tr ng-repeat="item in ListPending | filter : search">
                             <td>
                                 DH-LS-{{item.id}}
                             </td>

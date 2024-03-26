@@ -1,7 +1,7 @@
 app.controller('PendingController', function ($scope, $http, $routeParams, $rootScope) {
 
     // Đổi tiêu để
-    $scope.lbl_TieuDe = "Danh sách đơn hàng chờ duyệt"
+    $scope.lbl_TieuDe = "Danh sách đơn hàng chờ xác nhận"
 
     // List đơn hàng
     // Load form duyệt đơn hàng
