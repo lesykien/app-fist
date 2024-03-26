@@ -65,12 +65,13 @@ app.controller('ListProductController', function ($scope, DataService, $http) {
         })
             .then(function (response) {
                 alert('Thêm sản phẩm thành công !!!')
+                LoadListProduct()
             })
             .catch(function (error) {
                 alert('Không thể thêm được sản phẩm')
             });
 
-        LoadListProduct()
+
     }
     // Cập nhật thông tin sản phẩm
 
@@ -113,6 +114,7 @@ app.controller('ListProductController', function ($scope, DataService, $http) {
             .then(function (response) {
                 alert('Cập nhật thông tin sản phẩm thành công !!!')
                 LoadListProduct()
+                $scope.Close()
             })
             .catch(function (error) {
                 alert('Không thể cập nhật được sản phẩm')

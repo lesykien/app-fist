@@ -28,9 +28,9 @@ app.config(function ($routeProvider) {
 
     .when('/BlogCart', { templateUrl: "./components/BlogCard/BlogCard.html", controller: 'BlogCartController' })
     // Card blog
-    
+
     .otherwise('/', { templateUrl: "./components/Home/Home.html" })
-    // Trang chủ
+  // Trang chủ
 });
 
 app.run(function ($rootScope) {
