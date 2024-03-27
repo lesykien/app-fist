@@ -2,34 +2,34 @@ var app = angular.module('APP', ['ngRoute', 'ngSanitize']);
 
 app.config(function ($routeProvider) {
   $routeProvider
-    .when('/', { templateUrl: "./components/Home/Home.html", controller: 'HomeController' })
+    .when('/', { templateUrl: "/User/components/Home/Home.html", controller: 'HomeController' })
     // trang chủ
 
-    .when('/shop-detail/:id', { templateUrl: "./components/shop-detail/shop-detail.html", controller: 'ShopDetailController' })
+    .when('/shop-detail/:id', { templateUrl: "./User/components/components/shop-detail/shop-detail.html", controller: 'ShopDetailController' })
     // Chỉ tiết sản phẩm
 
-    .when('/Blog/:id', { templateUrl: "./components/Blog/Blog.html", controller: 'BlogController' })
+    .when('/Blog/:id', { templateUrl: "./User/components/components/Blog/Blog.html", controller: 'BlogController' })
     // Bài viết chi tiết
 
-    .when('/cart', { templateUrl: "./components/cart/cart.html", controller: 'CartController' })
+    .when('/cart', { templateUrl: "/User/components/cart/cart.html", controller: 'CartController' })
     // Giỏ hàng
 
-    .when('/checkout', { templateUrl: "./components/checkout/checkout.html", controller: 'CheckController' })
+    .when('/checkout', { templateUrl: "/User/components/checkout/checkout.html", controller: 'CheckController' })
     // Đặt hàng 
 
-    .when('/contact', { templateUrl: "./components/contact.html", controller: 'ContactController' })
+    .when('/contact', { templateUrl: "/User/components/contact.html", controller: 'ContactController' })
     // Liên hệ
 
-    .when('/Shop/:idCategory/:numberPage', { templateUrl: "./components/shop/shop.html", controller: 'ShopController' })
+    .when('/Shop/:idCategory/:numberPage', { templateUrl: "/User/components/shop/shop.html", controller: 'ShopController' })
     // Của hàng
 
-    .when('/Account', { templateUrl: "./components/account/account.html", controller: 'AccountController' })
+    .when('/Account', { templateUrl: "/User/components/account/account.html", controller: 'AccountController' })
     // Thông tin tài khoản
 
-    .when('/BlogCart', { templateUrl: "./components/BlogCard/BlogCard.html", controller: 'BlogCartController' })
+    .when('/BlogCart', { templateUrl: "/User/components/BlogCard/BlogCard.html", controller: 'BlogCartController' })
     // Card blog
 
-    .otherwise('/', { templateUrl: "./components/Home/Home.html" })
+    .otherwise('/', { templateUrl: "/User/components/Home/Home.html" })
   // Trang chủ
 });
 
