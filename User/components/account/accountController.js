@@ -118,7 +118,7 @@ app.controller('AccountController', function ($scope, $http, $rootScope, $locati
 
     $scope.LogOut = function () {
         localStorage.removeItem('Account');
-        location.href = "/User/index.html#!/Home"
+        window.location.href = "./#!/"
     }
 
     // đơn hàng chi tiết

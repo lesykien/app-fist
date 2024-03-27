@@ -1,6 +1,6 @@
 var app = angular.module('APP', []);
 
-app.controller('LoginController', function ($scope, $http) {
+app.controller('LoginController', function ($scope, $http , $location) {
     $scope.Sumbit = function () {
         if ($scope.Login.$valid) {
             var form = new FormData();
@@ -20,7 +20,7 @@ app.controller('LoginController', function ($scope, $http) {
                             location.href = '/Admin/index.html'
                         }
                         else {
-                            location.href = '/User/index.html'
+                            location.href = '/index.html'
                         }
                         localStorage.setItem("Account", JSON.stringify(response.data))
                     }
