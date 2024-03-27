@@ -57,7 +57,7 @@ app.controller('MainController', function ($scope, $http, $rootScope) {
     }
     $scope.LogOut = function () {
         localStorage.removeItem('Account');
-        location.href = "/User/index.html#!/Home"
+        window.location.href = "/#!/"
     }
 
 })
