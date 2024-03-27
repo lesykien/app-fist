@@ -8,7 +8,7 @@ app.config(function ($routeProvider) {
     .when('/shop-detail/:id', { templateUrl: "./User/components/shop-detail/shop-detail.html", controller: 'ShopDetailController' })
     // Chỉ tiết sản phẩm
 
-    .when('/Blog/:id', { templateUrl: "./User/components/Blog/Blog.html", controller: 'BlogController' })
+    .when('/blog/:id', { templateUrl: "./User/components/Blog/Blog.html", controller: 'BlogController' })
     // Bài viết chi tiết
 
     .when('/cart', { templateUrl: "/User/components/cart/cart.html", controller: 'CartController' })
@@ -20,13 +20,13 @@ app.config(function ($routeProvider) {
     .when('/contact', { templateUrl: "/User/components/contact.html", controller: 'ContactController' })
     // Liên hệ
 
-    .when('/Shop/:idCategory/:numberPage', { templateUrl: "/User/components/shop/shop.html", controller: 'ShopController' })
+    .when('/shop/:idCategory/:numberPage', { templateUrl: "/User/components/shop/shop.html", controller: 'ShopController' })
     // Của hàng
 
     .when('/Account', { templateUrl: "/User/components/account/account.html", controller: 'AccountController' })
     // Thông tin tài khoản
 
-    .when('/BlogCart', { templateUrl: "/User/components/BlogCard/BlogCard.html", controller: 'BlogCartController' })
+    .when('/blog-cart', { templateUrl: "/User/components/BlogCard/BlogCard.html", controller: 'BlogCartController' })
     // Card blog
 
     .otherwise('/', { templateUrl: "/User/components/Home/Home.html" })

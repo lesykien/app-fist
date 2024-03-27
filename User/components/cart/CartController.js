@@ -1,4 +1,4 @@
-app.controller('CartController', function ($scope, $http, $rootScope) {
+app.controller('CartController', function ($scope, $http, $rootScope , $location) {
     $rootScope.siliderShow = false;
 
     $scope.Cart = []
@@ -76,16 +76,22 @@ app.controller('CartController', function ($scope, $http, $rootScope) {
 
     // test account when click button path go to my account 
     $scope.Test_LogIn = () => {
-        let test = confirm('Bạn có muốn đăng nhập để đặt hàng không???');
-        if (test) {
-            let accountDetal = JSON.parse(localStorage.getItem("Account"))
-            if (accountDetal) {
-                $location.path('/Account')
-            }
-            else {
-                window.location.href = "/Login/Login.html"
-                localStorage.setItem('path', '/#!/checkout')
+        let account = localStorage.getItem('Account')
+        console.log(account);
+        if (account)$location.path('/checkout')
+        else {
+            let test = confirm('Bạn có muốn đăng nhập để đặt hàng không???');
+            if (test) {
+                let accountDetal = JSON.parse(localStorage.getItem("Account"))
+                if (accountDetal) {
+                    $location.path('/Account')
+                }
+                else {
+                    window.location.href = "/Login/Login.html"
+                    localStorage.setItem('path', '/#!/checkout')
+                }
             }
         }
+        
     }
 })
