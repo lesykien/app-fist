@@ -1,4 +1,3 @@
-
 app.controller('AccountController', function ($scope, $http, $rootScope, $location) {
     $rootScope.siliderShow = false;
 
@@ -7,16 +6,11 @@ app.controller('AccountController', function ($scope, $http, $rootScope, $locati
     LoadForm();
     function LoadForm() {
         // Kiểm tra đã đăng nhập hay chưa
-        if (accountDetal) {
-            $scope.FullName = accountDetal.fullName
-            $scope.Address = accountDetal.address
-            $scope.Email = accountDetal.email
-            $scope.Phone = accountDetal.phone
-            $location.path('/Account')
-        }
-        else {
-            location.href = "/Login/Login.html"
-        }
+        $scope.FullName = accountDetal.fullName
+        $scope.Address = accountDetal.address
+        $scope.Email = accountDetal.email
+        $scope.Phone = accountDetal.phone
+        
         $http.get(`https://localhost:7272/account/${accountDetal.id}/status/${1}`)
             .then(function (response) {
                 $scope.Order = []

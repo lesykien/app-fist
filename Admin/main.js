@@ -59,7 +59,6 @@ app.controller('MainController', function ($scope, $http, $rootScope) {
         localStorage.removeItem('Account');
         window.location.href = "/#!/"
     }
-
 })
 
 app.service('DataService', function () {

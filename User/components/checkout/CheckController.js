@@ -16,22 +16,11 @@ app.controller('CheckController', function ($scope, $http, $rootScope, $location
                 Total += item.total;
             })
             $scope.Total = Total;
-            if (Acc == undefined) {
-                const check_login = confirm('Bạn có muốn đăng nhập không để đặt hàng không???');
-                if (check_login) {
-                    window.location.href = "/Login/Login.html"
-                }
-                else{
-                    $location.path('/cart')
-                }
-            }
-            else {
-                $location.path('/checkout')
-                $scope.FullName = Acc.fullName
-                $scope.Address = Acc.address
-                $scope.Email = Acc.email
-                $scope.Phone = Acc.phone
-            }
+            $location.path('/checkout')
+            $scope.FullName = Acc.fullName
+            $scope.Address = Acc.address
+            $scope.Email = Acc.email
+            $scope.Phone = Acc.phone
         }
     }
 

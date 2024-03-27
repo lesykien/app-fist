@@ -59,7 +59,7 @@ app.service('DataService', function () {
   };
 });
 
-app.controller('MainController', function ($scope, $http, DataService, $rootScope) {
+app.controller('MainController', function ($scope, $http, DataService, $rootScope , $location) {
   // hiển thị silider
   $rootScope.siliderShow = true;
   // đếm trong giỏ hàng có bao nhiêu sản phẩm
@@ -69,6 +69,18 @@ app.controller('MainController', function ($scope, $http, DataService, $rootScop
   }
   else {
     $rootScope.CountCart = List.length
+  }
+
+  // test account when click button path go to my account 
+  $scope.TestLogin = () => {
+    let accountDetal = JSON.parse(localStorage.getItem("Account"))
+    if (accountDetal) {
+      $location.path('/Account')
+    }
+    else {
+      window.location.href = "/Login/Login.html"
+      localStorage.setItem('path' , '/#!/Account')
+    }
   }
 
   // Sự kiện active cho thanh nav

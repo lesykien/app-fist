@@ -149,7 +149,8 @@
         // Thực hiện lệnh ajax
         $.ajax(settings).done(function (response) {
           localStorage.setItem('Account', response);
-          window.location.href = "/#!/"
+          let path = localStorage.getItem('path')
+          window.location.href = path
         });
       }
     }

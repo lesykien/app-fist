@@ -73,4 +73,19 @@ app.controller('CartController', function ($scope, $http, $rootScope) {
             LoadCart();
         }
     }
+
+    // test account when click button path go to my account 
+    $scope.Test_LogIn = () => {
+        let test = confirm('Bạn có muốn đăng nhập để đặt hàng không???');
+        if (test) {
+            let accountDetal = JSON.parse(localStorage.getItem("Account"))
+            if (accountDetal) {
+                $location.path('/Account')
+            }
+            else {
+                window.location.href = "/Login/Login.html"
+                localStorage.setItem('path', '/#!/checkout')
+            }
+        }
+    }
 })

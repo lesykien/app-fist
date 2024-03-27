@@ -20,7 +20,8 @@ app.controller('LoginController', function ($scope, $http , $location) {
                             location.href = '/Admin/index.html'
                         }
                         else {
-                            location.href = '/index.html'
+                            let path = localStorage.getItem('path')
+                            window.location.href = path
                         }
                         localStorage.setItem("Account", JSON.stringify(response.data))
                     }
