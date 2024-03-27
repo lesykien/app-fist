@@ -8,7 +8,7 @@ app.config(function ($routeProvider) {
     .when('/shop-detail/:id', { templateUrl: "./User/components/shop-detail/shop-detail.html", controller: 'ShopDetailController' })
     // Chỉ tiết sản phẩm
 
-    .when('/Blog/:id', { templateUrl: "./User/components/components/Blog/Blog.html", controller: 'BlogController' })
+    .when('/Blog/:id', { templateUrl: "./User/components/Blog/Blog.html", controller: 'BlogController' })
     // Bài viết chi tiết
 
     .when('/cart', { templateUrl: "/User/components/cart/cart.html", controller: 'CartController' })
