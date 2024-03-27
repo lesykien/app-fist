@@ -57,6 +57,18 @@
         position: sticky;
         top: 9rem;
     }
+    .blog-tile{
+        display: -webkit-box;
+        /* Cho phép sử dụng thuộc tính -webkit-line-clamp */
+        -webkit-line-clamp: 1;
+        /* Số dòng tối đa */
+        -webkit-box-orient: vertical;
+        /* Hiển thị văn bản theo chiều dọc */
+        overflow: hidden;
+        /* Ẩn phần văn bản bị tràn */
+        text-align: justify;
+        /* Căn đều hai bên lề cho đoạn văn bản */
+    }
 </style>
 
 <div class="mt-150 mb-150">
@@ -87,7 +99,7 @@
                             <img src="https://localhost:7156/api/get-images/{{item.image}}"
                                 class="img__Blog--lienQuan" alt="">
                             <div class="">
-                                <strong class="tieude__Blog--lienQuan"> {{item.healine}} </strong><br>
+                                <strong class="tieude__Blog--lienQuan blog-tile"> {{item.healine}} </strong><br>
                                 <span class="noiDung__Blog--lienQuan" ng-bind-html="item.contenet" ></span>
                                     <span style="font-size: 11px;" class="author"><i class="fas fa-user"></i> Admin</span>
                                     <span style="font-size: 11px;" class="date"> {{item.datePush}} </span>
