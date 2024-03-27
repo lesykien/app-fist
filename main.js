@@ -5,7 +5,7 @@ app.config(function ($routeProvider) {
     .when('/', { templateUrl: "/User/components/Home/Home.html", controller: 'HomeController' })
     // trang chủ
 
-    .when('/shop-detail/:id', { templateUrl: "./User/components/components/shop-detail/shop-detail.html", controller: 'ShopDetailController' })
+    .when('/shop-detail/:id', { templateUrl: "./User/components/shop-detail/shop-detail.html", controller: 'ShopDetailController' })
     // Chỉ tiết sản phẩm
 
     .when('/Blog/:id', { templateUrl: "./User/components/components/Blog/Blog.html", controller: 'BlogController' })
