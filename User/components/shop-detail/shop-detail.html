@@ -3,21 +3,47 @@
     .ZoomImages:hover>.imgCuaCa {
         border: 1px solid #F28123;
     }
+
+    .list-image-product {
+        width: 100%;
+        height: 100%;
+    }
+
+    .container--img {
+        height: 20rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .hover-button{
+        color: #051922;
+        font-size: 25px;
+        font-weight: bold;
+    }
+    .hover-button:hover{
+        color: #F28123 !important;
+    }
 </style>
 <div class="single-product mt-5 mb-5">
     <div class="container">
         <div class="row">
-            <div class="col-md-5" style=" overflow-y: auto; height: 20rem;">
-                <div class="single-product-img mt-3" ng-repeat="item in ProductDetal[0].link" style="width: 100%; ">
-                    <img src="https://localhost:7272/api/get-images-cart/{{item.link}}" alt="" style="width: 100%; overflow: hidden;">
+            <div class="col-md-5 container--img">
+                <a type="button" ng-click="tang_hinh(index , 0)" class="hover-button">
+                    <i class="fas fa-angle-left"></i>
+                </a>
+                <div class="single-product-img list-image-product">
+                    <img src="https://localhost:7272/api/get-images-cart/{{link}}" alt=""
+                        style="width: 100% ; height: 100%; object-fit: contain;">
                 </div>
+                <a type="button" ng-click="tang_hinh(index , 1)" class="hover-button">
+                    <i class="fas fa-angle-right"></i>
+                </a>
             </div>
             <div class="col-md-7">
                 <div class="single-product-content">
                     <span style="font-size: xx-large; font-weight: 600;"> {{ProductDetal[0].name}} </span>
                     <p><strong>Loại cá: </strong> {{ProductDetal[0].nameCategory}} <br>
                         <span><strong>Thương hiệu:</strong> {{ProductDetal[0].brands}}</span>
-                        <br> <span><strong>Số lượng:</strong> {{ProductDetal[0].stock}}</span>
                     </p>
                     <p class="single-product-pricing orange-text" style="margin-top: -15px;"> {{ProductDetal[0].price |
                         number:3}} ₫
@@ -39,7 +65,8 @@
             <div ng-click="ZoomImages($index)" class="ZoomImages"
                 style="width: 6rem; height: 5rem; border: 1px solid black; cursor: pointer; margin-left: 3px;"
                 ng-repeat="item in ProductDetal[0].link">
-                <img src="https://localhost:7272/api/get-images-cart/{{item.link}}" class="imgCuaCa mobile-hide search-bar-icon" alt=""
+                <img src="https://localhost:7272/api/get-images-cart/{{item.link}}"
+                    class="imgCuaCa mobile-hide search-bar-icon" alt=""
                     style="width: 100%; height: 100%; object-fit: cover;">
             </div>
         </div>
@@ -62,8 +89,9 @@
             <div class="col-lg-3 col-md-6 text-center" ng-repeat="item in ProductTuongUng">
                 <div class="single-product-item">
                     <div class="product-image">
-                        <a href="#!shop-detail/{{item.id}}"><img src="https://localhost:7272/api/get-images-cart/{{item.link[0].link}}"
-                                alt="" style="width: 100%; height: 18rem; object-fit: cover;"></a>
+                        <a href="#!shop-detail/{{item.id}}"><img
+                                src="https://localhost:7272/api/get-images-cart/{{item.link[0].link}}" alt=""
+                                style="width: 100%; height: 18rem; object-fit: cover;"></a>
                     </div>
                     <h3> {{item.name}} </h3>
                     <p class="product-price orange-text"> {{item.price | number : 3}}₫ </p>
@@ -104,8 +132,9 @@
         align-items: center;
         gap: 10px;
         z-index: 9999999;
-        padding: 20px ;
+        padding: 20px;
     }
+
     .eml_chua--hinh img {
         width: auto;
         height: auto;
