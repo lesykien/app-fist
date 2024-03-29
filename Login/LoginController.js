@@ -7,7 +7,7 @@ app.controller('LoginController', function ($scope, $http , $location) {
             form.append("UserName", $scope.UserName)
             form.append("PassWord", $scope.password)
 
-            $http.post(`http://apiserver.runasp.net/LogIn?UserName=${$scope.UserName}`, form, {
+            $http.post(`https://localhost:7272/LogIn?UserName=${$scope.UserName}`, form, {
                 transformRequest: angular.identity,
                 headers: { 'Content-Type': undefined }
             })
