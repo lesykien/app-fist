@@ -1,6 +1,12 @@
 var app = angular.module('APP', []);
 
-app.controller('LoginController', function ($scope, $http , $location) {
+app.config(['$httpProvider', function ($httpProvider) {
+    $httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+    $httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept';
+    $httpProvider.defaults.headers.common['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS';
+}]);
+
+app.controller('LoginController', function ($scope, $http, $location) {
     $scope.Sumbit = function () {
         if ($scope.Login.$valid) {
             var form = new FormData();

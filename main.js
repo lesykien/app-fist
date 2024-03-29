@@ -33,6 +33,12 @@ app.config(function ($routeProvider) {
   // Trang chủ
 });
 
+app.config(['$httpProvider', function($httpProvider) {
+  $httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+  $httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept';
+  $httpProvider.defaults.headers.common['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS';
+}]);
+
 app.run(function ($rootScope) {
   $rootScope.$on('$routeChangeStart', function () {
     $rootScope.Loading = true;
