@@ -126,7 +126,7 @@ app.controller('ListProductController', function ($scope, DataService, $http) {
         if (id == 1) {
             $scope.lbl_BoLoc = "Còn hàng"
             const ListProduct = DataService.getData();
-            $scope.ListProduct = ListProduct.filter(a => a.stauts === "sống");
+            $scope.ListProduct = ListProduct.filter(a => a.status === "sống");
         }
         else if (id == 2) {
             $scope.lbl_BoLoc = "Tất cả";
@@ -135,7 +135,7 @@ app.controller('ListProductController', function ($scope, DataService, $http) {
         else if (id == 3) {
             $scope.lbl_BoLoc = "Hết hàng";
             const ListProduct = DataService.getData();
-            $scope.ListProduct = ListProduct.filter(a => a.stauts === "Không");
+            $scope.ListProduct = ListProduct.filter(a => a.status === "Không");
         }
     }
     // Xoá dữ liệu khi close
