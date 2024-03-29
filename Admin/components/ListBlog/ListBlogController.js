@@ -32,7 +32,7 @@ app.controller('ListBlogController', function ($scope, $http) {
         const confirmed = confirm('Bạn có muốn xóa Blogs này không?')
         if(confirmed){
             console.log(id);
-            $http.delete(`https://localhost:7156/api/Blog/delete-blog/${id}`)
+            $http.delete(`https://localhost:7272/api/Blog/delete-blog/${id}`)
             .then(function (response) {
                 alert('Xóa Blogs thành công!')
             })
