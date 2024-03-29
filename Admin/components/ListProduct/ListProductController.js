@@ -14,7 +14,7 @@ app.controller('ListProductController', function ($scope, DataService, $http) {
     $scope.lbl_BoLoc = 'Tất cả';
     // Lấy thông tin sản phẩm
     function LoadListProduct() {
-        $http.get(`https://localhost:7272/*api/Product`).then(function (response) {
+        $http.get(`http://apiserver.runasp.net/*api/Product`).then(function (response) {
             $scope.ListProduct = response.data;
             DataService.setData($scope.ListProduct)
         })

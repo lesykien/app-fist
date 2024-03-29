@@ -41,19 +41,19 @@
             </div>
             <div class="col-md-7">
                 <div class="single-product-content">
-                    <span style="font-size: xx-large; font-weight: 600;"> {{ProductDetal[0].name}} </span>
-                    <p><strong>Loại cá: </strong> {{ProductDetal[0].nameCategory}} <br>
-                        <span><strong>Thương hiệu:</strong> {{ProductDetal[0].brands}}</span>
+                    <span style="font-size: xx-large; font-weight: 600;"> {{ProductDetal.name}} </span>
+                    <p><strong>Loại cá: </strong> {{ProductDetal.nameCategory}} <br>
+                        <span><strong>Thương hiệu:</strong> {{ProductDetal.brands}}</span>
                     </p>
-                    <p class="single-product-pricing orange-text" style="margin-top: -15px;"> {{ProductDetal[0].price |
+                    <p class="single-product-pricing orange-text" style="margin-top: -15px;"> {{ProductDetal.price |
                         number:3}} ₫
                     </p>
-                    <p> {{ProductDetal[0].description}} </p>
+                    <p> {{ProductDetal.description}} </p>
                     <div class="single-product-form">
                         <form action="index.html">
                             <input type="number" placeholder="1" min="1">
                         </form>
-                        <a href="" ng-click="AddToCart(ProductDetal[0])" class="cart-btn "
+                        <a href="" ng-click="AddToCart(ProductDetal)" class="cart-btn "
                             style="background-color: white; border-color: #F28123; border: 1px solid #F28123; color: #F28123;"><i
                                 class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng</a>
                         <a href="#!cart" class="cart-btn" style="margin-left: 20px;">Mua ngay</a>
@@ -64,8 +64,8 @@
         <div class="d-flex gap-3" id="imageContaine">
             <div ng-click="ZoomImages($index)" class="ZoomImages"
                 style="width: 6rem; height: 5rem; border: 1px solid black; cursor: pointer; margin-left: 3px;"
-                ng-repeat="item in ProductDetal[0].link">
-                <img src="https://localhost:7272/api/get-images-cart/{{item.link}}"
+                ng-repeat="item in ProductDetal.images">
+                <img src="https://localhost:7272/api/get-images-cart/{{item}}"
                     class="imgCuaCa mobile-hide search-bar-icon" alt=""
                     style="width: 100%; height: 100%; object-fit: cover;">
             </div>
@@ -90,7 +90,7 @@
                 <div class="single-product-item">
                     <div class="product-image">
                         <a href="#!shop-detail/{{item.id}}"><img
-                                src="https://localhost:7272/api/get-images-cart/{{item.link[0].link}}" alt=""
+                                src="https://localhost:7272/api/get-images-cart/{{item.image}}" alt=""
                                 style="width: 100%; height: 18rem; object-fit: cover;"></a>
                     </div>
                     <h3> {{item.name}} </h3>

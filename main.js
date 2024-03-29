@@ -59,7 +59,7 @@ app.service('DataService', function () {
   };
 });
 
-app.controller('MainController', function ($scope, $http, DataService, $rootScope , $location) {
+app.controller('MainController', function ($scope, $http, DataService, $rootScope, $location) {
   // hiển thị silider
   $rootScope.siliderShow = true;
   // đếm trong giỏ hàng có bao nhiêu sản phẩm
@@ -79,7 +79,7 @@ app.controller('MainController', function ($scope, $http, DataService, $rootScop
     }
     else {
       window.location.href = "/Login/Login.html"
-      localStorage.setItem('path' , '/#!/Account')
+      localStorage.setItem('path', '/#!/Account')
     }
   }
 
@@ -94,19 +94,18 @@ app.controller('MainController', function ($scope, $http, DataService, $rootScop
     })
   }
   // Gọi Api load tất cả thông tin sản phẩm có trong csdl
-  $http.get('https://localhost:7272/*api/Product')
+  $http.get('https://localhost:7272/*api/Product/get-product')
     .then(function (response) {
 
       $rootScope.productsAll = response.data;
 
       DataService.setData(response.data);
 
-      $rootScope.productsAll = response.data.filter(a => a.stauts == "sống");
-
+      $rootScope.productsAll = response.data.filter(a => a.status == "sống");
       $rootScope.Count = $rootScope.productsAll.length
 
       // show new product in database
-      $rootScope.NewPro = response.data.filter(a => a.stauts == "sống")[0];
+      $rootScope.NewPro = response.data.filter(a => a.status == "sống")[0];
     })
     .catch(function (error) {
       console.error('Lỗi khi gọi API:', error);
@@ -124,11 +123,11 @@ app.controller('MainController', function ($scope, $http, DataService, $rootScop
   // thêm sản phẩm vào giỏ hàng
   $rootScope.AddToCart = function (item) {
     const ListLocal = localStorage.getItem('ListProduct');
-
+    console.log(item);
     var Product = {
       id: item.id,
       name: item.name,
-      link: item.link[0].link,
+      link: item.image,
       price: item.price,
       quantity: 1,
       total: item.price * 1
@@ -152,7 +151,7 @@ app.controller('MainController', function ($scope, $http, DataService, $rootScop
         var New = {
           id: item.id,
           name: item.name,
-          link: item.link[0].link,
+          link: item.image,
           price: item.price,
           quantity: pro.quantity + 1,
           total: item.price * (pro.quantity + 1)

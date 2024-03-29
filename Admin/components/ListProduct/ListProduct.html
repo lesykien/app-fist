@@ -49,7 +49,7 @@
                     <tbody class="table-border-bottom-0">
                         <tr ng-repeat="item in ListProduct | filter:search ">
                             <td>
-                                <img loading="lazy" src="https://localhost:7272/api/get-images-avatar/{{item.link[0].link}}" alt="Avatar"
+                                <img loading="lazy" src="https://localhost:7272/api/get-images-avatar/{{item.image}}" alt="Avatar"
                                     class="rounded-circle" style="width: 40px; height: 38px; object-fit: cover;">
                             </td>
                             <td> {{item.name}} </td>
@@ -57,11 +57,11 @@
                             <td> {{item.price | number : 3}}đ</td>
                             <td>
                                 <a href="" ng-click="Edit_Status(item.id)"
-                                    ng-if="item.stauts == 'sống' || item.stauts == 'Sống'"
+                                    ng-if="item.status == 'sống' || item.status == 'Sống'"
                                     class="text-capitalize text-primary">Còn bán</a>
                                 <a href="" ng-click="Edit_Status(item.id)"
-                                    ng-if="item.stauts == 'Không' || item.stauts == 'không'"
-                                    class="text-capitalize text-danger"> {{item.stauts}} </a>
+                                    ng-if="item.status == 'Không' || item.status == 'không'"
+                                    class="text-capitalize text-danger"> {{item.status}} </a>
                             </td>
                             <td>
                                 <a href="" class="fs-5 me-3" data-bs-toggle="modal" data-bs-target="#basicModal"

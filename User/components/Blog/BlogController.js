@@ -2,7 +2,7 @@ app.controller('BlogController', function ($scope, $rootScope, $http, $sce, $rou
   $rootScope.siliderShow = false;
   // get information blog realte to
   let ListBlogCart = []
-  $http.get(`https://localhost:7156/api/Blog/get-value`)
+  $http.get(`https://localhost:7272/api/Blog/get-value`)
     .then(function (response) {
       for (let i = 0; i < 4; i++) {
         const object = {
@@ -19,7 +19,7 @@ app.controller('BlogController', function ($scope, $rootScope, $http, $sce, $rou
 
   // get inforamtion blof follow id
   const item = document.getElementById('item');
-  $http.get(`https://localhost:7156/api/Blog/get-id/=${$routeParams.id}`)
+  $http.get(`https://localhost:7272/api/Blog/get-id/=${$routeParams.id}`)
     .then(function (response) {
       const object = {
         contenet: $sce.trustAsHtml(response.data.contenet),

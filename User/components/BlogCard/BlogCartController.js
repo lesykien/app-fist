@@ -1,7 +1,7 @@
 app.controller('BlogCartController' , function($scope , $rootScope, $http, $sce){
     $rootScope.siliderShow = false;
     let ListBlogCart = []
-    $http.get(`https://localhost:7156/api/Blog/get-value`)
+    $http.get(`https://localhost:7272/api/Blog/get-value`)
     .then(function (response) {
         for (let i = 0; i < response.data.length; i++) {
           const object = {

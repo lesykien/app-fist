@@ -9,15 +9,14 @@ app.controller('ShopDetailController', function ($scope, $http, $rootScope, Data
     let ListLink = [];
 
     // gọi api để lấy tất cả hình ảnh
-    $http.get(`https://localhost:7272/*api/Product/${$routeParams.id}`)
+    $http.get(`https://localhost:7272/*api/Product/get-by-id/${$routeParams.id}`)
         .then(function (response) {
             $scope.ProductDetal = response.data
-            for (let i = 0; i < response.data[0].link.length; i++) {
-                let img = $scope.ProductDetal[0].link[i]
+            for (let i = 0; i < response.data.images.length; i++) {
+                let img = $scope.ProductDetal.images[i]
                 ListLink.push(img)
             }
-
-            $scope.link = ListLink[0].link;
+            $scope.link = ListLink[0];
             $scope.index = 0
 
             // chuyển index hình ảnh
@@ -25,29 +24,29 @@ app.controller('ShopDetailController', function ($scope, $http, $rootScope, Data
                 switch (type) {
                     case 1:
                         if ($scope.index == ListLink.length - 1) {
-                            $scope.link = ListLink[0].link;
+                            $scope.link = ListLink[0];
                             $scope.index = 0;
                         }
                         else {
                             $scope.index = index + 1;
-                            $scope.link = ListLink[$scope.index].link;
+                            $scope.link = ListLink[$scope.index];
                         }
                         break;
 
                     case 0:
                         if ($scope.index == 0) {
-                            $scope.link = ListLink[ListLink.length - 1].link;
+                            $scope.link = ListLink[ListLink.length - 1];
                             $scope.index = ListLink.length - 1;
                         }
                         else {
                             $scope.index = index - 1;
-                            $scope.link = ListLink[$scope.index].link;
+                            $scope.link = ListLink[$scope.index];
                         }
                         break;
                 }
             }
             // lấy sản phẩm tương ứng
-            $scope.ProductTuongUng = DataService.getData().filter(a => a.idCategory == response.data[0].idCategory && a.id != response.data[0].id);
+            $scope.ProductTuongUng = DataService.getData().filter(a => a.idCategory == response.data.idCategory && a.id != response.data.id);
         })
         .catch(function (error) {
             console.error('Lỗi khi gọi API:', error);
@@ -57,10 +56,10 @@ app.controller('ShopDetailController', function ($scope, $http, $rootScope, Data
     // zoon hình ảnh
     $scope.ZoomImages = function (index) {
         $scope.hideDiv = false;
-        const ListLink = $scope.ProductDetal[0].link;
+        const ListLink = $scope.ProductDetal.images;
         for (var i = 0; i < ListLink.length; i++) {
             if (i == index) {
-                $scope.Link1 = ListLink[i].link
+                $scope.Link1 = ListLink[i]
             }
         }
         $scope.indexImg = index
@@ -72,27 +71,27 @@ app.controller('ShopDetailController', function ($scope, $http, $rootScope, Data
     }
     // Chuyển hình ảnh
     $scope.NextImages = function (index, type) {
-        let ListLink = $scope.ProductDetal[0].link;
+        let ListLink = $scope.ProductDetal.images;
         // nếu type == 1 thì index + 1
         if (type == 1) {
             if (index == ListLink.length - 1) {
-                $scope.Link1 = ListLink[0].link
+                $scope.Link1 = ListLink[0]
                 $scope.indexImg = 0;
             }
             else {
                 $scope.indexImg = index + 1;
-                $scope.Link1 = ListLink[$scope.indexImg].link;
+                $scope.Link1 = ListLink[$scope.indexImg];
             }
         }
         // nếu type != 1 thì index - 1
         else {
             if (index == 0) {
                 $scope.indexImg = ListLink.length - 1;
-                $scope.Link1 = ListLink[$scope.indexImg].link
+                $scope.Link1 = ListLink[$scope.indexImg]
             }
             else {
                 $scope.indexImg = index - 1;
-                $scope.Link1 = ListLink[$scope.indexImg].link
+                $scope.Link1 = ListLink[$scope.indexImg]
             }
         }
     }

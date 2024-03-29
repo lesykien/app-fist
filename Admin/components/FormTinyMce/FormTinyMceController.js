@@ -62,7 +62,7 @@ app.controller('FormTinyMceController', function ($scope, $http, $location) {
         form.append('blogDtos.Contenet', $scope.ContentBlogs)
         form.append('blogDtos.formFile', $scope.ImagesBlogs[0])
 
-        $http.post('https://localhost:7156/api/Blog/post-blog', form, {
+        $http.post('https://localhost:7272/api/Blog/post-blog', form, {
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined }
         })
@@ -78,7 +78,7 @@ app.controller('FormTinyMceController', function ($scope, $http, $location) {
     if (!id) $scope.show_button = true;
     else {
         // get blog with id in sessionStorage 
-        $http.get(`https://localhost:7156/api/Blog/get-id/=${id}`)
+        $http.get(`https://localhost:7272/api/Blog/get-id/=${id}`)
             .then((response) => {
                 mytextarea.innerHTML = response.data.contenet
                 $scope.TitleBlogs = response.data.healine
@@ -98,7 +98,7 @@ app.controller('FormTinyMceController', function ($scope, $http, $location) {
             let form = new FormData();
             form.append('blog.Healine', $scope.TitleBlogs);
             form.append('blog.Contenet', content_blog);
-            $http.put(`https://localhost:7156/api/Blog/put-blog/${id}`, form, {
+            $http.put(`https://localhost:7272/api/Blog/put-blog/${id}`, form, {
                 transformRequest: angular.identity,
                 headers: { 'Content-Type': undefined }
             })
@@ -115,7 +115,7 @@ app.controller('FormTinyMceController', function ($scope, $http, $location) {
             form.append('blog.Healine', $scope.TitleBlogs);
             form.append('blog.Contenet', content_blog);
             form.append('image', file[0] );
-            $http.put(`https://localhost:7156/api/Blog/put-blog/${id}`, form, {
+            $http.put(`https://localhost:7272/api/Blog/put-blog/${id}`, form, {
                 transformRequest: angular.identity,
                 headers: { 'Content-Type': undefined }
             })

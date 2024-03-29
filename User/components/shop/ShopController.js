@@ -28,9 +28,9 @@ app.controller('ShopController', function ($scope, $http, DataService, $rootScop
     }
     else {
       // Lấy tổng số trang 
-      var List = DataService.getData();
+      var List = DataService.getData().filter(a => a.status == "sống");
       // tính tổng số trang
-      var itemMax = Math.ceil(List.length / 6);
+      var itemMax = Math.ceil(List.length / 1);
       if (InPage == itemMax) {
         $scope.Luiitem = itemMax;
       }

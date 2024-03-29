@@ -4,7 +4,7 @@ app.controller('ListBlogController', function ($scope, $http) {
     let litsBlogs = []
     // Lấy thông tin blogs
     function LoadListBlogs(){
-        $http.get(`https://localhost:7156/api/Blog/get-value`).then(function (response) {
+        $http.get(`https://localhost:7272/api/Blog/get-value`).then(function (response) {
            
            for (let i = 0; i < response.data.length; i++){
             const object = {
