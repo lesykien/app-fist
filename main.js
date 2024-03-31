@@ -32,13 +32,6 @@ app.config(function ($routeProvider) {
     .otherwise('/', { templateUrl: "/User/components/Home/Home.html" })
   // Trang chủ
 });
-
-app.config(['$httpProvider', function($httpProvider) {
-  $httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
-  $httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept';
-  $httpProvider.defaults.headers.common['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS';
-}]);
-
 app.run(function ($rootScope) {
   $rootScope.$on('$routeChangeStart', function () {
     $rootScope.Loading = true;
@@ -51,6 +44,42 @@ app.run(function ($rootScope) {
     alert("lỗi không kết nối được")
   });
 });
+
+app.factory('loadingInterceptor', ['$q', function($q) {
+  var loadingCount = 0;
+
+  return {
+    request: function(config) {
+      loadingCount++;
+      $rootScope.Loading = true;
+      return config;
+    },
+
+    response: function(response) {
+      loadingCount--;
+      // Ẩn thanh loading nếu không còn yêu cầu nào đang được xử lý
+      if (loadingCount === 0) {
+        $rootScope.Loading = false;
+      }
+      return response;
+    },
+
+    responseError: function(response) {
+      loadingCount--;
+      // Ẩn thanh loading nếu không còn yêu cầu nào đang được xử lý
+      if (loadingCount === 0) {
+        $rootScope.Loading = false;
+      }
+      return $q.reject(response);
+    }
+  };
+}]);
+
+app.config(['$httpProvider', function($httpProvider) {
+  $httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+  $httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept';
+  $httpProvider.defaults.headers.common['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS';
+}]);
 
 //Chi sẽ dữ liệu lấy từ api
 app.service('DataService', function () {

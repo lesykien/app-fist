@@ -11,6 +11,7 @@ app.config(function ($routeProvider) {
         .when('/TypeProduct', { templateUrl: "./components/TypeProduct/TypeProduct.html", controller: 'TypeProductController' })
         .when('/Account', { templateUrl: "./components/Account/Account.html", controller: 'AccountController' })
         .when('/ListBlog', { templateUrl: "./components/ListBlog/ListBlog.html", controller: 'ListBlogController' })
+        .when('/ListImages/:id', { templateUrl: "./components/LitsImages/ListImages.html", controller: 'ImagesController' })
         .otherwise({ templateUrl: "./components/ListProduct/ListProduct.html", controller: 'ListProductController' })
 });
 
