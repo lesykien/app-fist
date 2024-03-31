@@ -128,11 +128,6 @@
                                 </div>
                                 <span class="text-danger" ng-show="ProductAdd.Price.$invalid">Bạn chưa nhập giá</span>
                             </div>
-                            <div class="col mb-3">
-                                <label for="imageInput" class="form-label">Hình ảnh</label>
-                                <input class="form-control" type="file" accept=".jpg, .jpeg, .png" name="Images"
-                                    ng-model="Images" id="imageInput" required multiple ng-change="UploadImages()">
-                            </div>
                         </div>
                         <div class="row">
                             <div class="col mb-3">
@@ -163,7 +158,7 @@
                             Huỷ
                         </button>
                         <button type="button" ng-disabled="ProductAdd.$invalid" class="btn btn-primary"
-                            ng-click="EditSave(Id)">Lưu</button>
+                            ng-click="EditSave(id)">Lưu</button>
                     </div>
                 </form>
             </div>

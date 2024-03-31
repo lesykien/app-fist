@@ -126,6 +126,30 @@ app.controller('ImagesController', function ($scope, $routeParams, $http) {
         $scope.Stock = item.stock
         $scope.Describe = item.description
         $scope.Category = item.idCategory
-        $scope.Id = item.id
+        $scope.id = item.id
+    }
+
+    // save new information product enter database
+    $scope.EditSave = function(id){
+        let newPro = {
+            id: id,
+            name: $scope.Name ,
+            price: $scope.Price,
+            brands: $scope.Brands,
+            stock: $scope.Stock,
+            status: " ",
+            description: $scope.Describe,
+            idCategory: $scope.Category
+        }
+
+        $http.put(`https://localhost:7272/*api/Product/update-not-img-?id=${id}`, newPro)
+        .then(function (response) {
+            alert(response.data)
+            LoadForm();
+        })
+        .catch(function (error) {
+            alert('Không thể cập nhật được sản phẩm')
+        })
+
     }
 }) 

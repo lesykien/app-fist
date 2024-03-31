@@ -1,7 +1,7 @@
 app.controller('ShopController', function ($scope, $http, DataService, $rootScope, $routeParams) {
   $rootScope.siliderShow = false;
   // lấy thông tin sản phẩm theo phân trang
-  $http.get(`https://apiserver.runasp.net/*api/Product/idCategory/${$routeParams.idCategory}/page/${$routeParams.numberPage}`)
+  $http.get(`https://localhost:7272/*api/Product/idCategory/${$routeParams.idCategory}/page/${$routeParams.numberPage}`)
     .then(function (response) {
       $scope.products = response.data;
     })
