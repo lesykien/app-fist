@@ -5,7 +5,7 @@ app.controller('TypeProductController', function ($scope, $http) {
     LoadFrom()
     function LoadFrom() {
         // lấy thông tin category từ api
-        $http.get(`https://apiserver.runasp.net/*api/Category`).then(function (response) {
+        $http.get(`https://localhost:7272/*api/Category`).then(function (response) {
             $scope.ListCategory = response.data;
         })
     }
