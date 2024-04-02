@@ -1,4 +1,4 @@
-var app = angular.module('APP', ['ngRoute', 'ngSanitize']);
+var app = angular.module('APP', ['ngRoute']);
 
 app.config(function ($routeProvider) {
   $routeProvider
@@ -45,17 +45,17 @@ app.run(function ($rootScope) {
   });
 });
 
-app.factory('loadingInterceptor', ['$q', function($q) {
+app.factory('loadingInterceptor', ['$q', function ($q) {
   var loadingCount = 0;
 
   return {
-    request: function(config) {
+    request: function (config) {
       loadingCount++;
       $rootScope.Loading = true;
       return config;
     },
 
-    response: function(response) {
+    response: function (response) {
       loadingCount--;
       // Ẩn thanh loading nếu không còn yêu cầu nào đang được xử lý
       if (loadingCount === 0) {
@@ -64,7 +64,7 @@ app.factory('loadingInterceptor', ['$q', function($q) {
       return response;
     },
 
-    responseError: function(response) {
+    responseError: function (response) {
       loadingCount--;
       // Ẩn thanh loading nếu không còn yêu cầu nào đang được xử lý
       if (loadingCount === 0) {
@@ -75,7 +75,7 @@ app.factory('loadingInterceptor', ['$q', function($q) {
   };
 }]);
 
-app.config(['$httpProvider', function($httpProvider) {
+app.config(['$httpProvider', function ($httpProvider) {
   $httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
   $httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept';
   $httpProvider.defaults.headers.common['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS';
@@ -95,6 +95,7 @@ app.service('DataService', function () {
 });
 
 app.controller('MainController', function ($scope, $http, DataService, $rootScope, $location) {
+
   // hiển thị silider
   $rootScope.siliderShow = true;
   // đếm trong giỏ hàng có bao nhiêu sản phẩm
@@ -157,21 +158,36 @@ app.controller('MainController', function ($scope, $http, DataService, $rootScop
 
   // thêm sản phẩm vào giỏ hàng
   $rootScope.AddToCart = function (item) {
-    const ListLocal = localStorage.getItem('ListProduct');
-    console.log(item);
+    const Account = localStorage.getItem('Account');
+    let acc = JSON.parse(Account);
+
+    // nếu chưa đăng nhập
+    if (Account) {
+      addToCard(`Oder/${acc.id}`, item , 1)
+      alert('Thêm sản phẩm thành công ')
+    }
+    // nếu đã đăng nhập
+    else {
+      addToCard('ListProduct', item , 1)
+      alert('Thêm sản phẩm thành công ')
+    }
+  }
+
+  // hàm thực hiện thêm sản phẩm vào giỏ hàng
+  function addToCard(keyLocal, item , quantityItem) {
+    const ListLocal = localStorage.getItem(`${keyLocal}`);
     var Product = {
       id: item.id,
       name: item.name,
-      link: item.image,
+      image: item.image,
       price: item.price,
-      quantity: 1,
-      total: item.price * 1
+      quantity: quantityItem,
+      total: item.price * quantityItem,
     }
-
     let List = [];
     if (!ListLocal) {
       List.push(Product);
-      localStorage.setItem('ListProduct', JSON.stringify(List))
+      localStorage.setItem(`${keyLocal}`, JSON.stringify(List))
     }
     else {
       List = JSON.parse(ListLocal);
@@ -180,16 +196,17 @@ app.controller('MainController', function ($scope, $http, DataService, $rootScop
       // Nếu chưa ==> Thêm item mới vào giỏ hàng
       if (!pro) {
         List.push(Product);
-        localStorage.setItem('ListProduct', JSON.stringify(List))
+        localStorage.setItem(`${keyLocal}`, JSON.stringify(List))
       }
       else {
+        // nếu có sản phẩm trong giỏ hàng thì công thêm số lượng
         var New = {
           id: item.id,
           name: item.name,
-          link: item.image,
+          image: item.image,
           price: item.price,
-          quantity: pro.quantity + 1,
-          total: item.price * (pro.quantity + 1)
+          quantity: pro.quantity + quantityItem,
+          total: item.price * (pro.quantity + quantityItem)
         }
 
         for (var i = 0; i < List.length; i++) {
@@ -197,20 +214,55 @@ app.controller('MainController', function ($scope, $http, DataService, $rootScop
             List[i] = New;
           }
         }
-        localStorage.setItem('ListProduct', JSON.stringify(List))
+        localStorage.setItem(`${keyLocal}`, JSON.stringify(List))
       }
-    }
-    alert('Thêm sản phẩm thành công ')
-
-    var List1 = JSON.parse(localStorage.getItem('ListProduct'));
-    if (List1 == undefined) {
-      $rootScope.CountCart = 0;
-    }
-    else {
-
-      $rootScope.CountCart = List1.length
+      CountItem(keyLocal)
     }
   }
+
+  // hàm đếm số lượng item có trong giỏ hàng
+  function CountItem(key) {
+    var List = JSON.parse(localStorage.getItem(key));
+    if (List == undefined) {
+      $rootScope.CountCart = 0;
+      $rootScope.Total = 0;
+
+    }
+    else {
+      $rootScope.CountCart = List.length
+    }
+  }
+
+  // chép giỏ hàng vào localSotorage của tài khoản
+  let account = localStorage.getItem('Account');
+
+  function LoadFromHome() {
+    let OrderList = localStorage.getItem('ListProduct')
+    if(OrderList){
+      if (account) {
+        let acc = JSON.parse(account)
+        CountItem(`Oder/${acc.id}`)
+        addCardByIdAccount();
+      }
+      else {
+        CountItem(`ListProduct`)
+      }
+    }
+  }
+
+  function addCardByIdAccount() {
+    let acc = JSON.parse(account)
+    let listOrder = JSON.parse(localStorage.getItem('ListProduct'))
+
+    for (let i = 0; i < listOrder.length; i++) {
+      addToCard(`Oder/${acc.id}`, listOrder[i], listOrder[i].quantity)
+      listOrder.splice(0, 1)
+      localStorage.setItem("ListProduct", JSON.stringify(listOrder));
+    }
+  }
+
+  LoadFromHome()
+
 
 })
 

@@ -144,7 +144,7 @@
         font-size: 20px;
         width: 50px;
         height: 50px;
-        background-color: 	#0cae09;
+        background-color: #0cae09;
         justify-content: center;
         align-items: center;
         display: flex;
@@ -186,6 +186,18 @@
         border: 2px solid;
         background-color: white;
         box-shadow: none !important;
+    }
+
+    .huy_don {
+        border: none;
+        color: white;
+        background-color: #cd2c07;
+        box-shadow: rgba(233, 15, 3, 0.45) 0px 0px 20px 5px !important;
+    }
+
+    .huy_donThang {
+        background: rgb(12, 174, 9);
+        background: linear-gradient(90deg, rgba(12, 174, 9, 1) 0%, rgba(205, 44, 7, 1) 46%);
     }
 
     .dang_duyetThang {
@@ -243,11 +255,11 @@
                     <form type="POST">
                         <p>
                             <input style="width: 100%;" type="text" ng-model="FullName" id="name"> <br>
-                            <input style="width: 100%;" class="mt-3" type="tel" placeholder="Số điện thoại" ng-model="Phone" name="phone"
-                                id="phone"><br>
+                            <input style="width: 100%;" class="mt-3" type="tel" placeholder="Số điện thoại"
+                                ng-model="Phone" name="phone" id="phone"><br>
                             <input style="width: 100%;" class="mt-3" type="email" ng-model="Email" id="email"><br>
-                            <input style="width: 100%;" class="mt-3" type="text" placeholder="Địa chỉ" ng-model="Address" name="subject"
-                                id="subject">
+                            <input style="width: 100%;" class="mt-3" type="text" placeholder="Địa chỉ"
+                                ng-model="Address" name="subject" id="subject">
                         </p>
                         <div class="d-flex" style="gap: 5px;">
                             <input class="btn_Custom" type="button" value="Lưu thay đổi">
@@ -270,6 +282,9 @@
                             hàng đang được giao</span>
                         <span class="text__Order-header statusDelivery" ng-if="item.statusDelivery == 3">Đã nhận
                             đơn hàng</span>
+                        <span class="text__Order-header statusDelivery" ng-if="item.statusDelivery == 4">Chưa được xác
+                            nhận</span>
+                        <span class="text__Order-header statusDelivery" ng-if="item.statusDelivery == 5">Không giao hàng được</span>
                         <span class="text__Order-header" style="font-weight: lighter !important;">
                             <i class="fa-solid fa-file-invoice"></i> DH-KH-{{item.id}}
                         </span>
@@ -277,7 +292,8 @@
                     <div class="scroll__Cart--body">
                         <a href="#!shop-detail/{{pr.id}}" class="cart__Order-body" ng-repeat="pr in item.detal">
                             <div class="" style="display: flex; gap: 10rem;">
-                                <img src="https://localhost:7272/api/get-images-avatar/{{pr.link[0].link}}" alt="" class="img_order">
+                                <img src="https://localhost:7272/api/get-images-avatar/{{pr.link[0].link}}" alt=""
+                                    class="img_order">
                                 <div class="information__pro">
                                     <span class="total__pro" style="font-weight: bold;"> {{pr.name}} </span><br>
                                     <span class="total__pro"> {{pr.price | number : 3}}đ</span> <span
@@ -295,7 +311,7 @@
                         </div>
                         <div class="cart__Order-foodter">
                             <button class="mua__lai" ng-click="MuaLai(item.detal)"
-                                ng-show="item.statusDelivery == 3 || item.statusDelivery == 4">Mua
+                                ng-show="item.statusDelivery == 3">Mua
                                 lại</button>
                             <button class="mua__lai btn__huy" ng-click="RemoveOrder(item.id)"
                                 ng-show="item.statusDelivery == 1">Huỷ đơn
@@ -320,6 +336,31 @@
         <div class="duongThang dang_duyetThang"></div>
         <span class="icon__order dang_duyet"><i class="fa-solid fa-check"></i></span>
     </div>
+
+    <!-- ----Không xác nhận đơn---- -->
+    <div class="StatusOrde" ng-if="DetalOrderById.statusDelivery == 4">
+        <span class="icon__order"><i class="fa-solid fa-file-import"></i></span>
+        <div class="duongThang huy_donThang"></div>
+        <span class="icon__order dang_duyet huy_don"><i class="fa-solid fa-xmark"></i></span>
+        <div class="duongThang dang_duyetThang"></div>
+        <span class="icon__order dang_duyet"><i class="fa-solid fa-truck-fast"></i></span>
+        <div class="duongThang dang_duyetThang"></div>
+        <span class="icon__order dang_duyet"><i class="fa-solid fa-check"></i></span>
+    </div>
+    <!-- -------- -->
+
+    <!-- ---Không giao được hàng----- -->
+    <div class="StatusOrde" ng-if="DetalOrderById.statusDelivery == 5">
+        <span class="icon__order"><i class="fa-solid fa-file-import"></i></span>
+        <div class="duongThang"></div>
+        <span class="icon__order"><i class="fa-solid fa-user-pen"></i></span>
+        <div class="duongThang"></div>
+        <span class="icon__order"><i class="fa-solid fa-truck-fast"></i></span>
+        <div class="duongThang huy_donThang"></div>
+        <span class="icon__order huy_don"><i class="fa-solid fa-xmark"></i></span>
+    </div>
+    <!-- -------- -->
+
     <div class="StatusOrde" ng-if="DetalOrderById.statusDelivery == 2">
         <span class="icon__order"><i class="fa-solid fa-file-import"></i></span>
         <div class="duongThang"></div>
@@ -342,6 +383,7 @@
         <p>Mã đơn hàng: <span>DH-KH-{{DetalOrderById.id}}</span></p>
         <p>Ngày tháng: <span>{{DetalOrderById.dateTime}}</span></p>
         <p>Phương thức thanh toán: <span>Thanh toán sau khi nhận hàng</span></p>
+        <p ng-if="DetalOrderById.statusDelivery == 4 || DetalOrderById.statusDelivery == 5">Lý do đơn hàng bị hủy: <span class="text-danger"> {{reason}} </span></p>
         <p>Tổng tiền: <span> {{DetalOrderById.totalAmount | number : 3}}đ</span></p>
     </div>
     <div class="thongTin__donHang">

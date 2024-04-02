@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description"
-        content="Cửa hàng cá cảnh RedHood uy tín chất lượng số 1 Thành phố Buôn Ma Thuột. 
+    <meta name="description" content="Cửa hàng cá cảnh RedHood uy tín chất lượng số 1 Thành phố Buôn Ma Thuột. 
         Hãy ghé ngay tại cửa hàng chúng tôi để sở hữu cho mình những chú cá cảnh tuyệt vời cho mình">
 
     <!-- title -->
@@ -77,19 +76,17 @@
                                 <li><a ng-href="#!shop/0/1">Sản phẩm </a></li>
                                 <li><a ng-href="">Danh mục sản phẩm <i class="fa-solid fa-chevron-down"></i></a>
                                     <ul class="sub-menu">
-                                        <li ng-repeat="item in categorys"><a ng-href="#!Shop/{{item.id}}/1"> {{item.nameCategory}} </a></li>
+                                        <li ng-repeat="item in categorys"><a ng-href="#!shop/{{item.id}}/1">
+                                                {{item.nameCategory}} </a></li>
                                     </ul>
-                                </li>   
+                                </li>
                                 <li><a ng-href="#!blog-cart">Kiến thức nuôi cá</a>
-                                    <!-- <ul class="sub-menu">
-										<li><a href="news.html">News</a></li>
-										<li><a href="single-news.html">Single News</a></li>
-									</ul> -->
                                 </li>
                                 <li><a ng-href="#!contact">Liên hệ</a></li>
                                 <li>
                                     <div class="header-icons">
-                                        <a class="shopping-cart" ng-href="#!cart"><i class="fas fa-shopping-cart"></i>[{{CountCart}}]</a>
+                                        <a class="shopping-cart" ng-href="#!cart"><i
+                                                class="fas fa-shopping-cart"></i>[{{CountCart}}]</a>
                                         <a class="" type="button" ng-click="TestLogin()"><i class="fas fa-solid fa-user"
                                                 style="color: #ffffff;"></i></a>
                                     </div>
@@ -244,7 +241,7 @@
     <script src="/User/components/account/accountController.js"></script>
     <script src="/User/components/BlogCard/BlogCartController.js"></script>
     <script src="/User/components/Blog/BlogController.js"></script>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <!-- link ép kiểu này tháng -->
 </body>

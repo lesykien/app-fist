@@ -22,6 +22,13 @@ app.controller('PendingController', function ($scope, $http, $routeParams, $root
                 $scope.ListPending = ListOrder
                 $rootScope.PendingCount = response.data.length;
             })
+
+        $scope.ly_Do = 1;
+
+        $scope.lyDo = [
+            { id: 1, contnet: 'Không liên lạc được với khách hàng' },
+            { id: 5, contnet: 'Sản phẩm hết hàng' }
+        ]
     }
 
     LoadFrom();
@@ -36,7 +43,6 @@ app.controller('PendingController', function ($scope, $http, $routeParams, $root
                 $scope.DateTime = moment($scope.InformationOder.dateTime).format('DD/MM/YYYY HH:mm'),
 
                     $scope.InformationAccount = JSON.parse(localStorage.getItem($scope.InformationOder.idAccount))
-                console.log($scope.InformationAccount);
             })
     }
 
@@ -57,20 +63,14 @@ app.controller('PendingController', function ($scope, $http, $routeParams, $root
         }
     }
     $scope.Remove = function (id) {
-        var mes = confirm('Bạn có muốn huỷ đơn hàng này không !!');
-        if (mes) {
-            $http.put(`https://localhost:7272/type/${3}/id/${id}`)
-                .then(function (response) {
-                    alert("Huỷ đơn hàng thành công!!")
-                    LoadFrom();
-                })
-                .catch(function (error) {
-                    alert('Không thể cập nhật được sản phẩm')
-                })
-        }
-        else {
-            LoadFrom();
-        }
-    }
 
+        $http.put(`https://localhost:7272/type/3/id/${id}?reason=${$scope.ly_Do}`)
+            .then(function (response) {
+                alert("Hủy đơn hàng thành công !!!")
+                LoadFrom();
+            })
+            .catch(function (error) {
+                alert('Không thể cập nhật được sản phẩm')
+            })
+    }
 })

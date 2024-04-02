@@ -49,7 +49,6 @@ app.controller('ShopController', function ($scope, $http, DataService, $rootScop
   search.addEventListener('input', function () {
     const container__goiY = document.querySelector('.container__goiY');
     let products = DataService.getData().filter(a => a.name == search.value);
-    console.log(products);
     if (search.value.trim() == '') {
       container__goiY.style.height = '0rem'
       container__goiY.style.border = 'none'
@@ -85,8 +84,23 @@ app.controller('ShopController', function ($scope, $http, DataService, $rootScop
       position_group_btn.style.height = "0px"
       $scope.sort = '+price'
     }
-
   }
+
+  // Function search product
+  $scope.Search = function () {
+    const container__goiY = document.querySelector('.container__goiY');
+    let searchEncode = encodeURIComponent($scope.search)
+    $http.get(`https://localhost:7272/*api/Product/get-by-name-?namePro=${searchEncode}`)
+      .then((response) => {
+        $scope.products = response.data;
+        container__goiY.style.height = '0rem'
+        container__goiY.style.border = 'none'
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+
 });
 
 

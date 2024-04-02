@@ -2,10 +2,10 @@ app.controller('CheckController', function ($scope, $http, $rootScope, $location
     $rootScope.siliderShow = false;
     $scope.Cart = []
     var Acc = JSON.parse(localStorage.getItem('Account'))
-    LoadCart();
-    function LoadCart() {
+    LoadCart(`Oder/${Acc.id}`);
+    function LoadCart(key) {
         $scope.btn_ordering = true
-        $scope.Cart = JSON.parse(localStorage.getItem('ListProduct'))
+        $scope.Cart = JSON.parse(localStorage.getItem(key))
         let Total = 0;
         if ($scope.Cart == undefined) {
             $scope.Cart = []
@@ -89,10 +89,10 @@ app.controller('CheckController', function ($scope, $http, $rootScope, $location
                     alert('Đặt hàng thành công!!!')
                     // remove item in localStorage when order is successful
                     // get informaiton in localStorage 
-                    let ListOrder = JSON.parse(localStorage.getItem("ListProduct"))
+                    let ListOrder = JSON.parse(localStorage.getItem(`Oder/${Acc.id}`))
                     for (let i = 0; i < ListOrder.length; i++) {
                         ListOrder.splice(0, 1)
-                        localStorage.setItem("ListProduct", JSON.stringify(ListOrder))
+                        localStorage.setItem(`Oder/${Acc.id}`, JSON.stringify(ListOrder))
                     }
                     // link path arrive page account
                     $location.path('/Account')

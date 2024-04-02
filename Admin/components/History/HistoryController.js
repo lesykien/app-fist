@@ -6,6 +6,13 @@ app.controller('HistoryController', function ($scope, $http, $routeParams) {
     $scope.label = 'Tất cả'
 
     var ListOrder = []
+
+    let listReason = [
+        { id: 1, contnet: 'Không liên lạc được với khách hàng' },
+        { id: 5, contnet: 'Sản phẩm hết hàng' }, 
+        { id: 6, contnet: 'Khách hàng không nhận sản phẩm' }
+    ]
+
     function LoadFrom() {
         $http.get(`https://localhost:7272/type/${$routeParams.type}`)
             .then(function (response) {
@@ -16,12 +23,15 @@ app.controller('HistoryController', function ($scope, $http, $routeParams) {
                         phone: JSON.parse(localStorage.getItem(response.data[i].idAccount)).Phone,
                         dateTime: moment(response.data[i].dateTime).format('DD/MM/YYYY'),
                         totalAmount: response.data[i].totalAmount,
+                        statusOrder: response.data[i].statusOrder,
                     }
                     ListOrder.push(InformationOrder)
                 }
-                $rootScope.HistoryCount = response.data.length;
+                // $rootScope.HistoryCount = response.data.length;
             })
         $scope.ListPending = ListOrder;
+
+        // load reason for oder 
     }
 
     LoadFrom();
@@ -33,11 +43,17 @@ app.controller('HistoryController', function ($scope, $http, $routeParams) {
                 $scope.ListProductDetalOrder = response.data[0].detal
                 $scope.InformationOder = response.data[0]
 
-                $scope.DateTime = moment($scope.InformationOder.dateTime).format('DD/MM/YYYY HH:mm'),
+                $scope.DateTime = moment($scope.InformationOder.dateTime).format('DD/MM/YYYY HH:mm');
 
-                    $scope.InformationAccount = JSON.parse(localStorage.getItem($scope.InformationOder.idAccount))
-                console.log($scope.InformationAccount);
+                $scope.InformationAccount = JSON.parse(localStorage.getItem($scope.InformationOder.idAccount))
+
+                for (let i = 0; i < listReason.length; i++) {
+                    if (listReason[i].id == response.data[0].statusOrder) {
+                        $scope.reason = listReason[i].contnet;
+                    }
+                }
             })
+
     }
 
     $scope.LocDonHang = function (id) {

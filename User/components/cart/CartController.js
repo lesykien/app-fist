@@ -4,8 +4,19 @@ app.controller('CartController', function ($scope, $http, $rootScope , $location
     $scope.Cart = []
     LoadCart();
     function LoadCart() {
-        var listOrder = JSON.parse(localStorage.getItem('ListProduct'))
-        if (listOrder.length == 0) {
+        let acc = JSON.parse(localStorage.getItem('Account')); 
+        if(acc){
+            LoadListOrder(`Oder/${acc.id}`)
+        }
+        else{
+            LoadListOrder('ListProduct')
+        }
+
+    }
+
+    function LoadListOrder(key) {
+        var listOrder = JSON.parse(localStorage.getItem(key))
+        if (listOrder == undefined) {
             $scope.Cart = []
             $scope.Total = 0;
             $rootScope.CountCart = 0;
@@ -20,35 +31,48 @@ app.controller('CartController', function ($scope, $http, $rootScope , $location
             })
             $scope.Total = Total;
         }
-
     }
+
     $scope.Remove = function (index) {
         if (confirm('Bạn có muốn xoá sản phẩm này khỏi giỏ hàng không???')) {
-            let list = [];
-            const item = localStorage.getItem('ListProduct');
-            list = JSON.parse(item)
-            list.splice(index, 1)
-            localStorage.setItem('ListProduct', JSON.stringify(list));
-            LoadCart();
-
-            var List1 = JSON.parse(localStorage.getItem('ListProduct'));
-            $rootScope.CountCart = List.length
+            let acc = JSON.parse(localStorage.getItem('Account')); 
+            if(acc){
+                RemoveItemInList(`Oder/${acc.id}` , index)
+            }
+            else{
+                RemoveItemInList('ListProduct' , index)
+            }
         }
         else {
             LoadCart();
         }
     }
+
+    // hàm xóa item trong giỏ hàng theo key là tham số truyền vào
+    function RemoveItemInList(key , index) {
+        let list = [];
+        const item = localStorage.getItem(key);
+        list = JSON.parse(item)
+        list.splice(index, 1)
+        localStorage.setItem(key, JSON.stringify(list));
+        LoadCart();
+
+        var List1 = JSON.parse(localStorage.getItem(key));
+        $rootScope.CountCart = List1.length
+    }
+
+    // Update quantity for item in card
     $scope.UpdateQuantity = function (item, type, index) {
         if (type == 1) {
             if (item.quantity == 1) {
-                console.log(item.quantity);
+
             }
             else {
                 const ListLocal = JSON.parse(localStorage.getItem('ListProduct'));
                 var NewProduct = {
                     id: item.id,
                     name: item.name,
-                    link: item.link,
+                    image: item.image,
                     price: item.price,
                     quantity: item.quantity - 1,
                     total: item.price * (item.quantity - 1)
@@ -63,7 +87,7 @@ app.controller('CartController', function ($scope, $http, $rootScope , $location
             var NewProduct = {
                 id: item.id,
                 name: item.name,
-                link: item.link,
+                image: item.image,
                 price: item.price,
                 quantity: item.quantity + 1,
                 total: item.price * (item.quantity + 1)

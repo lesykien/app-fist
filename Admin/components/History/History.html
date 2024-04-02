@@ -58,7 +58,9 @@
                                 <a ng-if="item.statusDelivery == 3"
                                     class="text-capitalize text-primary">Giao thành công</a>
                                 <a ng-if="item.statusDelivery == 4"
-                                    class="text-capitalize text-danger">Bị huỷ</a>
+                                    class="text-capitalize text-danger">Chưa được xác nhận</a>
+                                <a ng-if="item.statusDelivery == 5"
+                                    class="text-capitalize text-warning">Giao hàng thất bại</a>
                             </td>
                             <td class="d-flex gap-3">
                                 <a type="button" ng-click="DetalOrder(item.id)" class="fs-5" data-bs-toggle="modal"
@@ -154,6 +156,11 @@
                                 <div class="mb-3">
                                     <div class="" for="basic-icon-default-company">Phương thức thành toán:
                                         <span class="fs-6 text-dark fw-bold">Thanh toán khi nhận hàng</span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div ng-if="InformationOder.statusDelivery == 4 || InformationOder.statusDelivery == 5" for="basic-icon-default-company">Lý do hủy:
+                                        <span class="fs-6 text-danger fw-bold"> {{reason}} </span>
                                     </div>
                                 </div>
                                 <div class="mb-3">

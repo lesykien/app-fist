@@ -112,10 +112,26 @@ app.controller('AccountController', function ($scope, $http, $rootScope, $locati
 
     $scope.LogOut = function () {
         localStorage.removeItem('Account');
-        window.location.href = "./#!/"
+        window.location.href = "./#!/"; 
+        CountItem('ListProduct')
+    }
+
+    function CountItem(key) {
+        var List = JSON.parse(localStorage.getItem(key));
+        if (List == undefined) {
+          $rootScope.CountCart = 0;
+        }
+        else {
+          $rootScope.CountCart = List.length
+        }
     }
 
     // đơn hàng chi tiết
+    let listReason = [
+        { id: 1, contnet: 'Không liên lạc được với khách hàng' },
+        { id: 5, contnet: 'Sản phẩm hết hàng' }, 
+        { id: 6, contnet: 'Khách hàng không nhận sản phẩm' }
+    ]
     $scope.width = false
     $scope.OrderDetal = function (id) {
         $scope.width = true
@@ -135,6 +151,12 @@ app.controller('AccountController', function ($scope, $http, $rootScope, $locati
                     note: acc.Note
                 }
                 $scope.DetalOrderById = DetalOre;
+
+                for (let i = 0; i < listReason.length; i++) {
+                    if (listReason[i].id == response.data[0].statusOrder) {
+                        $scope.reason = listReason[i].contnet;
+                    }
+                }
 
             })
             .catch(function (error) {

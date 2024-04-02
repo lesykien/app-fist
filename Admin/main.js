@@ -50,7 +50,7 @@ app.controller('MainController', function ($scope, $http, $rootScope) {
     $http.get(`https://localhost:7272/*api/Orders`).then(function (response) {
         $rootScope.PendingCount = response.data.filter(a => a.statusDelivery == 1).length;
         $rootScope.DeliveryCount = response.data.filter(a => a.statusDelivery == 2).length;
-        $rootScope.HistoryCount = response.data.filter(a => a.statusDelivery == 3 || a.statusDelivery == 4).length;
+        $rootScope.HistoryCount = response.data.filter(a => a.statusDelivery == 3 || a.statusDelivery == 4 || a.statusDelivery == 5).length;
     })
 
     var Menu_Item_Active = document.querySelectorAll('.sub-menu-active');

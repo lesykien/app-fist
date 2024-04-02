@@ -1,4 +1,16 @@
 app.controller('HomeController', function ($scope, $http, DataService, $rootScope) {
+    let executed = false;
+    // Hàm được gọi khi form được load
+    function onLoadForm() {
+        // Kiểm tra xem câu lệnh đã được thực thi hay chưa
+        if (!executed) {
+            // Thực thi câu lệnh chỉ một lần
+            window.location.reload();
+
+            // Đặt biến flag thành true để chỉ ra rằng câu lệnh đã được thực thi
+            executed = true;
+        }
+    }
     $rootScope.siliderShow = true;
     // mặc định ẩn button cửa hàng
     $scope.see_shop = false;

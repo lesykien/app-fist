@@ -17,34 +17,67 @@ app.controller('ShopDetailController', function ($scope, $http, $rootScope, Data
                 ListLink.push(img)
             }
             $scope.link = ListLink[0];
-            $scope.index = 0
 
-            // chuyển index hình ảnh
+            // function chuyển img
+            $scope.index = 0;
+            const item_img = document.querySelector('.item_trastion_img');
+            item_img.style.gridTemplateColumns = `repeat(${response.data.images.length}, 28rem)`
+
+            let inSetInterval;
+            inSetInterval = setInterval(() => {
+
+                let sum;
+                if ($scope.index == response.data.images.length - 1) {
+                    let img = document.querySelector('.item_trastion_img');
+                    $scope.index = 0;
+                    sum = $scope.index * 28
+                    img.style.transform = `translateX(-${sum}rem)`;
+                }
+                else {
+                    let img = document.querySelector('.item_trastion_img');
+                    $scope.index = $scope.index + 1;
+                    sum = $scope.index * 28
+                    img.style.transform = `translateX(-${sum}rem)`;
+                }
+
+            }, 4000)
+
             $scope.tang_hinh = (index, type) => {
+                let sum;
+                let img = document.querySelector('.item_trastion_img');
                 switch (type) {
+                    // if type == 1 tăng hình
                     case 1:
-                        if ($scope.index == ListLink.length - 1) {
-                            $scope.link = ListLink[0];
+                        if (index == response.data.images.length - 1) {
                             $scope.index = 0;
+                            sum = $scope.index * 28
+                            img.style.transform = `translateX(-${sum}rem)`;
+                            clearInterval(inSetInterval)
                         }
                         else {
-                            $scope.index = index + 1;
-                            $scope.link = ListLink[$scope.index];
+                            $scope.index = $scope.index + 1;
+                            sum = $scope.index * 28
+                            img.style.transform = `translateX(-${sum}rem)`;
+                            clearInterval(inSetInterval)
                         }
                         break;
-
                     case 0:
-                        if ($scope.index == 0) {
-                            $scope.link = ListLink[ListLink.length - 1];
-                            $scope.index = ListLink.length - 1;
+                        if (index == 0) {
+                            $scope.index = response.data.images.length - 1;
+                            sum = $scope.index * 28
+                            img.style.transform = `translateX(-${sum}rem)`;
+                            clearInterval(inSetInterval)
                         }
                         else {
                             $scope.index = index - 1;
-                            $scope.link = ListLink[$scope.index];
+                            sum = $scope.index * 28
+                            img.style.transform = `translateX(-${sum}rem)`;
+                            clearInterval(inSetInterval)
                         }
                         break;
                 }
             }
+
             // lấy sản phẩm tương ứng
             $scope.ProductTuongUng = DataService.getData().filter(a => a.idCategory == response.data.idCategory && a.id != response.data.id);
         })

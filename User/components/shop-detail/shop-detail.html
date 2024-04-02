@@ -5,8 +5,13 @@
     }
 
     .list-image-product {
-        width: 100%;
+        width: 29rem;
         height: 100%;
+        overflow: hidden;
+    }
+
+    .item_trastion_img {
+        transition: all 0.5s linear;
     }
 
     .container--img {
@@ -14,14 +19,28 @@
         display: flex;
         align-items: center;
         gap: 10px;
+        width: 29rem;
     }
-    .hover-button{
+
+    .hover-button {
         color: #051922;
         font-size: 25px;
         font-weight: bold;
     }
-    .hover-button:hover{
+
+    .hover-button:hover {
         color: #F28123 !important;
+    }
+
+    .item__img {
+        width: 100%; 
+        height: 100%; 
+        object-fit: contain;
+    }
+    .item_trastion_img{
+        width: 100%; 
+        display: grid;
+        grid-template-rows: 20rem;
     }
 </style>
 <div class="single-product mt-5 mb-5">
@@ -32,8 +51,10 @@
                     <i class="fas fa-angle-left"></i>
                 </a>
                 <div class="single-product-img list-image-product">
-                    <img src="https://localhost:7272/api/get-images-cart/{{link}}" alt=""
-                        style="width: 100% ; height: 100%; object-fit: contain;">
+                    <div class="item_trastion_img">
+                        <img src="https://localhost:7272/api/get-images-cart/{{item}}" alt="{{item}}" class="item__img"
+                            ng-repeat="item in ProductDetal.images">
+                    </div>
                 </div>
                 <a type="button" ng-click="tang_hinh(index , 1)" class="hover-button">
                     <i class="fas fa-angle-right"></i>

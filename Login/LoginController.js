@@ -35,9 +35,6 @@ app.controller('LoginController', function ($scope, $http, $location) {
                 .catch(function (error) {
                     console.log("Loi" + error);
                 });
-
-
-
         }
     };
 });

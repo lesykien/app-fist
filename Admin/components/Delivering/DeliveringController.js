@@ -20,6 +20,13 @@ app.controller('DeliveringController', function ($scope, $http, $routeParams, $r
                 $rootScope.DeliveryCount = response.data.length;
             })
         $scope.ListPending = ListOrder;
+
+        $scope.ly_Do = 1;
+
+        $scope.lyDo = [
+            { id: 1, contnet: 'Không liên lạc được với khách hàng' },
+            { id: 6, contnet: 'Khách hàng không nhận sản phẩm' }
+        ]
     }
 
     LoadFrom();
@@ -56,19 +63,13 @@ app.controller('DeliveringController', function ($scope, $http, $routeParams, $r
 
     // Huỷ đơn hàng
     $scope.Remove = function (id) {
-        var mes = confirm('Bạn có muốn huỷ đơn hàng này không !!');
-        if (mes) {
-            $http.put(`https://localhost:7272/type/${3}/id/${id}`)
-                .then(function (response) {
-                    alert("Huỷ đơn hàng thành công!!")
-                    LoadFrom();
-                })
-                .catch(function (error) {
-                    alert('Không thể cập nhật được sản phẩm')
-                })
-        }
-        else {
-            LoadFrom();
-        }
+        $http.put(`https://localhost:7272/type/${4}/id/${id}?reason=${$scope.ly_Do}`)
+            .then(function (response) {
+                alert("Huỷ đơn hàng thành công!!")
+                LoadFrom();
+            })
+            .catch(function (error) {
+                alert('Không thể cập nhật được sản phẩm')
+            })
     }
 })

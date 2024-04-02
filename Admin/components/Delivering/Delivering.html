@@ -42,7 +42,8 @@
                                     data-bs-target="#basicModal"><i class="fa-solid fa-list"></i></a>
                                 <a type="button" ng-click="Check(item.id)" class="fs-5 text-success"><i
                                         class="fa-solid fa-check"></i></a>
-                                <a type="button" ng-click="Remove(item.id)" class="fs-5 text-danger"><i
+                                <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                    ng-click="DetalOrder(item.id)" class="fs-5 text-danger"><i
                                         class="fa-solid fa-xmark"></i></a>
                             </td>
                         </tr>
@@ -78,8 +79,8 @@
                             <tbody class="table-border-bottom-0">
                                 <tr ng-repeat="item in ListProductDetalOrder">
                                     <td>
-                                        <img src="https://localhost:7272/api/get-images-avatar/{{item.link}}" alt="Avatar"
-                                            class="rounded-circle"
+                                        <img src="https://localhost:7272/api/get-images-avatar/{{item.link}}"
+                                            alt="Avatar" class="rounded-circle"
                                             style="width: 40px; height: 38px; object-fit: cover;">
                                     </td>
                                     <td> {{item.name}} </td>
@@ -139,16 +140,141 @@
                                 </div>
                                 <div class="mb-3">
                                     <div class="" for="basic-icon-default-email">Tổng tiền:
-                                        <span class="fs-5 text-dark fw-bold">{{InformationOder.totalAmount + 30 | number :
+                                        <span class="fs-5 text-dark fw-bold">{{InformationOder.totalAmount + 30 | number
+                                            :
                                             3}}đ</span>
                                     </div>
                                 </div>
                                 <button ng-click="Check(InformationOder.id)" class="btn btn-primary">Giao hàng</button>
-                                <button ng-click="Remove(InformationOder.id)" class="btn btn-outline-danger">Huỷ đơn hàng</button>
+                                <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-danger">Huỷ đơn
+                                    hàng</button>
                             </div>
                         </div>
                     </div>
                 </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Hủy đơn hàng -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 60rem !important;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-4 text-danger" id="exampleModalLabel">Bạn có muốn hủy đơn hàng này không ????
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="table-responsive text-nowrap">
+                        <table class="table">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th class="text-light">Hình</th>
+                                    <th class="text-light">Tên</th>
+                                    <th class="text-light">Số lượng</th>
+                                    <th class="text-light">Đơn giá</th>
+                                    <th class="text-light">Tổng tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-border-bottom-0">
+                                <tr ng-repeat="item in ListProductDetalOrder">
+                                    <td>
+                                        <img src="https://localhost:7272/api/get-images-avatar/{{item.link}}"
+                                            alt="Avatar" class="rounded-circle"
+                                            style="width: 40px; height: 38px; object-fit: cover;">
+                                    </td>
+                                    <td> {{item.name}} </td>
+                                    <td> {{item.quantity}}</td>
+                                    <td> {{item.price | number : 3}}</td>
+                                    <td> {{ item.price * item.quantity | number : 3}}đ</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-xl">
+                        <div class="mb-4 overflow-hidden">
+                            <div class="card-body border rounded-1">
+                                <div class="mb-3">
+                                    <div class="" for="basic-default-fullname">Họ tên : <span
+                                            class="fs-6 text-dark">{{InformationAccount.FullName}}</span></div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="" for="basic-default-company">Số điện thoại: <span
+                                            class="fs-6 text-dark">{{InformationAccount.Phone}}</span></div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="" for="basic-default-email">Email: <span
+                                            class="fs-6 text-dark">{{InformationAccount.Email}}</span></div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="" for="basic-default-phone">Địa chỉ: <span
+                                            class="fs-6 text-dark">{{InformationAccount.Address}}</span> </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="" for="basic-default-message">Ghi chú: <span
+                                            class="fs-6 text-dark">{{InformationAccount.Note}}</span></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-xl">
+                        <div class="mb-4">
+                            <div class="card-body border rounded-1">
+                                <div class="mb-3">
+                                    <div class="" for="basic-icon-default-fullname">Mã đơn hàng:
+                                        <span class="fs-6 text-dark">DH-CD-{{InformationOder.id}}</span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="" for="basic-icon-default-company">Ngày tạo:
+                                        <span class="fs-6 text-dark">{{DateTime}}</span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="" for="basic-icon-default-company">Phương thức thành toán:
+                                        <span class="fs-6 text-dark fw-bold">Thanh toán khi nhận hàng</span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="" for="basic-icon-default-email">Tổng tiền:
+                                        <span class="fs-5 text-dark fw-bold">{{InformationOder.totalAmount + 30 | number
+                                            :
+                                            3}}đ</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col mb-3">
+                                <!-- <label for="nameBasic" class="form-label">Lý do hủy đơn:</label> -->
+                                <select id="selectTypeOpt" class="form-select color-dropdown" ng-model="ly_Do"
+                                    ng-options="item.id as item.contnet for item in lyDo">
+                                </select>
+                                <span class="text-danger" ng-show="ProductAdd.Name.$invalid">Bạn chưa nhập tên</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <button data-bs-dismiss="modal" aria-label="Close" class="btn btn-primary ">Hủy</button>
+                        <button ng-click="Remove(InformationOder.id)" class="btn btn-outline-danger mx-4">Xác nhận
+                            hủy</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
 
             </div>
         </div>

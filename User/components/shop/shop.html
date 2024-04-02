@@ -106,34 +106,41 @@
         text-align: justify;
         /* Căn đều hai bên lề cho đoạn văn bản */
     }
-    .search_item:focus{
+
+    .search_item:focus {
         outline: none !important;
     }
-    .search_item{
+
+    .search_item {
         width: 94%;
         padding: 5px 20px;
         border-radius: 2px;
         border: 1px solid #888;
     }
-    .position-sticky{
+
+    .position-sticky {
         position: sticky;
         top: 9rem;
     }
-    .btn-sort-price{
+
+    .btn-sort-price {
         padding: 0px 30px;
         background-color: white;
         color: #051922;
         border: 1px solid;
-        border-top: none ;
-        border-bottom: none ;
+        border-top: none;
+        border-bottom: none;
     }
-    .btn-sort-price:hover{
+
+    .btn-sort-price:hover {
         color: #F28123;
     }
-    .btn-sort-price:focus{
+
+    .btn-sort-price:focus {
         outline: none;
     }
-    .position-group-btn{
+
+    .position-group-btn {
         position: absolute;
         top: 38px;
         left: 0;
@@ -143,25 +150,30 @@
         transition: all 0.2s linear;
         overflow: hidden;
     }
-    .btn-sort-item{
+
+    .btn-sort-item {
         width: 100%;
         border: none;
         background-color: white;
         color: #051922;
         transition: all 0.2s;
-        border-bottom: 1px solid ;
+        border-bottom: 1px solid;
         margin-top: 2px;
     }
-    .btn-sort-item:focus{
-        outline:  none;
+
+    .btn-sort-item:focus {
+        outline: none;
     }
-    .btn-sort-item:hover{
+
+    .btn-sort-item:hover {
         color: #F28123;
     }
-    .position-parent-btn{
+
+    .position-parent-btn {
         position: relative;
     }
-    .activi-drop-down{
+
+    .activi-drop-down {
         color: #F28123;
     }
 </style>
@@ -178,17 +190,19 @@
                                 <input type="text" class="search_item" id="search" ng-model="search"
                                     placeholder="Tìm kiếm cá cảnh..." autocomplete="off" style="height: 45px;">
                                 <div class="input-group-append">
-                                    <button class="input-group-text" style="background-color: #051922;"><i
-                                            class="fa-solid fa-magnifying-glass"
+                                    <button class="input-group-text" ng-click="Search()"
+                                        style="background-color: #051922;"><i class="fa-solid fa-magnifying-glass"
                                             style="color: white; width: 20px;"></i></button>
                                     <section class="container__goiY">
-                                        <div class="item_goiY" ng-repeat="item in productsAll | filter : search" >
+                                        <div class="item_goiY" ng-repeat="item in productsAll | filter : search">
                                             <a class="iformation__list" ng-href="#!shop-detail/{{item.id}}">
-                                                <img loading="lazy" src="https://localhost:7272/api/get-images-avatar/{{item.image}}"
-                                                   alt="{{item.name}}">
+                                                <img loading="lazy"
+                                                    src="https://localhost:7272/api/get-images-avatar/{{item.image}}"
+                                                    alt="{{item.name}}">
                                                 <div class="information_pro">
                                                     <span class="information_pro--ten"> {{item.name}} </span><br>
-                                                    <span class="information_pro--gia"> {{item.price | number:3}}đ</span>
+                                                    <span class="information_pro--gia"> {{item.price |
+                                                        number:3}}đ</span>
                                                 </div>
                                                 <span class="information_noiDung">{{item.description}}</span>
                                             </a>
@@ -207,9 +221,11 @@
                             <div class="position-parent-btn">
                                 <button class="btn-sort-price" id="drop-down-sort">{{title_btn}}</button>
                                 <div class="position-group-btn">
-                                    <button ng-show="show_btn_price" ng-click="sort_price(1)" class="btn-sort-item" >Giảm dần</button>
-                                    <button ng-show="!show_btn_price" ng-click="sort_price(2)" class="btn-sort-item" >Tăng dần</button>
-                                </div>   
+                                    <button ng-show="show_btn_price" ng-click="sort_price(1)" class="btn-sort-item">Giảm
+                                        dần</button>
+                                    <button ng-show="!show_btn_price" ng-click="sort_price(2)"
+                                        class="btn-sort-item">Tăng dần</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -253,8 +269,8 @@
                         <div class="single-product-item">
                             <div class="product-image">
                                 <a href="#!shop-detail/{{item.id}}"><img loading="lazy"
-                                        src="https://localhost:7272/api/get-images-cart/{{item.image}}" alt="{{item.name}}"
-                                        style="width: 100%; height: 18rem; object-fit: cover;"></a>
+                                        src="https://localhost:7272/api/get-images-cart/{{item.image}}"
+                                        alt="{{item.name}}" style="width: 100%; height: 18rem; object-fit: cover;"></a>
                             </div>
                             <h3>{{item.name}}</h3>
                             <p class="product-price orange-text">{{item.price | number :3}}₫ </p>
