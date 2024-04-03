@@ -4,13 +4,14 @@ app.controller('BlogController', function ($scope, $rootScope, $http, $sce, $rou
   let ListBlogCart = []
   $http.get(`https://localhost:7272/api/Blog/get-value`)
     .then(function (response) {
+      let List = response.data.filter( a => a.id != $routeParams.id)
       for (let i = 0; i < 4; i++) {
         const object = {
-          contenet: $sce.trustAsHtml(response.data[i].contenet),
-          datePush: moment(response.data[i].datePush).format('DD/MM/YYYY'),
-          image: response.data[i].image,
-          healine: response.data[i].healine,
-          id: response.data[i].id
+          contenet: $sce.trustAsHtml(List[i].contenet),
+          datePush: moment(List[i].datePush).format('DD/MM/YYYY'),
+          image: List[i].image,
+          healine: List[i].healine,
+          id: List[i].id
         }
         ListBlogCart.push(object);
       }

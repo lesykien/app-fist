@@ -238,9 +238,9 @@ app.controller('AccountController', function ($scope, $http, $rootScope, $locati
                     localStorage.setItem(`Oder/${accountDetal.id}`, JSON.stringify(List))
                 }
             }
-            CountItem(`Oder/${accountDetal.id}`)
             alert('Thêm vào giỏ hàng thành công!!!')
         }
+        CountItem(`Oder/${accountDetal.id}`)
     }
 
     // Hàm đếm số lượng

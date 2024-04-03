@@ -82,6 +82,9 @@
         text-align: justify;
         /* Căn đều hai bên lề cho đoạn văn bản */
     }
+    .tile_item_blog:hover{
+        color: #F28123 !important;
+    }
 </style>
 
 <div class="mt-150 mb-150">
@@ -115,7 +118,7 @@
                                 alt="">
                             <div class="">
                                 <div style="height: 28px; overflow: hidden;">
-                                    <a href="#!blog/{{item.id}}" style="color: #051922;">
+                                    <a href="#!blog/{{item.id}}" class="tile_item_blog" style="color: #051922;">
                                         <strong class="tieude__Blog--lienQuan blog-tile">
                                             {{item.healine}} </strong></a> <br>
                                 </div>

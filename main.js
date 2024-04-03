@@ -237,8 +237,8 @@ app.controller('MainController', function ($scope, $http, DataService, $rootScop
         }
         localStorage.setItem(`${keyLocal}`, JSON.stringify(List))
       }
-      CountItem(keyLocal)
     }
+    CountItem(keyLocal)
   }
 
   // hàm đếm số lượng item có trong giỏ hàng

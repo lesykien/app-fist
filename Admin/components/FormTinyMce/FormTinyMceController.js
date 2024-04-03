@@ -41,11 +41,9 @@ const id = sessionStorage.getItem('id');
 var app = angular.module('APP', ['ngRoute']);
 
 app.controller('FormTinyMceController', function ($scope, $http, $location) {
-
     var content = document.getElementById('priview').innerHTML;
-
-
     $scope.show_button = true;
+
     $scope.AddBlogs = function () {
         let file = document.getElementById('imageInputBlogs').files;
         $scope.ImagesBlogs = file;

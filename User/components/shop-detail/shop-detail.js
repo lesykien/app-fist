@@ -21,14 +21,14 @@ app.controller('ShopDetailController', function ($scope, $http, $rootScope, Data
 
             // lấy thông tin sản phẩm cho sự kiện thêm vào giỏ hàng
             let pro = {
-                id: $routeParams.id ,
-                image : response.data.images[0],
-                name : response.data.name,
-                price : response.data.price,
-                quantity : 1,
-                total : 1 * response.data.price,
+                id: $routeParams.id,
+                image: response.data.images[0],
+                name: response.data.name,
+                price: response.data.price,
+                quantity: 1,
+                total: 1 * response.data.price,
             }
-            
+
             $scope.pro = pro
 
             // function chuyển img
@@ -37,23 +37,29 @@ app.controller('ShopDetailController', function ($scope, $http, $rootScope, Data
             item_img.style.gridTemplateColumns = `repeat(${response.data.images.length}, 28rem)`
 
             let inSetInterval;
-            inSetInterval = setInterval(() => {
+            function executeInterval() {
+                inSetInterval = setInterval(() => {
+                    let sum;
+                    if ($scope.index == response.data.images.length - 1) {
+                        let img = document.querySelector('.item_trastion_img');
+                        $scope.index = 0;
+                        sum = $scope.index * 28;
+                        img.style.transform = `translateX(-${sum}rem)`;
+                    } else {
+                        let img = document.querySelector('.item_trastion_img');
+                        $scope.index = $scope.index + 1;
+                        sum = $scope.index * 28;
+                        img.style.transform = `translateX(-${sum}rem)`;
+                    }
+                }, 4000);
+            }
 
-                let sum;
-                if ($scope.index == response.data.images.length - 1) {
-                    let img = document.querySelector('.item_trastion_img');
-                    $scope.index = 0;
-                    sum = $scope.index * 28
-                    img.style.transform = `translateX(-${sum}rem)`;
-                }
-                else {
-                    let img = document.querySelector('.item_trastion_img');
-                    $scope.index = $scope.index + 1;
-                    sum = $scope.index * 28
-                    img.style.transform = `translateX(-${sum}rem)`;
-                }
+            function resetInterval() {
+                clearInterval(inSetInterval);
+                executeInterval();
+            }
 
-            }, 4000)
+            executeInterval();
 
             $scope.tang_hinh = (index, type) => {
                 let sum;
@@ -89,10 +95,11 @@ app.controller('ShopDetailController', function ($scope, $http, $rootScope, Data
                         }
                         break;
                 }
+                setTimeout(resetInterval, 3000);
             }
 
             // lấy sản phẩm tương ứng
-            $scope.ProductTuongUng = DataService.getData().filter(a => a.idCategory == response.data.idCategory && a.id != response.data.id);
+            $scope.ProductTuongUng = DataService.getData().filter(a => a.id != response.data.id && a.idCategory == response.data.idCategory);
         })
         .catch(function (error) {
             console.error('Lỗi khi gọi API:', error);

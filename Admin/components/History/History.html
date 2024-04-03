@@ -56,11 +56,11 @@
                             <td> {{item.totalAmount + 30 | number : 3}}đ </td>
                             <td>
                                 <a ng-if="item.statusDelivery == 3"
-                                    class="text-capitalize text-primary">Giao thành công</a>
+                                    class="text-capitalize text-success">Giao thành công</a>
                                 <a ng-if="item.statusDelivery == 4"
-                                    class="text-capitalize text-danger">Chưa được xác nhận</a>
+                                    class="text-capitalize text-warning">Chưa được xác nhận</a>
                                 <a ng-if="item.statusDelivery == 5"
-                                    class="text-capitalize text-warning">Giao hàng thất bại</a>
+                                    class="text-capitalize text-danger">Giao hàng thất bại</a>
                             </td>
                             <td class="d-flex gap-3">
                                 <a type="button" ng-click="DetalOrder(item.id)" class="fs-5" data-bs-toggle="modal"
