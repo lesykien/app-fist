@@ -41,16 +41,18 @@
                             <th class="text-light">Thương hiệu</th>
                             <th class="text-light">Đơn giá</th>
                             <th class="text-light">Trạng thái</th>
-                            <th class="text-light"><a href="" class="fs-5" data-bs-toggle="modal" data-bs-target="#basicModal"
-                                    ng-click="Add()"><i class="fa-solid fa-circle-plus"></i></a>
+                            <th class="text-light"><a href="" class="fs-5" data-bs-toggle="modal"
+                                    data-bs-target="#basicModal" ng-click="Add()"><i
+                                        class="fa-solid fa-circle-plus"></i></a>
                             </th>
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
                         <tr ng-repeat="item in ListProduct | filter:search ">
                             <td>
-                                <img loading="lazy" src="https://localhost:7272/api/get-images-avatar/{{item.image}}" alt="Avatar"
-                                    class="rounded-circle" style="width: 40px; height: 38px; object-fit: cover;">
+                                <img loading="lazy" src="https://localhost:7272/api/get-images-avatar/{{item.image}}"
+                                    alt="Avatar" class="rounded-circle"
+                                    style="width: 40px; height: 38px; object-fit: cover;">
                             </td>
                             <td> {{item.name}} </td>
                             <td> {{item.brands}} </td>
@@ -64,7 +66,8 @@
                                     class="text-capitalize text-danger"> {{item.status}} </a>
                             </td>
                             <td>
-                                <a ng-href="#!ListImages/{{item.id}}" class="fs-5 me-3 text-secondary" ><i class="fa-solid fa-list"></i></a>
+                                <a ng-href="#!ListImages/{{item.id}}" class="fs-5 me-3 text-secondary"><i
+                                        class="fa-solid fa-list"></i></a>
                                 <a href="" class="fs-5 me-3" data-bs-toggle="modal" data-bs-target="#basicModal"
                                     ng-click="Edit(item)"><i class="fa-solid fa-pen-to-square"></i></a>
                             </td>
@@ -120,16 +123,30 @@
                         <div class="row">
                             <div class="col mb-3">
                                 <label for="nameBasic" class="form-label">Số lượng</label>
-                                <input type="number" min="1" max="1000" class="form-control" ng-model="Stock"
-                                    name="Stock" required>
-                                <span class="text-danger" ng-show="ProductAdd.Stock.$invalid">Bạn chưa nhập số
+                                <input type="text" class="form-control" ng-model="Stock" name="Stock"
+                                    ng-pattern="/^[0-9]*$/" required>
+                                <span class="text-danger"
+                                    ng-show="ProductAdd.Stock.$invalid && !ProductAdd.Stock.$error.pattern">Bạn chưa
+                                    nhập số
                                     lượng</span>
+                                <span class="text-danger"
+                                    ng-show="ProductAdd.Stock.$error.pattern && !ProductAdd.Stock.$error.required">Chỉ
+                                    được nhập ký tự
+                                    số</span>
                             </div>
                             <div class="col mb-3">
                                 <label for="nameBasic" class="form-label">Thương hiệu</label>
-                                <input type="text" class="form-control" ng-model="Brands" name="Brands" required>
-                                <span class="text-danger" ng-show="ProductAdd.Brands.$invalid">Bạn chưa nhập thương
+                                <input type="text" class="form-control" ng-model="Brands" name="Brands"
+                                    ng-pattern="/^[a-zA-Z\sàáạãảăắằặẵẳâấầậẫẩđèéẹẽẻêếềệễểìíịĩỉòóọõỏôốồộỗổơớờợỡởùúụũủưứừựữửỳýỵỹỷ\s]*$/"
+                                    required>
+                                <span class="text-danger"
+                                    ng-show="ProductAdd.Brands.$invalid && !ProductAdd.Brands.$error.pattern">Bạn chưa
+                                    nhập thương
                                     hiệu</span>
+                                <span class="text-danger"
+                                    ng-show="ProductAdd.Brands.$error.pattern && !ProductAdd.Brands.$error.required">Không
+                                    được nhập số và kí
+                                    tự đặc biệt</span>
                             </div>
                         </div>
                         <div class="row">

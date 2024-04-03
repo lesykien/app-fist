@@ -39,37 +39,42 @@ app.controller('ListProductController', function ($scope, DataService, $http) {
     $scope.AddProduct = function () {
         // Xử lý thêm nhiều hình ảnh
         let files = document.getElementById('imageInput').files;
-        console.log(files.length);
-        for (var i = 0; i < files.length; i++) {
-            let file = files[i];
-            $scope.Images.push(file);
+
+        if (files.length == 0) {
+            alert("Bạn chưa thêm hình ảnh !!!")
         }
+        else {
+            for (var i = 0; i < files.length; i++) {
+                let file = files[i];
+                $scope.Images.push(file);
+            }
 
-        var form = new FormData();
+            var form = new FormData();
 
-        form.append('model.Name', $scope.Name);
-        form.append('model.Price', $scope.Price)
-        form.append('model.Brands', $scope.Brands)
-        form.append('model.Status', "Còn sống")
-        form.append('model.Stock', $scope.Stock)
-        form.append('model.Description', $scope.Describe)
-        form.append('model.IdCategory', $scope.Category)
-        // thêm nhiều hình vào form data
-        for (var i = 0; i < $scope.Images.length; i++) {
-            form.append('model.Images', $scope.Images[i])
-        }
+            form.append('model.Name', $scope.Name);
+            form.append('model.Price', $scope.Price)
+            form.append('model.Brands', $scope.Brands)
+            form.append('model.Status', "Còn sống")
+            form.append('model.Stock', $scope.Stock)
+            form.append('model.Description', $scope.Describe)
+            form.append('model.IdCategory', $scope.Category)
+            // thêm nhiều hình vào form data
+            for (var i = 0; i < $scope.Images.length; i++) {
+                form.append('model.Images', $scope.Images[i])
+            }
 
-        $http.post('https://localhost:7272/*api/Product', form, {
-            transformRequest: angular.identity,
-            headers: { 'Content-Type': undefined }
-        })
-            .then(function (response) {
-                alert('Thêm sản phẩm thành công !!!')
-                LoadListProduct()
+            $http.post('https://localhost:7272/*api/Product', form, {
+                transformRequest: angular.identity,
+                headers: { 'Content-Type': undefined }
             })
-            .catch(function (error) {
-                alert('Không thể thêm được sản phẩm')
-            });
+                .then(function (response) {
+                    alert('Thêm sản phẩm thành công !!!')
+                    LoadListProduct()
+                })
+                .catch(function (error) {
+                    alert('Không thể thêm được sản phẩm')
+                });
+        }
 
 
     }
