@@ -22,7 +22,7 @@ app.controller('PendingController', function ($scope, $http, $routeParams, $root
                 $scope.ListPending = ListOrder
                 $rootScope.PendingCount = response.data.length;
             })
-
+            console.log(phone);
         $scope.ly_Do = 1;
 
         $scope.lyDo = [
