@@ -129,6 +129,8 @@ app.controller('MainController', function ($scope, $http, DataService, $rootScop
       this.classList.add('current-list-item');
     })
   }
+
+  let tongPro ;
   // Gọi Api load tất cả thông tin sản phẩm có trong csdl
   $http.get('https://localhost:7272/*api/Product/get-product')
     .then(function (response) {
@@ -138,7 +140,7 @@ app.controller('MainController', function ($scope, $http, DataService, $rootScop
       DataService.setData(response.data);
 
       $rootScope.productsAll = response.data.filter(a => a.status == "sống");
-      $rootScope.Count = $rootScope.productsAll.length
+      $rootScope.Count = $rootScope.productsAll.length; 
 
       // show new product in database
       $rootScope.NewPro = response.data.filter(a => a.status == "sống")[0];
@@ -147,10 +149,29 @@ app.controller('MainController', function ($scope, $http, DataService, $rootScop
       console.error('Lỗi khi gọi API:', error);
     });
 
+
+    // Lấy thong tin danh mục sản phẩm
+  let listCategorys = [
+    {
+      count : tongPro,
+      id : 0,
+      nameCategory : "Tất cả"
+    }
+  ]
+
   // Lấy tất cả thông tin của lại sản phẩm
   $http.get(`https://localhost:7272/*api/Category`)
     .then(function (response) {
-      $rootScope.categorys = response.data.filter(a => a.count > 0);
+      let CategorysByData = response.data.filter(a => a.count > 0);
+      for (let i = 0; i < CategorysByData.length; i++) {
+        var itemCategory = {
+          count : CategorysByData[i].count,
+          id : CategorysByData[i].id,
+          nameCategory : CategorysByData[i].nameCategory
+        }
+        listCategorys.push(itemCategory)
+      }
+      $rootScope.categorys = listCategorys;
     })
     .catch(function (error) {
       console.error('Lỗi khi gọi API:', error);
@@ -163,18 +184,18 @@ app.controller('MainController', function ($scope, $http, DataService, $rootScop
 
     // nếu chưa đăng nhập
     if (Account) {
-      addToCard(`Oder/${acc.id}`, item , 1)
+      addToCard(`Oder/${acc.id}`, item, 1)
       alert('Thêm sản phẩm thành công ')
     }
     // nếu đã đăng nhập
     else {
-      addToCard('ListProduct', item , 1)
+      addToCard('ListProduct', item, 1)
       alert('Thêm sản phẩm thành công ')
     }
   }
 
   // hàm thực hiện thêm sản phẩm vào giỏ hàng
-  function addToCard(keyLocal, item , quantityItem) {
+  function addToCard(keyLocal, item, quantityItem) {
     const ListLocal = localStorage.getItem(`${keyLocal}`);
     var Product = {
       id: item.id,
@@ -238,7 +259,7 @@ app.controller('MainController', function ($scope, $http, DataService, $rootScop
 
   function LoadFromHome() {
     let OrderList = localStorage.getItem('ListProduct')
-    if(OrderList){
+    if (OrderList) {
       if (account) {
         let acc = JSON.parse(account)
         CountItem(`Oder/${acc.id}`)

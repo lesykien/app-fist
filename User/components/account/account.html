@@ -240,6 +240,13 @@
     .scroll__Cart--body a:hover {
         background-color: #dfdfdf;
     }
+    .List_Order--ByIdAcc{
+        height: 25rem;
+        overflow: hidden;
+        overflow-y: auto;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        border-radius: 5px;
+    }
 </style>
 
 
@@ -274,52 +281,58 @@
                     <button ng-click="OrderWithStatus(2)" class="btn_trangThai">Đang giao</button>
                     <button ng-click="OrderWithStatus(3)" class="btn_trangThai">Lịch sử</button>
                 </div>
-                <div class="cart__Order-container" ng-repeat="item in Order">
-                    <div class="cart__Order-header">
-                        <span class="text__Order-header statusDelivery" ng-if="item.statusDelivery == 1">Đơn
-                            hàng đang chờ xác nhận</span>
-                        <span class="text__Order-header statusDelivery" ng-if="item.statusDelivery == 2">Đơn
-                            hàng đang được giao</span>
-                        <span class="text__Order-header statusDelivery" ng-if="item.statusDelivery == 3">Đã nhận
-                            đơn hàng</span>
-                        <span class="text__Order-header statusDelivery" ng-if="item.statusDelivery == 4">Chưa được xác
-                            nhận</span>
-                        <span class="text__Order-header statusDelivery" ng-if="item.statusDelivery == 5">Không giao hàng được</span>
-                        <span class="text__Order-header" style="font-weight: lighter !important;">
-                            <i class="fa-solid fa-file-invoice"></i> DH-KH-{{item.id}}
-                        </span>
-                    </div>
-                    <div class="scroll__Cart--body">
-                        <a href="#!shop-detail/{{pr.id}}" class="cart__Order-body" ng-repeat="pr in item.detal">
-                            <div class="" style="display: flex; gap: 10rem;">
-                                <img src="https://localhost:7272/api/get-images-avatar/{{pr.link[0].link}}" alt=""
-                                    class="img_order">
-                                <div class="information__pro">
-                                    <span class="total__pro" style="font-weight: bold;"> {{pr.name}} </span><br>
-                                    <span class="total__pro"> {{pr.price | number : 3}}đ</span> <span
-                                        class="quantity__pro">x {{pr.quantity}} </span>
-                                </div>
-                            </div>
-
-                            <span class="total__pro"> {{pr.quantity * pr.price | number : 3}}đ </span>
-                        </a>
-                    </div>
-                    <div class="" style="display: flex; justify-content: space-between;padding: 5px 0px;">
-                        <div class="cart__Order-total">
-                            Tổng tiền:<span class="total__pro" style="font-weight: bold;"> {{item.totalAmount | number
-                                :3}}đ</span>
+                <div class="List_Order--ByIdAcc">
+                    <div class="cart__Order-container" ng-repeat="item in Order">
+                        <div class="cart__Order-header">
+                            <span class="text__Order-header statusDelivery" ng-if="item.statusDelivery == 1">Đơn
+                                hàng đang chờ xác nhận</span>
+                            <span class="text__Order-header statusDelivery" ng-if="item.statusDelivery == 2">Đơn
+                                hàng đang được giao</span>
+                            <span class="text__Order-header statusDelivery" ng-if="item.statusDelivery == 3">Đã nhận
+                                đơn hàng</span>
+                            <span class="text__Order-header statusDelivery" ng-if="item.statusDelivery == 4">Chưa được
+                                xác
+                                nhận</span>
+                            <span class="text__Order-header statusDelivery" ng-if="item.statusDelivery == 5">Không giao
+                                hàng được</span>
+                            <span class="text__Order-header" style="font-weight: lighter !important;">
+                                <i class="fa-solid fa-file-invoice"></i> DH-KH-{{item.id}}
+                            </span>
                         </div>
-                        <div class="cart__Order-foodter">
-                            <button class="mua__lai" ng-click="MuaLai(item.detal)"
-                                ng-show="item.statusDelivery == 3">Mua
-                                lại</button>
-                            <button class="mua__lai btn__huy" ng-click="RemoveOrder(item.id)"
-                                ng-show="item.statusDelivery == 1">Huỷ đơn
-                                hàng</button>
-                            <button class="mua__lai btn_logOut" ng-click="OrderDetal(item.id)">Chi tiết</button>
+                        <div class="scroll__Cart--body">
+                            <a href="#!shop-detail/{{pr.id}}" class="cart__Order-body" ng-repeat="pr in item.detal">
+                                <div class="" style="display: flex; gap: 10rem;">
+                                    <img src="https://localhost:7272/api/get-images-avatar/{{pr.link[0].link}}" alt=""
+                                        class="img_order">
+                                    <div class="information__pro">
+                                        <span class="total__pro" style="font-weight: bold;"> {{pr.name}} </span><br>
+                                        <span class="total__pro"> {{pr.price | number : 3}}đ</span> <span
+                                            class="quantity__pro">x {{pr.quantity}} </span>
+                                    </div>
+                                </div>
+
+                                <span class="total__pro"> {{pr.quantity * pr.price | number : 3}}đ </span>
+                            </a>
+                        </div>
+                        <div class="" style="display: flex; justify-content: space-between;padding: 5px 0px;">
+                            <div class="cart__Order-total">
+                                Tổng tiền:<span class="total__pro" style="font-weight: bold;"> {{item.totalAmount |
+                                    number
+                                    :3}}đ</span>
+                            </div>
+                            <div class="cart__Order-foodter">
+                                <button class="mua__lai" ng-click="MuaLai(item.detal)"
+                                    ng-show="item.statusDelivery == 3">Mua
+                                    lại</button>
+                                <button class="mua__lai btn__huy" ng-click="RemoveOrder(item.id)"
+                                    ng-show="item.statusDelivery == 1">Huỷ đơn
+                                    hàng</button>
+                                <button class="mua__lai btn_logOut" ng-click="OrderDetal(item.id)">Chi tiết</button>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -383,7 +396,8 @@
         <p>Mã đơn hàng: <span>DH-KH-{{DetalOrderById.id}}</span></p>
         <p>Ngày tháng: <span>{{DetalOrderById.dateTime}}</span></p>
         <p>Phương thức thanh toán: <span>Thanh toán sau khi nhận hàng</span></p>
-        <p ng-if="DetalOrderById.statusDelivery == 4 || DetalOrderById.statusDelivery == 5">Lý do đơn hàng bị hủy: <span class="text-danger"> {{reason}} </span></p>
+        <p ng-if="DetalOrderById.statusDelivery == 4 || DetalOrderById.statusDelivery == 5">Lý do đơn hàng bị hủy: <span
+                class="text-danger"> {{reason}} </span></p>
         <p>Tổng tiền: <span> {{DetalOrderById.totalAmount | number : 3}}đ</span></p>
     </div>
     <div class="thongTin__donHang">

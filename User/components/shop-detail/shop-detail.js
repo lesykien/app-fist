@@ -18,6 +18,19 @@ app.controller('ShopDetailController', function ($scope, $http, $rootScope, Data
             }
             $scope.link = ListLink[0];
 
+
+            // lấy thông tin sản phẩm cho sự kiện thêm vào giỏ hàng
+            let pro = {
+                id: $routeParams.id ,
+                image : response.data.images[0],
+                name : response.data.name,
+                price : response.data.price,
+                quantity : 1,
+                total : 1 * response.data.price,
+            }
+            
+            $scope.pro = pro
+
             // function chuyển img
             $scope.index = 0;
             const item_img = document.querySelector('.item_trastion_img');

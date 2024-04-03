@@ -1,5 +1,6 @@
 app.controller('ShopController', function ($scope, $http, DataService, $rootScope, $routeParams) {
   $rootScope.siliderShow = false;
+
   // lấy thông tin sản phẩm theo phân trang
   $http.get(`https://localhost:7272/*api/Product/idCategory/${$routeParams.idCategory}/page/${$routeParams.numberPage}`)
     .then(function (response) {
@@ -9,7 +10,19 @@ app.controller('ShopController', function ($scope, $http, DataService, $rootScop
       console.error('Lỗi khi gọi API:', error);
     });
 
+  // $scope.allSelected = true;
 
+  $scope.toggleColor = function (item) {
+
+    // Đặt allSelected là false khi click vào một mục khác
+    $scope.allSelected = false;
+    // Đảm bảo rằng chỉ có một phần tử được chọn
+    angular.forEach($scope.categorys, function (category) {
+      category.isSelected = false;
+    });
+    // Đặt item hiện tại là được chọn
+    item.isSelected = true;
+  };
 
   // lấy trang hiện tại
   $scope.InPage = parseInt($routeParams.numberPage)

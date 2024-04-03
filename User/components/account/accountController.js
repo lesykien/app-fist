@@ -10,7 +10,7 @@ app.controller('AccountController', function ($scope, $http, $rootScope, $locati
         $scope.Address = accountDetal.address
         $scope.Email = accountDetal.email
         $scope.Phone = accountDetal.phone
-        
+
         $http.get(`https://localhost:7272/account/${accountDetal.id}/status/${1}`)
             .then(function (response) {
                 $scope.Order = []
@@ -112,24 +112,24 @@ app.controller('AccountController', function ($scope, $http, $rootScope, $locati
 
     $scope.LogOut = function () {
         localStorage.removeItem('Account');
-        window.location.href = "./#!/"; 
+        window.location.href = "./#!/";
         CountItem('ListProduct')
     }
 
     function CountItem(key) {
         var List = JSON.parse(localStorage.getItem(key));
         if (List == undefined) {
-          $rootScope.CountCart = 0;
+            $rootScope.CountCart = 0;
         }
         else {
-          $rootScope.CountCart = List.length
+            $rootScope.CountCart = List.length
         }
     }
 
     // đơn hàng chi tiết
     let listReason = [
         { id: 1, contnet: 'Không liên lạc được với khách hàng' },
-        { id: 5, contnet: 'Sản phẩm hết hàng' }, 
+        { id: 5, contnet: 'Sản phẩm hết hàng' },
         { id: 6, contnet: 'Khách hàng không nhận sản phẩm' }
     ]
     $scope.width = false
@@ -185,7 +185,7 @@ app.controller('AccountController', function ($scope, $http, $rootScope, $locati
 
     // Mua lại đơn hàng
     $scope.MuaLai = function (item) {
-        const ListLocal = localStorage.getItem('ListProduct');
+        const ListLocal = localStorage.getItem(`Oder/${accountDetal.id}`);
         let List = [];
 
         if (!ListLocal) {
@@ -193,14 +193,14 @@ app.controller('AccountController', function ($scope, $http, $rootScope, $locati
                 var Product = {
                     id: item[i].id,
                     name: item[i].name,
-                    link: item[i].link[0].link,
+                    image: item[i].link[0].link,
                     price: item[i].price,
                     quantity: item[i].quantity,
-                    total: item[i].price * 1
+                    total: item[i].price * item[i].quantity
                 }
                 List.push(Product);
             }
-            localStorage.setItem('ListProduct', JSON.stringify(List))
+            localStorage.setItem(`Oder/${accountDetal.id}`, JSON.stringify(List))
             alert('Thêm vào giỏ hàng thành công!!')
         }
         else {
@@ -211,20 +211,20 @@ app.controller('AccountController', function ($scope, $http, $rootScope, $locati
                     var Product = {
                         id: item[i].id,
                         name: item[i].name,
-                        link: item[i].link[0].link,
+                        image: item[i].link[0].link,
                         price: item[i].price,
                         quantity: item[i].quantity,
-                        total: item[i].price * 1
+                        total: item[i].price * item[i].quantity
                     }
                     List.push(Product);
-                    localStorage.setItem('ListProduct', JSON.stringify(List))
+                    localStorage.setItem(`Oder/${accountDetal.id}`, JSON.stringify(List))
                 }
                 else {
                     // Nếu đã có sản phẩm thì sẽ + thêm số lượng
                     var New = {
                         id: item[i].id,
                         name: item[i].name,
-                        link: item[i].link[0].link,
+                        image: item[i].link[0].link,
                         price: item[i].price,
                         quantity: pro.quantity + item[i].quantity,
                         total: item[i].price * (pro.quantity + 1)
@@ -235,10 +235,24 @@ app.controller('AccountController', function ($scope, $http, $rootScope, $locati
                             List[j] = New;
                         }
                     }
-                    localStorage.setItem('ListProduct', JSON.stringify(List))
+                    localStorage.setItem(`Oder/${accountDetal.id}`, JSON.stringify(List))
                 }
             }
+            CountItem(`Oder/${accountDetal.id}`)
             alert('Thêm vào giỏ hàng thành công!!!')
+        }
+    }
+
+    // Hàm đếm số lượng
+    function CountItem(key) {
+        var List = JSON.parse(localStorage.getItem(key));
+        if (List == undefined) {
+            $rootScope.CountCart = 0;
+            $rootScope.Total = 0;
+
+        }
+        else {
+            $rootScope.CountCart = List.length
         }
     }
 });

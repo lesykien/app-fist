@@ -176,6 +176,15 @@
     .activi-drop-down {
         color: #F28123;
     }
+
+    .selected {
+        font-weight: bold;
+        /* Màu chữ bạn muốn đổi khi phần tử được chọn */
+    }
+
+    #tat_ca {
+        font-weight: bold;
+    }
 </style>
 
 <!-- products -->
@@ -240,20 +249,17 @@
                         <div class="mb-3">
                             <span style="font-size: 24px; font-weight: bold;">Danh mục sản phẩm</span>
                             <ul class="list-unstyled fruite-categorie">
-                                <li>
-                                    <div class="d-flex justify-content-between fish-name">
-                                        <a href="#!shop/0/1" ng-click="MyVar='activea'" ng-class="MyVar"><i
-                                                class="fa-solid fa-fish" style="color: #F28123;"></i> Tẩt cả</a>
-                                        <span class="soluongSP">{{Count}}</span>
-                                    </div>
-                                </li>
                                 <li ng-repeat="item in categorys">
                                     <div class="d-flex justify-content-between fish-name">
-                                        <a href="#!shop/{{item.id}}/1" ng-click="MyVar='activea'" ng-class="MyVar">
+                                        <a href="#!shop/{{item.id}}/1" ng-click="toggleColor(item)"
+                                            ng-class="{ 'selected': item.isSelected }">
                                             <i class="fa-solid fa-fish" style="color: #F28123;"></i>
-                                            {{item.nameCategory}}
+                                            <span id="item_{{item.id}}" data-read-data-id data-id="{{item.id}}">
+                                                {{item.nameCategory}}
+                                            </span>
                                         </a>
-                                        <span class="soluongSP">{{item.count}}</span>
+                                        <span class="soluongSP" ng-if="item.id != 0">{{item.count}}</span>
+                                        <span class="soluongSP"ng-if="item.id == 0">{{Count}}</span>
                                     </div>
                                 </li>
                             </ul>
