@@ -49,30 +49,38 @@ app.controller('FormTinyMceController', function ($scope, $http, $location) {
     $scope.AddBlogs = function () {
         let file = document.getElementById('imageInputBlogs').files;
         $scope.ImagesBlogs = file;
-        var content = document.getElementById('priview').innerHTML
-        $scope.ContentBlogs = content;
-        const title = $scope.TitleBlogs;
-    
-        console.log($scope.TitleBlogs);
-        console.log($scope.ContentBlogs);
-        console.log($scope.ImagesBlogs[0]);
 
-        var form = new FormData();
-        form.append('blogDtos.Healine', title)
-        form.append('blogDtos.Contenet', $scope.ContentBlogs)
-        form.append('blogDtos.formFile', $scope.ImagesBlogs[0])
+        if (file.length == 0) {
+            alert('Bạn chưa thêm hình đại diện cho bài viết');
+        }
+        else {
+            var content = document.getElementById('priview').innerHTML
+            $scope.ContentBlogs = content;
+            const title = $scope.TitleBlogs;
 
-        $http.post('https://localhost:7272/api/Blog/post-blog', form, {
-            transformRequest: angular.identity,
-            headers: { 'Content-Type': undefined }
-        })
-            .then(function (response) {
-                alert('Thêm Blogs thành công!')
-                window.location.href = '/Admin/index.html#!/ListBlog'
+            console.log($scope.TitleBlogs);
+            console.log($scope.ContentBlogs);
+            console.log($scope.ImagesBlogs[0]);
+
+            var form = new FormData();
+            form.append('blogDtos.Healine', title)
+            form.append('blogDtos.Contenet', $scope.ContentBlogs)
+            form.append('blogDtos.formFile', $scope.ImagesBlogs[0])
+
+            $http.post('https://localhost:7272/api/Blog/post-blog', form, {
+                transformRequest: angular.identity,
+                headers: { 'Content-Type': undefined }
             })
-            .catch(function (error) {
-                alert('Không thể thêm được sản phẩm')
-            });
+                .then(function (response) {
+                    alert('Thêm Blogs thành công!')
+                    window.location.href = '/Admin/index.html#!/ListBlog'
+                })
+                .catch(function (error) {
+                    alert('Không thể thêm được sản phẩm')
+                });
+        }
+
+
     }
 
     if (!id) $scope.show_button = true;
@@ -110,11 +118,11 @@ app.controller('FormTinyMceController', function ($scope, $http, $location) {
                     alert('Không thể thêm được sản phẩm')
                 });
         }
-        else{
+        else {
             let form = new FormData();
             form.append('blog.Healine', $scope.TitleBlogs);
             form.append('blog.Contenet', content_blog);
-            form.append('image', file[0] );
+            form.append('image', file[0]);
             $http.put(`https://localhost:7272/api/Blog/put-blog/${id}`, form, {
                 transformRequest: angular.identity,
                 headers: { 'Content-Type': undefined }
@@ -127,7 +135,7 @@ app.controller('FormTinyMceController', function ($scope, $http, $location) {
                     console.log(error);
                 });
         }
-        
+
     }
 
     $scope.Close = () => {

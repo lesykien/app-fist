@@ -45,8 +45,12 @@
                     <form name="Blog">
                         <label for="nameBasic" class="form-label"><span>Tiêu đề Blogs</span></label>
                         <input type="text" class="form-control" name="TitleBlogs" ng-model="TitleBlogs"
-                            name="TitleBlogs" required>
-                        <span class="text-danger">Bạn chưa nhập tiêu đề</span>
+                            name="TitleBlogs" required
+                            ng-pattern="/^[a-zA-Z\sáàảãạăắằẳẵặâấầẩẫậéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵÁÀẢÃẠĂẮẰẲẴẶÂẤẦẨẪẬÉÈẺẼẸÊẾỀỂỄỆÍÌỈĨỊÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢÚÙỦŨỤƯỨỪỬỮỰÝỲỶỸỴ]+$/">
+                        <span class="text-danger" ng-show="Blog.TitleBlogs.$invalid && !Blog.TitleBlogs.$error.pattern">Bạn chưa nhập tiêu đề</span>
+                        <span class="text-danger"
+                            ng-show="Blog.TitleBlogs.$error.pattern && Blog.TitleBlogs.$invalid">Tiêu đề không hợp lệ</span>
+
                         <div class="">
                             <label for="imageUpload" class="form-label mt-2"><span>Ảnh Blogs</span></label>
                             <input type="file" id="imageInputBlogs" class="form-control" accept=".jpg, .jpeg, .png"
@@ -55,8 +59,9 @@
                         <div class="mt-3">
                             <button type="button" onclick="get_editor_content()" class="btn btn-outline-primary">Xem kết
                                 quả</button>
-                            <button ng-show="show_button" type="button" onclick="luuThongTin()" class="btn btn-primary ms-3"
-                                ng-click="AddBlogs()">Thêm blog</button>
+                            <button ng-show="show_button" type="button" onclick="luuThongTin()"
+                                class="btn btn-primary ms-3" ng-click="AddBlogs()" ng-disabled="Blog.$invalid">Thêm
+                                blog</button>
                             <button ng-show="!show_button" type="button" class="btn btn-primary ms-3"
                                 ng-click="Save()">Lưu thay đổi</button>
                     </form>
