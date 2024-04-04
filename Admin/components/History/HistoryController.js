@@ -66,7 +66,7 @@ app.controller('HistoryController', function ($scope, $http, $routeParams) {
             $scope.ListPending = ListOrder;
         }
         else if (id == 3) {
-            $scope.ListPending = ListOrder.filter(a => a.statusDelivery === 4);
+            $scope.ListPending = ListOrder.filter(a => a.statusDelivery === 4 || a.statusDelivery === 5);
         }
     }
 })
