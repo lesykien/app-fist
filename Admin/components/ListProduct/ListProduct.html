@@ -15,7 +15,7 @@
                     <ul class="dropdown-menu" style="">
                         <li><a class="dropdown-item" type="button" ng-click="LocSanPham(1)" href="">Còn hàng</a></li>
                         <li><a class="dropdown-item" type="button" ng-click="LocSanPham(2)" href="">Tất cả</a></li>
-                        <li><a class="dropdown-item" type="button" ng-click="LocSanPham(3)" href="">Hết hàng</a></li>
+                        <li><a class="dropdown-item" type="button" ng-click="LocSanPham(3)" href="">Sắp/Hết hàng</a></li>
                     </ul>
                 </div>
             </div>
@@ -63,9 +63,9 @@
                                     class="text-capitalize text-primary">Còn bán</a>
                                 <a href="" ng-click="Edit_Status(item.id)"
                                     ng-if="item.status == 'Không' || item.status == 'không'"
-                                    class="text-capitalize text-danger"> {{item.status}} </a>
+                                    class="text-capitalize text-danger"> Hết hàng </a>
                                 <a href="" ng-click="Edit_Status(item.id)"
-                                    ng-if="item.stock < 10"
+                                    ng-if="item.stock < 10 && item.status != 'Không'"
                                     class="text-capitalize text-warning"> Sắp hết hàng</a>
                             </td>
                             <td>

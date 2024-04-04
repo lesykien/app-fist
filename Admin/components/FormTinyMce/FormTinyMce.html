@@ -34,11 +34,11 @@
 </head>
 
 <body ng-app="APP">
-    <div ng-controller="FormTinyMceController">
-        <header class="px-3 pt-3">
-            <h3><a href="/Admin/index.html#!/ListBlog" ng-click="Close()" class="text-secondary">Danh sách bài biết <i
-                        class="fa-solid fa-chevron-right fs-5"></i></a> Thêm bài biết</h3>
-        </header>
+    <div ng-controller="FormTinyMceController" class="container-xxl">
+        <nav class="navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme px-4 my-2" >
+            <span class="fw-semibold fs-4"><span class="text-muted"><a class="link-opacity-100-hover"
+                        href="/Admin/index.html#!/ListBlog">Bài viết</a> / </span> {{label}} </span>
+        </nav>
         <section class="px-3">
             <div class="row">
                 <div class="col-md-6">
@@ -47,9 +47,12 @@
                         <input type="text" class="form-control" name="TitleBlogs" ng-model="TitleBlogs"
                             name="TitleBlogs" required
                             ng-pattern="/^[a-zA-Z\sáàảãạăắằẳẵặâấầẩẫậéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵÁÀẢÃẠĂẮẰẲẴẶÂẤẦẨẪẬÉÈẺẼẸÊẾỀỂỄỆÍÌỈĨỊÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢÚÙỦŨỤƯỨỪỬỮỰÝỲỶỸỴ]+$/">
-                        <span class="text-danger" ng-show="Blog.TitleBlogs.$invalid && !Blog.TitleBlogs.$error.pattern">Bạn chưa nhập tiêu đề</span>
                         <span class="text-danger"
-                            ng-show="Blog.TitleBlogs.$error.pattern && Blog.TitleBlogs.$invalid">Tiêu đề không hợp lệ</span>
+                            ng-show="Blog.TitleBlogs.$invalid && !Blog.TitleBlogs.$error.pattern">Bạn chưa nhập tiêu
+                            đề</span>
+                        <span class="text-danger"
+                            ng-show="Blog.TitleBlogs.$error.pattern && Blog.TitleBlogs.$invalid">Tiêu đề không hợp
+                            lệ</span>
 
                         <div class="">
                             <label for="imageUpload" class="form-label mt-2"><span>Ảnh Blogs</span></label>
@@ -78,8 +81,7 @@
                 <div id="priview" class="">
                 </div>
             </div>
-    </div>
-    </section>
+        </section>
     </div>
     <script src="./FormTinyMceController.js"></script>
 

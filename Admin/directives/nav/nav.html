@@ -12,7 +12,8 @@
         <!-- Search -->
         <div class="navbar-nav align-items-center">
             <div class="nav-item d-flex align-items-center">
-                <h4 class="fw-bold" style="margin: 0 !important;"> {{lbl_TieuDe}} </h4>
+                <span ng-show="lbl_TieuDe != 'Danh sách hình ảnh'" class="fw-semibold fs-5" style="margin: 0 !important;"> {{lbl_TieuDe}} </span>
+                <span ng-show="lbl_TieuDe == 'Danh sách hình ảnh'" class="fw-semibold fs-5"><span class="text-muted fw-light"><a class="link-opacity-100-hover" href="#!ListProduct">Sản phẩm</a> /</span> Hình ảnh</span>
             </div>
         </div>
         <!-- /Search -->

@@ -81,7 +81,10 @@ app.controller('FormTinyMceController', function ($scope, $http, $location) {
 
     }
 
-    if (!id) $scope.show_button = true;
+    if (!id) {
+        $scope.show_button = true; 
+        $scope.label = "Thêm bài viết";
+    }
     else {
         // get blog with id in sessionStorage 
         $http.get(`https://localhost:7272/api/Blog/get-id/=${id}`)
@@ -90,6 +93,7 @@ app.controller('FormTinyMceController', function ($scope, $http, $location) {
                 $scope.TitleBlogs = response.data.healine
                 priview.innerHTML = response.data.contenet
                 $scope.show_button = false;
+                $scope.label = "Cập nhật bài viết"
             })
             .catch((error) => {
                 console.log(error);

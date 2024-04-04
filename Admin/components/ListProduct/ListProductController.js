@@ -138,9 +138,9 @@ app.controller('ListProductController', function ($scope, DataService, $http) {
             LoadListProduct();
         }
         else if (id == 3) {
-            $scope.lbl_BoLoc = "Hết hàng";
+            $scope.lbl_BoLoc = "Sắp/Hết hàng";
             const ListProduct = DataService.getData();
-            $scope.ListProduct = ListProduct.filter(a => a.status === "Không");
+            $scope.ListProduct = ListProduct.filter(a => a.status === "Không" || a.stock < 10);
         }
     }
     // Xoá dữ liệu khi close

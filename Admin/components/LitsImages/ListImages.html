@@ -1,9 +1,9 @@
 <div ng-include="'directives/nav/nav.html'"></div>
-
 <div class="content-wrapper">
     <!-- Content -->
     <div class="container-xxl flex-grow-1 container-p-y">
         <!-- Basic Bootstrap Table -->
+
         <section class="card text-center">
             <div class="card-body">
                 <div class="row">
@@ -19,9 +19,9 @@
                                         class="text-capitalize text-primary">Còn bán</a>
                                     <a href="" ng-click="Edit_Status(data.id)"
                                         ng-if="data.status == 'Không' || data.status == 'không'"
-                                        class="text-capitalize text-danger"> {{data.status}} </a>
-                                        <a href="" ng-click="Edit_Status(item.id)"
-                                        ng-if="data.stock < 10"
+                                        class="text-capitalize text-danger"> Hết hàng </a>
+                                    <a href="" ng-click="Edit_Status(item.id)"
+                                        ng-if="data.stock < 10 && data.status != 'Không'"
                                         class="text-capitalize text-warning"> Sắp hết hàng</a>
                                 </th>
                                 <th> <a href="" class="fs-5 me-3" data-bs-toggle="modal" data-bs-target="#basicModal"
