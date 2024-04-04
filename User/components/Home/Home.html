@@ -1,3 +1,79 @@
+<style>
+	.homepage-slider {
+		/* transform: translateX(-100%); */
+		transition: all 0.5s linear;
+	}
+
+	.container-slider {
+		display: grid;
+		grid-template-columns: 100% 100% 100%;
+		grid-template-rows: 100vh;
+	}
+</style>
+
+<!-- home page slider -->
+<div ng-show="siliderShow" class="homepage-slider" id="slider-img">
+	<section class="container-slider">
+		<div class="single-homepage-slider homepage-bg-1">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 col-lg-7 offset-lg-1 offset-xl-0">
+						<div class="hero-text">
+							<div class="hero-text-tablecell">
+								<p class="subtitle">Thế giới cá cảnh</p>
+								<h1>Red Hood cửa hàng cá cảnh số 1 Buôn Ma Thuột</h1>
+								<div class="hero-btns">
+									<a href="index.html" class="boxed-btn">Xem cửa hàng</a>
+									<a href="index.html#!/contact" class="bordered-btn">Liên hệ</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="single-homepage-slider homepage-bg-2">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-10 offset-lg-1 text-center">
+						<div class="hero-text">
+							<div class="hero-text-tablecell">
+								<p class="subtitle">Cá Koi</p>
+								<h1>100% cá cảnh chất lượng</h1>
+								<div class="hero-btns">
+									<a href="index.html" class="boxed-btn">Xem cửa hàng</a>
+									<a href="index.html#!/contact" class="bordered-btn">Liên hệ</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="single-homepage-slider homepage-bg-3">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-10 offset-lg-1 text-right">
+						<div class="hero-text">
+							<div class="hero-text-tablecell">
+								<p class="subtitle">Tiêu chí</p>
+								<h1>Uy tín chất lượng đặt lên hàng đầu</h1>
+								<div class="hero-btns">
+									<a href="index.html" class="boxed-btn">Xem cửa hàng</a>
+									<a href="index.html#!/contact" class="bordered-btn">Liên hệ</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+</div>
+<!-- end home page slider -->
 <!-- features list section -->
 <div class="list-section pt-80 pb-80">
 	<div class="container">
@@ -41,6 +117,8 @@
 </div>
 <!-- end features list section -->
 
+<!-- slider  -->
+<!-- end slider -->
 <!-- product section -->
 <div class="product-section mt-150 mb-100">
 	<div class="container">
@@ -57,12 +135,14 @@
 			<div class="col-lg-3 col-md-6 text-center" ng-repeat="item in ListProduct">
 				<div class="single-product-item">
 					<div class="product-image">
-						<a href="#!shop-detail/{{item.id}}"><img src="https://localhost:7272/api/get-images-cart/{{item.image}}"
-								alt="{{item.name}}" style="width: 100%; height: 18rem; object-fit: cover;"></a>
+						<a href="#!shop-detail/{{item.id}}"><img
+								src="https://localhost:7272/api/get-images-cart/{{item.image}}" alt="{{item.name}}"
+								style="width: 100%; height: 18rem; object-fit: cover;"></a>
 					</div>
 					<h3>{{item.name}}</h3>
 					<p class="product-price orange-text"> {{item.price | number : 3}}₫ </p>
-					<a href="" ng-click="AddToCart(item, 1)" class="cart-btn"><i class="fas fa-shopping-cart"></i> Thêm vào
+					<a href="" ng-click="AddToCart(item, 1)" class="cart-btn"><i class="fas fa-shopping-cart"></i> Thêm
+						vào
 						giỏ
 						hàng</a>
 				</div>
@@ -105,7 +185,8 @@
 					mua sắm các loại cá cảnh tuyệt vời. Với nhiều năm kinh nghiệm trong ngành, chúng tôi cam kết mang
 					đến cho bạn những sản phẩm chất lượng cao và dịch vụ tuyệt vời.
 				</div>
-				<a type="button" ng-click="AddToCart(NewPro,1)" class="cart-btn mt-3"><i class="fas fa-shopping-cart"></i>
+				<a type="button" ng-click="AddToCart(NewPro,1)" class="cart-btn mt-3"><i
+						class="fas fa-shopping-cart"></i>
 					Thêm vào giỏ
 					hàng</a>
 			</div>

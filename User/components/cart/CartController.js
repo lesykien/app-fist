@@ -16,7 +16,7 @@ app.controller('CartController', function ($scope, $http, $rootScope, $location)
 
     function LoadListOrder(key) {
         var listOrder = JSON.parse(localStorage.getItem(key))
-        if (listOrder == undefined) {
+        if (listOrder == undefined || listOrder.length == 0) {
             $scope.Cart = []
             $scope.Total = 0;
             $rootScope.CountCart = 0;

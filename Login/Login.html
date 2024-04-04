@@ -75,10 +75,11 @@
             <form id="formAuthentication" ng-submit="Sumbit()" novalidate enctype="multipart/form-data" name="Login"
               class="mb-3">
               <div class="mb-3">
-                <label for="UserName" class="form-label">Email</label>
-                <input ng-model="UserName" type="UserName" class="form-control" id="UserName" name="UserName"
-                  required />
-                <span class="text-danger" ng-show="Login.UserName.$invalid">Bạn chưa nhập UserName</span>
+                <label for="UserName" class="form-label">User name</label>
+                <input ng-model="UserName" type="text" class="form-control" id="UserName" name="UserName"
+                       required pattern="[a-zA-Z\s]+" />
+                <span class="text-danger" ng-show="Login.UserName.$error.pattern">User name không hợp lệ</span>
+                <span class="text-danger" ng-show="Login.UserName.$error.required">Bạn chưa nhập User name</span>
               </div>
 
               <div class="mb-3 form-password-toggle">

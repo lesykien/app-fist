@@ -1,5 +1,7 @@
-app.controller('ShopController', function ($scope, $http, DataService, $rootScope, $routeParams) {
+app.controller('ShopController', function ($scope, $http, DataService, $rootScope, $routeParams, $location) {
   $rootScope.siliderShow = false;
+
+  $scope.showPage = true;
 
   // lấy thông tin sản phẩm theo phân trang
   $http.get(`https://localhost:7272/*api/Product/idCategory/${$routeParams.idCategory}/page/${$routeParams.numberPage}`)
@@ -37,15 +39,15 @@ app.controller('ShopController', function ($scope, $http, DataService, $rootScop
     let ListItem = []
     const linmit = 12
     const item = Math.ceil(List.length / linmit);
-    let e ;
+    let e;
     for (let i = 1; i <= item; i++) {
-      if ( i == $routeParams.numberPage){
+      if (i == $routeParams.numberPage) {
         e = {
           id: i,
           isSelected: true
         }
       }
-      else{
+      else {
         e = {
           id: i,
           isSelected: false
@@ -70,7 +72,6 @@ app.controller('ShopController', function ($scope, $http, DataService, $rootScop
   const search = document.getElementById('search');
   search.addEventListener('input', function () {
     const container__goiY = document.querySelector('.container__goiY');
-    let products = DataService.getData().filter(a => a.name == search.value);
     if (search.value.trim() == '') {
       container__goiY.style.height = '0rem'
       container__goiY.style.border = 'none'
@@ -110,17 +111,24 @@ app.controller('ShopController', function ($scope, $http, DataService, $rootScop
 
   // Function search product
   $scope.Search = function () {
-    const container__goiY = document.querySelector('.container__goiY');
-    let searchEncode = encodeURIComponent($scope.search)
-    $http.get(`https://localhost:7272/*api/Product/get-by-name-?namePro=${searchEncode}`)
-      .then((response) => {
-        $scope.products = response.data;
-        container__goiY.style.height = '0rem'
-        container__goiY.style.border = 'none'
-      })
-      .catch((err) => {
-        console.log(err);
-      })
+    $scope.showPage = false;
+    if ($scope.search.trim() == '') {
+      window.location.reload();
+    }
+    else {
+      const container__goiY = document.querySelector('.container__goiY');
+      let searchEncode = encodeURIComponent($scope.search)
+      $http.get(`https://localhost:7272/*api/Product/get-by-name-?namePro=${searchEncode}`)
+        .then((response) => {
+          $scope.products = response.data;
+          container__goiY.style.height = '0rem'
+          container__goiY.style.border = 'none'
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    }
+
   }
 
 });

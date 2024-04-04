@@ -256,10 +256,17 @@
         background-color: #c56517 ;
         color: white;
     }
+    .hearder-top {
+        /* position: absolute; */
+        width: 100%;
+        height: 7rem;
+        background-color: #051922;
+    }
 </style>
+<div class="hearder-top"></div>
 
 
-<div class="contact-from-section mt-150 mb-150">
+<div class="contact-from-section mt-5 mb-150">
     <div class="container">
         <div class="row">
             <div class="col-lg-4 mb-5 mb-lg-0">
@@ -450,8 +457,8 @@
                         ng-options="item.id as item.contnet for item in lyDo">
                     </select>
                     <div class="d-flex" style="gap: 20px;">
-                        <button type="button" class="btn btn_huyThaoTac rounded-pill px-5" data-dismiss="modal">Hủy</button>
-                        <button type="button" class="btn btn-outline-danger rounded-pill px-5" ng-click="RemoveOrder(detal_popup.id)">Hủy đơn hàng</button>
+                        <button type="button" class="btn btn_huyThaoTac px-5" data-dismiss="modal">Hủy</button>
+                        <button type="button" class="btn btn-outline-danger px-5" ng-click="RemoveOrder(detal_popup.id)">Hủy đơn hàng</button>
                     </div>
                 </div>
 
