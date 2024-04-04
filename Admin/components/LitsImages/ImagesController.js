@@ -34,7 +34,6 @@ app.controller('ImagesController', function ($scope, $routeParams, $http) {
         if (mes) {
             $http.delete(`https://localhost:7272/delete-img-${id}`)
                 .then((response) => {
-                    alert(response.data)
                     LoadForm();
                 })
                 .catch((err) => {

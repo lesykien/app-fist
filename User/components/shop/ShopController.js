@@ -13,8 +13,8 @@ app.controller('ShopController', function ($scope, $http, DataService, $rootScop
   // $scope.allSelected = true;
 
   $scope.toggleColor = function (item) {
-
     // Đặt allSelected là false khi click vào một mục khác
+    console.log(item);
     $scope.allSelected = false;
     // Đảm bảo rằng chỉ có một phần tử được chọn
     angular.forEach($scope.categorys, function (category) {

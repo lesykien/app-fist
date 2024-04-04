@@ -1,3 +1,4 @@
+
 app.controller('ShopDetailController', function ($scope, $http, $rootScope, DataService, $routeParams) {
     // ẩn eml phóng to hình ảnh
     $scope.hideDiv = true;
@@ -7,7 +8,6 @@ app.controller('ShopDetailController', function ($scope, $http, $rootScope, Data
 
     // mảng chứa link hình ảnh
     let ListLink = [];
-
     // gọi api để lấy tất cả hình ảnh
     $http.get(`https://localhost:7272/*api/Product/get-by-id/${$routeParams.id}`)
         .then(function (response) {
@@ -35,6 +35,9 @@ app.controller('ShopDetailController', function ($scope, $http, $rootScope, Data
             $scope.index = 0;
             const item_img = document.querySelector('.item_trastion_img');
             item_img.style.gridTemplateColumns = `repeat(${response.data.images.length}, 28rem)`
+
+            const container_item_img = document.querySelector('.container_item_img');
+            container_item_img.style.gridTemplateColumns = `repeat(${response.data.images.length}, 6.3rem)`
 
             let inSetInterval;
             function executeInterval() {
@@ -149,7 +152,20 @@ app.controller('ShopDetailController', function ($scope, $http, $rootScope, Data
         }
     }
 
-    //$scope.link = $scope.ListLink[0].link;
-
+    $scope.quantity = 1 ;
+    
+    // cập nhật số lương mua
+    $scope.EditQuantity_shop = function(type){
+        switch(type){
+            case 1 :
+                if($scope.quantity != 1){
+                    $scope.quantity = $scope.quantity - 1 
+                }
+            break;
+            case 2 :
+                $scope.quantity = $scope.quantity + 1 
+            break;
+        }
+    }
 })
 

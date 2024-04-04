@@ -59,11 +59,14 @@
                             <td> {{item.price | number : 3}}đ</td>
                             <td>
                                 <a href="" ng-click="Edit_Status(item.id)"
-                                    ng-if="item.status == 'sống' || item.status == 'Sống'"
+                                    ng-if="item.stock >= 10 &&item.status == 'sống' || item.status == 'Sống' "
                                     class="text-capitalize text-primary">Còn bán</a>
                                 <a href="" ng-click="Edit_Status(item.id)"
                                     ng-if="item.status == 'Không' || item.status == 'không'"
                                     class="text-capitalize text-danger"> {{item.status}} </a>
+                                <a href="" ng-click="Edit_Status(item.id)"
+                                    ng-if="item.stock < 10"
+                                    class="text-capitalize text-warning"> Sắp hết hàng</a>
                             </td>
                             <td>
                                 <a ng-href="#!ListImages/{{item.id}}" class="fs-5 me-3 text-secondary"><i

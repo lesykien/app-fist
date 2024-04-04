@@ -15,11 +15,14 @@
                                 <th class="text-dark">{{data.price | number : 3}}đ</th>
                                 <th class="text-dark">
                                     <a href="" ng-click="Edit_Status(data.id)"
-                                        ng-if="data.status == 'sống' || data.status == 'Sống'"
+                                        ng-if=" data.stock > 10 && data.status == 'sống' || data.status == 'Sống'"
                                         class="text-capitalize text-primary">Còn bán</a>
                                     <a href="" ng-click="Edit_Status(data.id)"
                                         ng-if="data.status == 'Không' || data.status == 'không'"
                                         class="text-capitalize text-danger"> {{data.status}} </a>
+                                        <a href="" ng-click="Edit_Status(item.id)"
+                                        ng-if="data.stock < 10"
+                                        class="text-capitalize text-warning"> Sắp hết hàng</a>
                                 </th>
                                 <th> <a href="" class="fs-5 me-3" data-bs-toggle="modal" data-bs-target="#basicModal"
                                         ng-click="Edit(data)"><i class="fa-solid fa-pen-to-square"></i></a> </th>
