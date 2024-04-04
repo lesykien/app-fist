@@ -122,7 +122,7 @@
         background-color: #ffffff;
         top: 0;
         left: 0;
-        z-index: 99999;
+        z-index: 999;
         transition: all 0.25s linear;
         transform: translateX(-100%);
         box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
@@ -240,12 +240,21 @@
     .scroll__Cart--body a:hover {
         background-color: #dfdfdf;
     }
-    .List_Order--ByIdAcc{
+
+    .List_Order--ByIdAcc {
         height: 25rem;
         overflow: hidden;
         overflow-y: auto;
         box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
         border-radius: 5px;
+    }
+    .btn_huyThaoTac{
+        background-color: #F28123; 
+        color: white;
+    }
+    .btn_huyThaoTac:hover{
+        background-color: #c56517 ;
+        color: white;
     }
 </style>
 
@@ -288,12 +297,12 @@
                                 hàng đang chờ xác nhận</span>
                             <span class="text__Order-header statusDelivery" ng-if="item.statusDelivery == 2">Đơn
                                 hàng đang được giao</span>
-                            <span class="text__Order-header statusDelivery" ng-if="item.statusDelivery == 3">Đã nhận
+                            <span class="text__Order-header statusDelivery text-success" ng-if="item.statusDelivery == 3">Đã nhận
                                 đơn hàng</span>
-                            <span class="text__Order-header statusDelivery" ng-if="item.statusDelivery == 4">Chưa được
+                            <span class="text__Order-header statusDelivery text-danger" ng-if="item.statusDelivery == 4">Chưa được
                                 xác
                                 nhận</span>
-                            <span class="text__Order-header statusDelivery" ng-if="item.statusDelivery == 5">Không giao
+                            <span class="text__Order-header statusDelivery text-warning" ng-if="item.statusDelivery == 5">Không giao
                                 hàng được</span>
                             <span class="text__Order-header" style="font-weight: lighter !important;">
                                 <i class="fa-solid fa-file-invoice"></i> DH-KH-{{item.id}}
@@ -324,8 +333,8 @@
                                 <button class="mua__lai" ng-click="MuaLai(item.detal)"
                                     ng-show="item.statusDelivery == 3">Mua
                                     lại</button>
-                                <button class="mua__lai btn__huy" ng-click="RemoveOrder(item.id)"
-                                    ng-show="item.statusDelivery == 1">Huỷ đơn
+                                <button class="mua__lai btn__huy" data-toggle="modal" data-target="#exampleModal"
+                                    ng-show="item.statusDelivery == 1" ng-click="show_modal(item)">Huỷ đơn
                                     hàng</button>
                                 <button class="mua__lai btn_logOut" ng-click="OrderDetal(item.id)">Chi tiết</button>
                             </div>
@@ -405,5 +414,48 @@
         <p>Số điện thoại: <span> {{DetalOrderById.phone}} </span></p>
         <p>địa chỉ: <span> {{DetalOrderById.address}} </span></p>
         <p>Ghi chú: <span> {{DetalOrderById.note}} </span></p>
+    </div>
+</div>
+
+<!--  popup hủy đơn hàng -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document" style="margin-top: 15rem; width: 50%; max-width: 50% !important;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-danger" id="exampleModalLabel">Bạn có muốn hủy đơn hàng này không (DH-KH-{{detal_popup.id}}) !!!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="scroll__Cart--body">
+                    <a class="cart__Order-body" ng-repeat="item in detal_popup.detal" data-dismiss="modal" aria-label="Close">
+                        <div class="" style="display: flex; gap: 10rem;">
+                            <img src="https://localhost:7272/api/get-images-avatar/{{item.link[0].link}}" alt="kiên" class="img_order">
+                            <div class="information__pro">
+                                <span class="total__pro" style="font-weight: bold;"> {{item.name}}</span><br>
+                                <span class="total__pro"> {{item.price | number : 3}}đ</span> <span class="quantity__pro">x {{item.quantity}} </span>
+                            </div>
+                        </div>
+                        <span class="total__pro"> {{item.quantity * item.price | number : 3}}đ  </span>
+                    </a>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="d-flex justify-content-between align-items-center" style="width: 100%;">
+                    <select id="selectTypeOpt" ng-model="ly_Do" style="padding: 5px 20px;"
+                        ng-options="item.id as item.contnet for item in lyDo">
+                    </select>
+                    <div class="d-flex" style="gap: 20px;">
+                        <button type="button" class="btn btn_huyThaoTac rounded-pill px-5" data-dismiss="modal">Hủy</button>
+                        <button type="button" class="btn btn-outline-danger rounded-pill px-5" ng-click="RemoveOrder(detal_popup.id)">Hủy đơn hàng</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 </div>

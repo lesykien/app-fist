@@ -129,6 +129,9 @@ app.controller('AccountController', function ($scope, $http, $rootScope, $locati
     // đơn hàng chi tiết
     let listReason = [
         { id: 1, contnet: 'Không liên lạc được với khách hàng' },
+        { id: 2, contnet: 'Sai thao tác khi đặt hàng' },
+        { id: 3, contnet: 'Đổi ý không muốn mua nữa' },
+        { id: 4, contnet: 'Muốn thay đổi sản phẩm' },
         { id: 5, contnet: 'Sản phẩm hết hàng' },
         { id: 6, contnet: 'Khách hàng không nhận sản phẩm' }
     ]
@@ -166,21 +169,6 @@ app.controller('AccountController', function ($scope, $http, $rootScope, $locati
     }
     $scope.Close = function () {
         $scope.width = false
-    }
-
-    // Huỷ đơn hàng 
-    $scope.RemoveOrder = function (id) {
-        var mes = confirm('Bạn có muốn huỷ đơn hàng này không????')
-        if (mes) {
-            $http.put(`https://localhost:7272/type/${3}/id/${id}`)
-                .then(function (response) {
-                    alert("Huỷ đơn hàng thành công!!")
-                    LoadForm();
-                })
-                .catch(function (error) {
-                    alert('Không thể cập nhật được sản phẩm')
-                })
-        }
     }
 
     // Mua lại đơn hàng
@@ -253,6 +241,33 @@ app.controller('AccountController', function ($scope, $http, $rootScope, $locati
         }
         else {
             $rootScope.CountCart = List.length
+        }
+    }
+    $scope.ly_Do = 2;
+
+    $scope.lyDo = [
+        { id: 2, contnet: 'Sai thao tác khi đặt hàng' },
+        { id: 3, contnet: 'Đổi ý không muốn mua nữa' },
+        { id: 4, contnet: 'Muốn thay đổi sản phẩm' }
+    ]
+    // mở popup hủy đơn hàng 
+    $scope.show_modal = function (item) {
+        $scope.detal_popup = item;
+        console.log($scope.detal_popup);
+    }
+
+    // hủy đơn hàng
+    $scope.RemoveOrder = function (id) {
+        var mes = confirm('Bạn có muốn huỷ đơn hàng này không????')
+        if (mes) {
+            $http.put(`https://localhost:7272/type/3/id/${id}?reason=${$scope.ly_Do}`)
+                .then(function (response) {
+                    alert("Huỷ đơn hàng thành công!!")
+                    LoadForm();
+                })
+                .catch(function (error) {
+                    alert('Không thể cập nhật được sản phẩm')
+                })
         }
     }
 });
