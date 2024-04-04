@@ -10,12 +10,54 @@ app.controller('ShopController', function ($scope, $http, DataService, $rootScop
       console.error('Lỗi khi gọi API:', error);
     });
 
-  // $scope.allSelected = true;
+
+  //lấy thông tin tất cả sản phẩm
+  let ListPro = [];
+  let paginatedList = [];
+
+  $http.get('https://localhost:7272/*api/Product/get-product')
+    .then(function (response) {
+      if ($routeParams.idCategory == 0) {
+        ListPro = response.data.filter(a => a.status == "sống");
+      }
+      else {
+        ListPro = response.data.filter(a => a.idCategory == $routeParams.idCategory && a.status == "sống");
+      }
+      // tính số trang
+      paginatedList = numberPage(ListPro)
+      $rootScope.item = paginatedList
+    })
+    .catch(function (error) {
+      console.error('Lỗi khi gọi API:', error);
+    });
+
+  $scope.IdCategory = $routeParams.idCategory;
+  // hàm tính số trang
+  function numberPage(List) {
+    let ListItem = []
+    const linmit = 12
+    const item = Math.ceil(List.length / linmit);
+    let e ;
+    for (let i = 1; i <= item; i++) {
+      if ( i == $routeParams.numberPage){
+        e = {
+          id: i,
+          isSelected: true
+        }
+      }
+      else{
+        e = {
+          id: i,
+          isSelected: false
+        }
+      }
+
+      ListItem.push(e)
+    }
+    return ListItem;
+  }
 
   $scope.toggleColor = function (item) {
-    // Đặt allSelected là false khi click vào một mục khác
-    console.log(item);
-    $scope.allSelected = false;
     // Đảm bảo rằng chỉ có một phần tử được chọn
     angular.forEach($scope.categorys, function (category) {
       category.isSelected = false;
@@ -23,39 +65,6 @@ app.controller('ShopController', function ($scope, $http, DataService, $rootScop
     // Đặt item hiện tại là được chọn
     item.isSelected = true;
   };
-
-  // lấy trang hiện tại
-  $scope.InPage = parseInt($routeParams.numberPage)
-
-  // lấy loại sản phẩm hiện tại
-  $scope.IdCategory = $routeParams.idCategory
-
-  $scope.Next = function (InPage, type) {
-    if (type == 1) {
-      if (InPage == 1) {
-        $scope.Luiitem = 1;
-      }
-      else {
-        $scope.Luiitem = InPage - 1;
-      }
-    }
-    else {
-      // Lấy tổng số trang 
-      var List = DataService.getData().filter(a => a.status == "sống");
-      // tính tổng số trang
-      var itemMax = Math.ceil(List.length / 1);
-      if (InPage == itemMax) {
-        $scope.Luiitem = itemMax;
-      }
-      else {
-        $scope.Luiitem = InPage + 1;
-      }
-    }
-  }
-
-  $scope.SortByPrice = function (type) {
-    console.log(type);
-  }
 
   // tạo sự kiện tìm kiếm
   const search = document.getElementById('search');

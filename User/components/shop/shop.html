@@ -185,6 +185,28 @@
     #tat_ca {
         font-weight: bold;
     }
+
+    .number_pages {
+        color: #051922 !important;
+        background-color: white !important;
+        padding: 2px 12px !important;
+        font-size: 16px !important;
+        font-weight: 500 !important;
+        border-radius: 50%;
+        border: 1px solid;
+        margin: 3px 6px !important;
+    }
+
+    .number_pages:hover {
+        background-color: #F28123 !important;
+        color: white !important;
+        border: 1px solid #F28123 !important;
+    }
+    .number_active{
+        background-color: #F28123 !important;
+        color: white !important;
+        border: 1px solid #F28123 !important;
+    }
 </style>
 
 <!-- products -->
@@ -251,15 +273,16 @@
                             <ul class="list-unstyled fruite-categorie">
                                 <li ng-repeat="item in categorys">
                                     <div class="d-flex justify-content-between fish-name">
-                                        <a href="#!shop/{{item.id}}/1" ng-click="toggleColor(item)"
+                                        <a  href="#!shop/{{item.id}}/1" 
+                                            ng-click="toggleColor(item)"
                                             ng-class="{ 'selected': item.isSelected }">
                                             <i class="fa-solid fa-fish" style="color: #F28123;"></i>
-                                            <span id="item_{{item.id}}" data-read-data-id data-id="{{item.id}}">
+                                            <span >
                                                 {{item.nameCategory}}
                                             </span>
                                         </a>
                                         <span class="soluongSP" ng-if="item.id != 0">{{item.count}}</span>
-                                        <span class="soluongSP"ng-if="item.id == 0">{{Count}}</span>
+                                        <span class="soluongSP" ng-if="item.id == 0">{{Count}}</span>
                                     </div>
                                 </li>
                             </ul>
@@ -288,14 +311,19 @@
             </div>
 
         </div>
-
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="pagination-wrap">
-                    <ul>
-                        <li><a href="#!/shop/{{IdCategory}}/{{Luiitem}}" ng-click="Next(InPage , 1)">Prev</a></li>
-                        <li><a>Trang số {{InPage}} </a></li>
-                        <li><a href="#!/shop/{{IdCategory}}/{{Luiitem}}" ng-click="Next(InPage , 2)">Next</a></li>
+                    <ul class="d-flex justify-content-center">
+                        <li ng-repeat="i in item">
+                            <a href="#!shop/{{IdCategory}}/{{i.id}}" 
+                               ng-class="{ 'number_active': i.isSelected }" 
+                               class="number_pages">
+                               <span>
+                                   {{i.id}}
+                               </span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
