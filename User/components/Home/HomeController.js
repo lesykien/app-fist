@@ -1,21 +1,28 @@
 app.controller('HomeController', function ($scope, $http, DataService, $rootScope) {
     let executed = false;
     // Hàm được gọi khi form được load
-	let slider = document.getElementById('slider-img');
-    let index_slider = 0 ;
+    let slider = document.getElementById('slider-img');
+    let index_slider = 0;
 
-	let time = setInterval(() => {
-        if ( index_slider == 2 ){
-            index_slider = 0 ;
+    let hero_text = document.querySelectorAll('.hero-text');
+
+    let time = setInterval(() => {
+        if (index_slider == 2) {
+            index_slider = 0;
             slider.style.transform = `translateX(-${index_slider * 100}%)`
         }
-        else{
+        else {
             index_slider = index_slider + 1
             slider.style.transform = `translateX(-${index_slider * 100}%)`
         }
+        for (let i = 0; i < hero_text.length; i++) {
+            if ( index_slider == i ){
+                hero_text[i].style.animation = 'text 1s ease-out'
+                console.log(index_slider);
+            }
+        }
+    }, 4000)
 
-	}, 4000)
-    time;
     $rootScope.siliderShow = true;
     // mặc định ẩn button cửa hàng
     $scope.see_shop = false;

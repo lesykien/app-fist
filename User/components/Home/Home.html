@@ -9,6 +9,21 @@
 		grid-template-columns: 100% 100% 100%;
 		grid-template-rows: 100vh;
 	}
+
+	.hero-text {
+		animation: text 1s ease-out;
+	}
+
+	@keyframes text {
+		0% {
+			transform: translateY(15rem);
+			opacity: 0;
+		}
+		100% {
+			transform: translateX(0);
+			opacity: 1;
+		}
+	}
 </style>
 
 <!-- home page slider -->
