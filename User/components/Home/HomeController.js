@@ -18,7 +18,6 @@ app.controller('HomeController', function ($scope, $http, DataService, $rootScop
         for (let i = 0; i < hero_text.length; i++) {
             if ( index_slider == i ){
                 hero_text[i].style.animation = 'text 1s ease-out'
-                console.log(index_slider);
             }
         }
     }, 4000)
