@@ -99,7 +99,7 @@
                             <div class="col mb-3">
                                 <label for="nameBasic" class="form-label">Tên sản phẩm</label>
                                 <input type="text" class="form-control" ng-model="Name" name="Name" required
-                                    ng-pattern="/^[a-zA-Z\sàáạãảăắằặẵẳâấầậẫẩđèéẹẽẻêếềệễểìíịĩỉòóọõỏôốồộỗổơớờợỡởùúụũủưứừựữửỳýỵỹỷ\s]*$/">
+                                    ng-pattern="/^[A-Za-z0-9À-ỹ ]+$/">
                                 <span class="text-danger" ng-show="ProductAdd.Name.$error.required">Bạn chưa nhập tên</span>
                                 <span class="text-danger"
                                     ng-show="ProductAdd.Name.$error.pattern && !ProductAdd.Name.$error.required">Không

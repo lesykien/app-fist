@@ -111,8 +111,14 @@
                         <div class="row">
                             <div class="col mb-3">
                                 <label for="nameBasic" class="form-label">Tên sản phẩm</label>
-                                <input type="text" class="form-control" ng-model="Name" name="Name" required>
-                                <span class="text-danger" ng-show="ProductAdd.Name.$invalid">Bạn chưa nhập tên</span>
+                                <input type="text" class="form-control" ng-model="Name" name="Name" required
+                                    ng-pattern="/^[A-Za-z0-9À-ỹ ]+$/">
+                                <span class="text-danger" ng-show="ProductAdd.Name.$error.required">Bạn chưa nhập
+                                    tên</span>
+                                <span class="text-danger"
+                                    ng-show="ProductAdd.Name.$error.pattern && !ProductAdd.Name.$error.required">Không
+                                    được nhập số và kí
+                                    tự đặc biệt</span>
                             </div>
                             <div class="col mb-3">
                                 <label for="nameBasic" class="form-label">Loại sản phẩm</label>
@@ -135,16 +141,30 @@
                         <div class="row">
                             <div class="col mb-3">
                                 <label for="nameBasic" class="form-label">Số lượng</label>
-                                <input type="number" min="1" max="1000" class="form-control" ng-model="Stock"
-                                    name="Stock" required>
-                                <span class="text-danger" ng-show="ProductAdd.Stock.$invalid">Bạn chưa nhập số
+                                <input type="number" min="1" class="form-control" ng-model="Stock" name="Stock"
+                                    ng-pattern="/^[0-9]*$/" required>
+                                <span class="text-danger"
+                                    ng-show="ProductAdd.Stock.$invalid && !ProductAdd.Stock.$error.pattern">Bạn chưa
+                                    nhập số
                                     lượng</span>
+                                <span class="text-danger"
+                                    ng-show="ProductAdd.Stock.$error.pattern && !ProductAdd.Stock.$error.required">Chỉ
+                                    được nhập ký tự
+                                    số</span>
                             </div>
                             <div class="col mb-3">
                                 <label for="nameBasic" class="form-label">Thương hiệu</label>
-                                <input type="text" class="form-control" ng-model="Brands" name="Brands" required>
-                                <span class="text-danger" ng-show="ProductAdd.Brands.$invalid">Bạn chưa nhập thương
+                                <input type="text" class="form-control" ng-model="Brands" name="Brands"
+                                    ng-pattern="/^[a-zA-Z\sàáạãảăắằặẵẳâấầậẫẩđèéẹẽẻêếềệễểìíịĩỉòóọõỏôốồộỗổơớờợỡởùúụũủưứừựữửỳýỵỹỷ\s]*$/"
+                                    required>
+                                <span class="text-danger"
+                                    ng-show="ProductAdd.Brands.$invalid && !ProductAdd.Brands.$error.pattern">Bạn chưa
+                                    nhập thương
                                     hiệu</span>
+                                <span class="text-danger"
+                                    ng-show="ProductAdd.Brands.$error.pattern && !ProductAdd.Brands.$error.required">Không
+                                    được nhập số và kí
+                                    tự đặc biệt</span>
                             </div>
                         </div>
                         <div class="row">
