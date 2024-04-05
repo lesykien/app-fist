@@ -129,7 +129,7 @@ app.controller('AccountController', function ($scope, $http, $rootScope, $locati
     // đơn hàng chi tiết
     let listReason = [
         { id: 1, contnet: 'Không liên lạc được với khách hàng' },
-        { id: 2, contnet: 'Sai thao tác khi đặt hàng' },
+        { id: 2, contnet: 'Không đủ  tiền mua' },
         { id: 3, contnet: 'Đổi ý không muốn mua nữa' },
         { id: 4, contnet: 'Muốn thay đổi sản phẩm' },
         { id: 5, contnet: 'Sản phẩm hết hàng' },
@@ -246,7 +246,7 @@ app.controller('AccountController', function ($scope, $http, $rootScope, $locati
     $scope.ly_Do = 2;
 
     $scope.lyDo = [
-        { id: 2, contnet: 'Sai thao tác khi đặt hàng' },
+        { id: 2, contnet: 'Không đủ  tiền mua' },
         { id: 3, contnet: 'Đổi ý không muốn mua nữa' },
         { id: 4, contnet: 'Muốn thay đổi sản phẩm' }
     ]
