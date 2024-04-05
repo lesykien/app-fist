@@ -15,7 +15,7 @@
                                 <th class="text-dark">{{data.price | number : 3}}đ</th>
                                 <th class="text-dark">
                                     <a href="" ng-click="Edit_Status(data.id)"
-                                        ng-if=" data.stock > 10 && data.status == 'sống' || data.status == 'Sống'"
+                                        ng-if=" data.stock >= 10 && data.status == 'sống' || data.status == 'Sống'"
                                         class="text-capitalize text-primary">Còn bán</a>
                                     <a href="" ng-click="Edit_Status(data.id)"
                                         ng-if="data.status == 'Không' || data.status == 'không'"
