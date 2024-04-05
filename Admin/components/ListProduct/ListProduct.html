@@ -15,7 +15,8 @@
                     <ul class="dropdown-menu" style="">
                         <li><a class="dropdown-item" type="button" ng-click="LocSanPham(1)" href="">Còn hàng</a></li>
                         <li><a class="dropdown-item" type="button" ng-click="LocSanPham(2)" href="">Tất cả</a></li>
-                        <li><a class="dropdown-item" type="button" ng-click="LocSanPham(3)" href="">Sắp/Hết hàng</a></li>
+                        <li><a class="dropdown-item" type="button" ng-click="LocSanPham(3)" href="">Sắp/Hết hàng</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -97,8 +98,13 @@
                         <div class="row">
                             <div class="col mb-3">
                                 <label for="nameBasic" class="form-label">Tên sản phẩm</label>
-                                <input type="text" class="form-control" ng-model="Name" name="Name" required>
-                                <span class="text-danger" ng-show="ProductAdd.Name.$invalid">Bạn chưa nhập tên</span>
+                                <input type="text" class="form-control" ng-model="Name" name="Name" required
+                                    ng-pattern="/^[a-zA-Z\sàáạãảăắằặẵẳâấầậẫẩđèéẹẽẻêếềệễểìíịĩỉòóọõỏôốồộỗổơớờợỡởùúụũủưứừựữửỳýỵỹỷ\s]*$/">
+                                <span class="text-danger" ng-show="ProductAdd.Name.$error.required">Bạn chưa nhập tên</span>
+                                <span class="text-danger"
+                                    ng-show="ProductAdd.Name.$error.pattern && !ProductAdd.Name.$error.required">Không
+                                    được nhập số và kí
+                                    tự đặc biệt</span>
                             </div>
                             <div class="col mb-3">
                                 <label for="nameBasic" class="form-label">Loại sản phẩm</label>
@@ -126,7 +132,7 @@
                         <div class="row">
                             <div class="col mb-3">
                                 <label for="nameBasic" class="form-label">Số lượng</label>
-                                <input type="text" class="form-control" ng-model="Stock" name="Stock"
+                                <input type="number" min="1" class="form-control" ng-model="Stock" name="Stock"
                                     ng-pattern="/^[0-9]*$/" required>
                                 <span class="text-danger"
                                     ng-show="ProductAdd.Stock.$invalid && !ProductAdd.Stock.$error.pattern">Bạn chưa

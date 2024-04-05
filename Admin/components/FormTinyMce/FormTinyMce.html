@@ -35,7 +35,7 @@
 
 <body ng-app="APP">
     <div ng-controller="FormTinyMceController" class="container-xxl">
-        <nav class="navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme px-4 my-2" >
+        <nav class="navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme px-4 my-2">
             <span class="fw-semibold fs-4"><span class="text-muted"><a class="link-opacity-100-hover"
                         href="/Admin/index.html#!/ListBlog">Bài viết</a> / </span> {{label}} </span>
         </nav>
@@ -45,15 +45,13 @@
                     <form name="Blog">
                         <label for="nameBasic" class="form-label"><span>Tiêu đề Blogs</span></label>
                         <input type="text" class="form-control" name="TitleBlogs" ng-model="TitleBlogs"
-                            name="TitleBlogs" required
-                            ng-pattern="/^[a-zA-Z\sáàảãạăắằẳẵặâấầẩẫậéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵÁÀẢÃẠĂẮẰẲẴẶÂẤẦẨẪẬÉÈẺẼẸÊẾỀỂỄỆÍÌỈĨỊÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢÚÙỦŨỤƯỨỪỬỮỰÝỲỶỸỴ]+$/">
+                            name="TitleBlogs" required pattern="^[^`~!@#$%^&*()_+=[\]{};:'\<>,.?|\\]*$">
                         <span class="text-danger"
                             ng-show="Blog.TitleBlogs.$invalid && !Blog.TitleBlogs.$error.pattern">Bạn chưa nhập tiêu
                             đề</span>
                         <span class="text-danger"
                             ng-show="Blog.TitleBlogs.$error.pattern && Blog.TitleBlogs.$invalid">Tiêu đề không hợp
                             lệ</span>
-
                         <div class="">
                             <label for="imageUpload" class="form-label mt-2"><span>Ảnh Blogs</span></label>
                             <input type="file" id="imageInputBlogs" class="form-control" accept=".jpg, .jpeg, .png"
