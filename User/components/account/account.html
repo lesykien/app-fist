@@ -3,9 +3,9 @@
         font-weight: bolder;
         border: none;
         background-color: #F28123;
-        padding: 5px 10px;
+        padding: 5px 20px;
         border-radius: 20px;
-        color: #051922;
+        color: white;
         transition: all 0.5 cubic-bezier(0.075, 0.82, 0.165, 1);
     }
 
@@ -70,7 +70,7 @@
 
     .mua__lai {
         border: none;
-        color: #051922;
+        color: white;
         background-color: #F28123;
         border-radius: 20px;
         padding: 2px 50px;
@@ -275,17 +275,24 @@
                 </div>
                 <div id="form_status"></div>
                 <div class="contact-form">
-                    <form type="POST">
+                    <form name="account">
                         <p>
-                            <input style="width: 100%;" type="text" ng-model="FullName" id="name"> <br>
-                            <input style="width: 100%;" class="mt-3" type="tel" placeholder="Số điện thoại"
-                                ng-model="Phone" name="phone" id="phone"><br>
-                            <input style="width: 100%;" class="mt-3" type="email" ng-model="Email" id="email"><br>
+                            <input style="width: 100%;" type="text" ng-model="fullName" name="fullName" id="name" ng-pattern="/^[A-Za-zÀ-ỹ ]+$/" placeholder="Họ tên"> <br>
+                            <span ng-show="account.fullName.$error.pattern" class="text-danger">Tên không hợp lệ</span>
+
+                            <input style="width: 100%;" class="mt-3" type="tel" placeholder="Số điện thoại" maxlength="10"
+                                ng-model="phone" name="phone" id="phone" required ng-pattern="/^[0-9]*$/"><br>
+                            <span ng-show="account.phone.$error.pattern" class="text-danger">Số điện thoại không hợp lệ</span>
+
+                            <input style="width: 100%;" class="mt-3" type="email" name="email" ng-model="email" id="email" placeholder="Email" ng-pattern="/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/"><br>
+                            <span ng-show="account.email.$error.pattern" class="text-danger">Email không hợp lệ</span>
+
                             <input style="width: 100%;" class="mt-3" type="text" placeholder="Địa chỉ"
-                                ng-model="Address" name="subject" id="subject">
+                                ng-model="address" name="address" id="subject" ng-pattern="/^[A-Za-z0-9À-ỹ, \/]+$/" required>
+                            <span ng-show="account.address.$error.pattern" class="text-danger">Địa chị không hợp lệ</span>
                         </p>
                         <div class="d-flex" style="gap: 5px;">
-                            <input class="btn_Custom" type="button" value="Lưu thay đổi">
+                            <input class="btn_Custom" type="button" ng-click="edit_account()" ng-show="!account.$invalid" value="Lưu thay đổi">
                             <input class="btn_Custom btn_logOut" type="button" ng-click="LogOut()" value="Đăng xuất">
                         </div>
                     </form>

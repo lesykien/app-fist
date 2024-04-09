@@ -6,11 +6,11 @@ app.controller('AccountController', function ($scope, $http, $rootScope, $locati
     LoadForm();
     function LoadForm() {
         // Kiểm tra đã đăng nhập hay chưa
-        $scope.FullName = accountDetal.fullName
-        $scope.Address = accountDetal.address
-        $scope.Email = accountDetal.email
-        $scope.Phone = accountDetal.phone
-
+        $scope.fullName = accountDetal.fullName
+        $scope.address = accountDetal.address
+        $scope.email = accountDetal.email
+        $scope.phone = accountDetal.phone
+        console.log(accountDetal);
         $http.get(`https://localhost:7272/account/${accountDetal.id}/status/${1}`)
             .then(function (response) {
                 $scope.Order = []
@@ -269,6 +269,11 @@ app.controller('AccountController', function ($scope, $http, $rootScope, $locati
                     alert('Không thể cập nhật được sản phẩm')
                 })
         }
+    }
+
+    // Cập nhật thông tin tài khoản
+    $scope.edit_account = function(){
+        console.log(1);
     }
 });
 
