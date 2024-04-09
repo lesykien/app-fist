@@ -42,7 +42,7 @@
 											<p>
 												<input name="Address" type="text" placeholder="Địa chỉ"
 													ng-model="Address" required
-													ng-pattern="/^[a-zA-Z0-9\s,àáảãạâầấẩẫậăằắẳẵặèéẻẽẹêềếểễệđìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳỹỷỵ]*$/">
+													ng-pattern="/^[A-Za-z0-9À-ỹ, \/]+$/">
 												<span ng-show="FormBanking.Address.$error.required" class="text-danger">Bạn chưa nhập địa
 													chỉ</span>
 												<span ng-show="FormBanking.Address.$error.pattern" class="text-danger">Địa chỉ không hợp lệ</span>
