@@ -39,6 +39,7 @@ app.controller('CheckController', function ($scope, $http, $rootScope, $location
             form.append('Email', $scope.Email);
             form.append('Phone', $scope.Phone);
             form.append('Address', $scope.Address);
+            window.location.href = '#!fix-payment';
         }
         else {
             alert('Bạn chưa nhập thông tin nhận hàng')

@@ -20,6 +20,9 @@ app.config(function ($routeProvider) {
     .when('/contact', { templateUrl: "/User/components/contact.html", controller: 'ContactController' })
     // Liên hệ
 
+    .when('/fix-payment', { templateUrl: "/User/components/fix-payment.html", controller: 'FixPaymentController' })
+    // Liên hệ
+
     .when('/shop/:idCategory/:numberPage', { templateUrl: "/User/components/shop/shop.html", controller: 'ShopController' })
     // Của hàng
 
