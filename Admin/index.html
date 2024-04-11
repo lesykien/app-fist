@@ -38,6 +38,11 @@
   <script src="/Admin/services/angularjs/angular.js"></script>
   <script src="/Admin/services/angularjs/angular-route.js"></script>
 
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
 </head>
 
 <body ng-app="APP" ng-controller="MainController">
@@ -46,7 +51,7 @@
       <!-- Menu -->
       <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
         <div class="app-brand demo">
-          <a href="#!ListProduct" class="app-brand-link">
+          <a href="#!Home" class="app-brand-link">
             <span class="app-brand-text fs-2 menu-text fw-bolder ms-2">Red Hood</span>
           </a>
         </div>
@@ -110,7 +115,8 @@
       </aside>
       <!-- / Menu -->
       <div class="layout-page">
-        <div ng-show="Loading"  class="spinner-border spinner-border-lg text-primary" role="status" style="position: absolute; top: 50%; left: 50%;" >
+        <div ng-show="Loading" class="spinner-border spinner-border-lg text-primary" role="status"
+          style="position: absolute; top: 50%; left: 50%;">
           <span class="visually-hidden">Loading...</span>
         </div>
 
@@ -118,6 +124,10 @@
       </div>
     </div>
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script src="https://code.highcharts.com/highcharts.js"></script>
 
 
   <script src="/Admin/directives/assets/vendor/libs/jquery/jquery.js"></script>
@@ -153,6 +163,7 @@
   <script src="/Admin/components/Account/AccountController.js"></script>
   <script src="/Admin/components/ListBlog/ListBlogController.js"></script>
   <script src="/Admin/components/LitsImages/ImagesController.js"></script>
+  <script src="/Admin/components/Home/HomeController.js"></script>
 
   <!-- Place this tag in your head or just before your close body tag. -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>

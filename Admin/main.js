@@ -3,6 +3,7 @@ var app = angular.module('APP', ['ngRoute']);
 app.config(function ($routeProvider) {
     $routeProvider
         // Đường dẫn đến trang chủ
+        .when('/Home', { templateUrl: "./components/Home/Home.html", controller: 'HomeController' })
         .when('/ListProduct', { templateUrl: "./components/ListProduct/ListProduct.html", controller: 'ListProductController' })
         .when('/Home', { templateUrl: "./components/Home/Home.html", controller: 'HomeController' })
         .when('/Pending/:type', { templateUrl: "./components/Pending/Pending.html", controller: 'PendingController' })
@@ -12,7 +13,7 @@ app.config(function ($routeProvider) {
         .when('/Account', { templateUrl: "./components/Account/Account.html", controller: 'AccountController' })
         .when('/ListBlog', { templateUrl: "./components/ListBlog/ListBlog.html", controller: 'ListBlogController' })
         .when('/ListImages/:id', { templateUrl: "./components/LitsImages/ListImages.html", controller: 'ImagesController' })
-        .otherwise({ templateUrl: "./components/ListProduct/ListProduct.html", controller: 'ListProductController' })
+        .otherwise({ templateUrl: "./components/Home/Home.html", controller: 'HomeController' })
 });
 
 app.config(['$httpProvider', function($httpProvider) {

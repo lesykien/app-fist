@@ -1,0 +1,89 @@
+<div ng-include="'directives/nav/nav.html'"></div>
+
+<div class="content-wrapper">
+    <!-- Content -->
+    <div class="container-xxl d-flex gap-4 container-p-y">
+        <div class="card" style="width: 50%;">
+            <div class="card-body">
+                <div id="container" style="height: 14rem;"></div>
+            </div>
+        </div>
+        <div class="card" style="width: 50%;">
+            <div class="card-body p-0 overflow-hidden">
+                <div class="d-flex gap-5 position-relative overflow-hidden p-2">
+                    <div class="item"></div>
+                    <div class="item1"></div>
+                    <div class="main-img">
+                        <img src="https://localhost:7272/api/get-images-detal/{{hotPro.image}}"
+                            alt="{{hotPro}}">
+                    </div>
+                    <div class="p-2 px-3 position-absolute"
+                        style="background-color: rgb(255, 255, 255); bottom: 0px; left: 0px; border-radius: 0px 20px 0px 7px ; width: 15rem;">
+                        <span class="fs-6 text-dark"><span class="text-danger">Top tháng {{moth}} </span></span><br>
+                        <a ng-href="#!ListImages/{{hotPro.id}}" class="fw-bold fs-5 text-dark"> {{hotPro.name}} </a><br>
+                        <span class="text-dark">Giá bán: {{hotPro.price | number : 3}}đ</span> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-xxl">
+        <div class="card">
+            <div class="card-header fs-5">
+            </div>
+            <div class="card-body">
+                <canvas id="myChart" height="79%"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content -->
+</div>
+<style>
+    .title_total {
+        text-align: center;
+        height: auto;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    .main-img {
+        width: 100%;
+        border-radius: 4px;
+        overflow: hidden;
+        height: 16rem;
+    }
+
+    .main-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: left;
+    }
+
+    .item {
+        position: absolute;
+        padding: 20px;
+        border-left: 9px solid white;
+        border-bottom: 8px solid white;
+        border-radius: 0px 0px 0px 50%;
+        bottom: 0px;
+        left: 230px;
+        z-index: 1;
+    }
+
+    .item1 {
+        position: absolute;
+        padding: 20px;
+        border-left: 8px solid white;
+        border-bottom: 8px solid white;
+        border-radius: 0px 0px 0px 50%;
+        bottom: 81px;
+        left: 0px;
+        z-index: 1;
+    }
+</style>

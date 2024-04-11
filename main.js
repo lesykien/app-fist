@@ -144,13 +144,22 @@ app.controller('MainController', function ($scope, $http, DataService, $rootScop
 
       $rootScope.productsAll = response.data.filter(a => a.status == "sống");
       $rootScope.Count = $rootScope.productsAll.length;
-
-      // show new product in database
-      $rootScope.NewPro = response.data.filter(a => a.status == "sống")[0];
     })
     .catch(function (error) {
       console.error('Lỗi khi gọi API:', error);
     });
+
+
+    // Lấy sản phẩm có nhiều lượt mua nhất
+    $http.get('https://localhost:7272/*api/Product/get-pro-oder')
+    .then(function (response) {
+
+      $rootScope.NewPro = response.data;
+    })
+    .catch(function (error) {
+      console.error('Lỗi khi gọi API:', error);
+    });
+
 
 
   // Lấy thong tin danh mục sản phẩm
