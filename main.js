@@ -150,8 +150,8 @@ app.controller('MainController', function ($scope, $http, DataService, $rootScop
     });
 
 
-    // Lấy sản phẩm có nhiều lượt mua nhất
-    $http.get('https://localhost:7272/*api/Product/get-pro-oder')
+  // Lấy sản phẩm có nhiều lượt mua nhất
+  $http.get('https://localhost:7272/*api/Product/get-pro-oder')
     .then(function (response) {
 
       $rootScope.NewPro = response.data;
@@ -159,9 +159,6 @@ app.controller('MainController', function ($scope, $http, DataService, $rootScop
     .catch(function (error) {
       console.error('Lỗi khi gọi API:', error);
     });
-
-
-
   // Lấy thong tin danh mục sản phẩm
   let listCategorys = [
     {

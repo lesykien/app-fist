@@ -100,7 +100,7 @@ app.controller('HomeController', function ($scope, $http) {
             data: {
                 labels: days,
                 datasets: [{
-                    label: `Doanh thu tháng ${mm}`,
+                    label: `Doanh thu (.000đ) tháng ${mm}`,
                     backgroundColor: 'rgba(95, 184, 47, 0.73)',
                     data: data,
                     borderWidth: 1,
